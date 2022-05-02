@@ -1,3 +1,15 @@
+map:
+  options:
+    style: mapbox://styles/mapbox/light-v10
+    center: [1.6, 42.55]
+    zoom: 10
+    maxPitch: 0
+  controls:
+    navigation:
+      position: top-right
+    scale:
+      position: bottom-right
+
 footer:
   learn:
     - name: Seismology

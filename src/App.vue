@@ -1,17 +1,17 @@
 <template>
   <section-sidebar />
   <main id="main">
-    <div id="map-view" />
+    <section-map />
     <section-footer />
   </main>
 </template>
 
 <script>
-import { SectionSidebar, SectionFooter } from '/@/components/layout';
+import { SectionSidebar, SectionMap, SectionFooter } from '/@/components/layout';
 
 export default {
   name: 'App',
-  components: { SectionSidebar, SectionFooter },
+  components: { SectionSidebar, SectionMap, SectionFooter },
   setup() {
     return {};
   },
