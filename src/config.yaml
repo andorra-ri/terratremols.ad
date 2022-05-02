@@ -1,0 +1,30 @@
+footer:
+  learn:
+    - name: Seismology
+      url: '#seismology'
+    - name: Seismic Survey
+      url: https://andorra-ri.github.io/enquesta-sismica/
+      target: blank
+    - name: News
+      url: '#news'
+    - name: FAQ
+      url: '#faq'
+
+  about:
+    - name: Company
+      url: '#company'
+    - name: Careers
+      url: '#carrers'
+    - name: Press
+      url: '#press'
+    - name: Terms & Policies
+      url: '#terms'
+      target: blank
+
+  contact:
+    - name: Send a message
+      url: 'mailto:terratremols@ari.ad'
+    - name: Request a demo
+      url: gsfhgdhfg
+    - name: +376 742 630
+      url: 'tel:+376-742-630'

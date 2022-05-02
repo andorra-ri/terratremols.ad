@@ -1,0 +1,29 @@
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: var(--l);
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.125rem;
+  margin-bottom: var(--l);
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.3;
+}
+
+a {
+  color: currentColor;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-primary);
+
+  &:hover { animation: shake 0.75s infinite; }
+}
+
+p.copyright {
+  font-size: 0.9rem;
+  opacity: 0.5;
+  text-align: center;
+  margin: var(--m);
+}
