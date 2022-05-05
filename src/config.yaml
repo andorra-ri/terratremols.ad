@@ -30,6 +30,9 @@ markers:
     ACTIVE:
       size: 200px
 
+filters:
+  search: ''
+
 footer:
   learn:
     - name: Seismology

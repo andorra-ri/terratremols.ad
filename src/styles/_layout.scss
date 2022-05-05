@@ -72,3 +72,21 @@ footer {
 
   &:hover { transform: translate(0); }
 }
+
+details.collapsible {
+  summary {
+    list-style: none;
+    padding: var(--m) var(--l);
+    cursor: pointer;
+    color: var(--color-primary);
+    text-align: right;
+
+    .icon {
+      height: 1em;
+      width: 1em;
+      vertical-align: middle;
+    }
+  }
+
+  &[open] { padding-bottom: var(--l); }
+}

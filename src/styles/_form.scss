@@ -1,0 +1,21 @@
+input {
+  display: block;
+  border: 1px solid #0001;
+  padding: var(--s) var(--m);
+  margin: var(--s) auto;
+  outline: none;
+
+  &:focus { border-color: var(--color-primary); }
+}
+
+.btn {
+  border: 0;
+  display: block;
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--s) var(--m);
+  margin: var(--s) auto;
+  cursor: pointer;
+
+  &:hover { animation: shake 0.75s infinite; }
+};

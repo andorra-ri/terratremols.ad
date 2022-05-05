@@ -3,6 +3,9 @@
     <div id="map" />
     <div class="panel">
       <div class="panel__toggler">Seisms List</div>
+      <header>
+        <seism-filters v-model="filter" />
+      </header>
       <seism-list v-model="selectedSeism" :seisms="seisms" />
     </div>
   </section>
@@ -12,7 +15,7 @@
 import { ref, watch, onMounted } from 'vue';
 import { createMap, useMap } from '/@/services/map.service';
 import { useSeismFilter } from '/@/services/seisms.service';
-import { SeismList } from '/@/components';
+import { SeismList, SeismFilters } from '/@/components';
 import config from '/@/config.yaml';
 
 const { ripple } = config.markers;
@@ -24,7 +27,7 @@ const changeRipple = ({ size }) => ({ marker }) => {
 
 export default {
   name: 'SectionMap',
-  components: { SeismList },
+  components: { SeismList, SeismFilters },
   setup() {
     const map = useMap();
     const filter = ref(() => true);
