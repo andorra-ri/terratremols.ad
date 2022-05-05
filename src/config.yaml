@@ -10,6 +10,13 @@ map:
     scale:
       position: bottom-right
 
+markers:
+  ripple:
+    IDLE:
+      size: 20px
+    ACTIVE:
+      size: 200px
+
 footer:
   learn:
     - name: Seismology

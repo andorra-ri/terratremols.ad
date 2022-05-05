@@ -13,3 +13,40 @@
   width: 100%;
 }
 
+.ripple {
+  --color: var(--marker-color);
+  --size: var(--xl);
+  --point-size: 8px;
+
+  position: absolute;
+  box-sizing: border-box;
+  background: var(--color);
+  background-clip: content-box;
+  height: var(--point-size);
+  width: var(--point-size);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: height 0.25s ease, width 0.25s ease;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    height: var(--size);
+    width: var(--size);
+    border-radius: 50%;
+    border: 1px solid var(--color);
+    background: radial-gradient(circle at center, transparent 25%, var(--color) 200%);
+    margin: calc(-0.5 * var(--size));
+    animation: ripple 2s infinite ease-out both;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+
+  &::after { animation-delay: 1s; }
+
+  &:hover { --point-size: 16px;}
+};
