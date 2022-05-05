@@ -38,3 +38,37 @@ footer {
   }
 }
 
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fafafadd;
+  max-width: 250px;
+  z-index: 2;
+  box-sizing: border-box;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+
+  header {
+    z-index: 1;
+    border-bottom: 1px solid #0001;
+  }
+
+  &__toggler {
+    background: var(--color-primary);
+    padding: var(--xl) var(--l);
+    color: #fff;
+    font-weight: 600;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    white-space: nowrap;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+    writing-mode: vertical-lr;
+  }
+
+  &:hover { transform: translate(0); }
+}

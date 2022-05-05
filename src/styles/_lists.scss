@@ -6,3 +6,44 @@ ul.links {
     margin: var(--m) 0;
   }
 }
+
+ul.seisms {
+  flex: 1;
+  overflow: auto;
+
+  .seism {
+    padding: var(--l);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    & + .seism { border-top: 1px solid #0000000b; }
+
+    &__date {
+      display: block;
+      font-weight: 600;
+    }
+
+    &__location {
+      display: block;
+      font-size: 0.9rem;
+      opacity: 0.5;
+    }
+
+    &__marker {
+      flex-basis: var(--l);
+      margin: 0 var(--m);
+    }
+
+    .ripple {
+      --size: var(--xl);
+      position: relative;
+    }
+
+    &--active {
+      background: #00000008;
+
+      .ripple { --size: var(--xxxl); }
+    }
+  }
+}
