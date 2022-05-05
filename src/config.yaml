@@ -1,3 +1,5 @@
+locale: en
+
 date_format:
   weekday: short
   day: numeric

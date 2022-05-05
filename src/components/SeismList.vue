@@ -7,8 +7,8 @@
       @click="selectSeism(seism)">
       <div class="seism__marker"><div class="ripple" /></div>
       <div class="seism__details">
-        <span class="seism__date">{{ dateFormat(seism.date) }}</span>
-        <span class="seism__time">{{ timeFormat(seism.date) }}</span>
+        <span class="seism__date">{{ format.DATE(seism.date) }}</span>
+        <span class="seism__time">{{ format.TIME(seism.date) }}</span>
         <span class="seism__location">{{ seism.location }}</span>
       </div>
     </li>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import config from '/@/config.yaml';
+import { format } from '/@/utils';
 
 export default {
   name: 'SeismList',
@@ -26,15 +26,12 @@ export default {
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const dateFormat = date => date.toLocaleString('en', config.date_format);
-    const timeFormat = date => date.toLocaleString('en', config.time_format);
-
     const selectSeism = seism => {
       const target = seism?.id === props.modelValue?.id ? undefined : seism;
       emit('update:modelValue', target);
     };
 
-    return { dateFormat, timeFormat, selectSeism };
+    return { selectSeism, format };
   },
 };
 </script>
