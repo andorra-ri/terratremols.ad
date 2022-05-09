@@ -39,6 +39,17 @@ markers:
 
 filters:
   search: ''
+  options:
+    range:
+      min: 0
+      max: 10
+      step: 1
+      showTooltip: focus
+      lazy: true
+      merge: 1
+      options:
+        margin: 1
+
 
 footer:
   learn:

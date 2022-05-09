@@ -32,4 +32,21 @@
 
   --marker-color: var(--color-primary--light);
   --marker-border-color: var(--color-primary);
+
+  --slider-bg: #0002;
+  --slider-connect-bg: var(--color-primary);
+  --slider-height: var(--xxs);
+
+  --slider-handle-bg: var(--color-primary);
+  --slider-handle-width: var(--l);
+  --slider-handle-height: var(--l);
+  --slider-handle-shadow: none;
+
+  --slider-tooltip-font-size: 1rem;
+  --slider-tooltip-font-weight: 200;
+  --slider-tooltip-bg: var(--color-primary);
+  --slider-tooltip-color: #fff;
+  --slider-tooltip-radius: 0;
+  --slider-tooltip-py: var(--xxxs);
+  --slider-tooltip-px: var(--xs);
 }

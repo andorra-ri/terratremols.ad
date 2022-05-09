@@ -27,6 +27,13 @@
           :not-after="new Date()"
           size="7" />
       </label>
+      <label class="block">
+        <span>Magnitude</span>
+        <slider
+          v-model="filters.magnitude"
+          v-bind="filters.options.range"
+          class="range-slider" />
+      </label>
       <button class="btn block" @click="reset">Reset filters</button>
     </div>
   </details>
@@ -34,15 +41,21 @@
 
 <script>
 import { reactive, watch } from 'vue';
+import Slider from '@vueform/slider';
 import { RemixIcon, DatePicker } from '/@/components';
 import { normalize, format } from '/@/utils';
 import config from '/@/config.yaml';
 
-const INITIAL_STATE = { search: '', dateMin: null, dateMax: new Date() };
+const INITIAL_STATE = {
+  search: '',
+  dateMin: null,
+  dateMax: new Date(),
+  magnitude: [0, 10],
+};
 
 export default {
   name: 'SeismFilters',
-  components: { RemixIcon, DatePicker },
+  components: { RemixIcon, DatePicker, Slider },
   props: {
     modelValue: {
       type: Function,
@@ -59,7 +72,9 @@ export default {
       const search = normalize(filters.search);
       const validator = seism => normalize(seism.location).includes(search)
         && seism.date > filters.dateMin
-        && seism.date < filters.dateMax;
+        && seism.date < filters.dateMax
+        && seism.magnitude >= filters.magnitude[0]
+        && seism.magnitude <= filters.magnitude[1];
       emit('update:modelValue', validator);
     }, { immediate: true });
 
@@ -74,5 +89,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 1rem;
+
+  .block { flex-basis: 100%; }
 }
 </style>
