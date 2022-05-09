@@ -47,7 +47,8 @@ export default {
         return { id, element, coordinates };
       });
       updateMarker(selectedSeism.value?.id, changeRipple(ripple.ACTIVE));
-      fitBounds(getBounds(seisms.value), { padding: 100, maxZoom: 13 });
+      const bounds = getBounds(seisms.value);
+      if ('_sw' in bounds) fitBounds(bounds, { padding: 100, maxZoom: 13 });
     }, { immediate: true });
 
     watch(selectedSeism, async (seism, prev) => {
