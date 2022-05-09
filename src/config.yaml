@@ -1,5 +1,10 @@
 locale: en
 
+short_date_format:
+  day: 2-digit
+  month: 2-digit
+  year: numeric
+
 date_format:
   weekday: short
   day: numeric

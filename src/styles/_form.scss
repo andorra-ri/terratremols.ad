@@ -14,12 +14,12 @@ input {
 }
 
 .btn {
-  border: 0;
-  display: block;
+  border: 1px solid var(--color-primary);
   background: var(--color-primary);
   color: #fff;
   padding: var(--s) var(--m);
-  margin: var(--s) auto;
+  margin: var(--xxs);
+  vertical-align: middle;
   cursor: pointer;
 
   &:hover { animation: shake 0.75s infinite; }
@@ -77,4 +77,22 @@ input {
 
   &:focus-within .calendar,
   .calendar:hover { display: block; }
+}
+
+label {
+  display: inline-block;
+  margin: var(--xs) 0;
+  display: flex;
+  flex-direction: column;
+
+  span {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0.5;
+    margin: 0 var(--xxs);
+  }
+
+
+  &.block { flex: 1; }
 }

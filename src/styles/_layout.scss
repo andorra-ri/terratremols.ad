@@ -44,7 +44,7 @@ footer {
   flex-direction: column;
   height: 100%;
   background: #fafafadd;
-  max-width: 250px;
+  max-width: 270px;
   z-index: 2;
   box-sizing: border-box;
   transform: translateX(-100%);
@@ -76,7 +76,7 @@ footer {
 details.collapsible {
   summary {
     list-style: none;
-    padding: var(--m) var(--l);
+    padding: var(--l);
     cursor: pointer;
     color: var(--color-primary);
     text-align: right;
