@@ -12,6 +12,7 @@
   font-size: 13px;
 
   --color-primary: #d34;
+  --color-primary--light: #d346;
   --color-primary--extralight: #fee;
 
   --bgcolor: #fff;
@@ -29,5 +30,6 @@
 
   --columns-gap: 2rem;
 
-  --marker-color: var(--color-primary);
+  --marker-color: var(--color-primary--light);
+  --marker-border-color: var(--color-primary);
 }

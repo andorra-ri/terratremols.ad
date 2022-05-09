@@ -38,9 +38,10 @@ export default {
       const { addMarkers, clearMarkers, updateMarker, getBounds, fitBounds } = await map;
       clearMarkers();
       addMarkers(seisms.value, seism => {
-        const { id, coordinates } = seism;
+        const { id, magnitude, coordinates } = seism;
         const element = document.createElement('div');
         element.classList.add('ripple');
+        element.style.setProperty('--point-size', `${8 * Math.sqrt(magnitude)}px`);
         element.addEventListener('click', () => {
           selectedSeism.value = seism;
         });

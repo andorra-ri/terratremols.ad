@@ -31,13 +31,29 @@ ul.seisms {
     }
 
     &__marker {
-      flex-basis: var(--l);
-      margin: 0 var(--m);
+      margin: 0 var(--xl) 0 var(--s);
+      position: relative;
+      border-bottom: 1px solid green;
+    }
+
+    &__magnitude {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      display: inline-block;
+      background: var(--color-primary);
+      padding: var(--xxxs) var(--xxs);
+      font-size: var(--s);
+      color: #fff;
+      line-height: 1;
+      transform: translate(-50%, var(--xs));
     }
 
     .ripple {
-      --size: var(--xl);
-      position: relative;
+      --size: var(--l);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     &--active {
