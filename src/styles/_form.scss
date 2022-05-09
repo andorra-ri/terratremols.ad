@@ -1,11 +1,16 @@
 input {
-  display: block;
-  border: 1px solid #0001;
+  display: inline-block;
+  vertical-align: middle;
+  background: #fff;
+  border: 1px solid #0002;
+  margin: var(--xxs);
   padding: var(--s) var(--m);
-  margin: var(--s) auto;
   outline: none;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
 
-  &:focus { border-color: var(--color-primary); }
+  &:focus,
+  &:focus-within { border-color: var(--color-primary); }
 }
 
 .btn {
@@ -19,3 +24,57 @@ input {
 
   &:hover { animation: shake 0.75s infinite; }
 };
+
+.datepicker {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  .calendar {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0 var(--xxs);
+    background: #fff;
+    border: 1px solid #0001;
+    padding: var(--s);
+    z-index: 1;
+
+    header {
+      display: flex;
+      line-height: 2;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .weekdays {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: var(--s);
+      margin: var(--l) 0 var(--s);
+      opacity: 0.5;
+    }
+
+    .day {
+      padding: var(--xs);
+
+      &--outsider { opacity: 0.25; }
+
+      &--selected {
+        background: var(--color-primary);
+        color: #fff;
+        border-radius: var(--datepicker-border-radius);
+        opacity: 1;
+      }
+
+      &--disabled {
+        background: #0004;
+        opacity: 0.125;
+      }
+    }
+  }
+
+  &:focus-within .calendar,
+  .calendar:hover { display: block; }
+}
