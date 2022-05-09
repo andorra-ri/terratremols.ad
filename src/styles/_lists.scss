@@ -41,7 +41,12 @@ ul.seisms {
     }
 
     &--active {
-      background: #00000008;
+      background: var(--color-primary--extralight);
+      border-bottom: 1px solid #0000000b;
+      position: sticky;
+      top: 0;
+      bottom: 0;
+      z-index: 1;
 
       .ripple { --size: var(--xxxl); }
     }
