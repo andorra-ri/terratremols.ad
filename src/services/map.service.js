@@ -1,5 +1,5 @@
 import { LngLatBounds } from 'mapbox-gl';
-import { useMap as useMapbox, useControls, useAsync, useMarker } from 'mapbox-composition';
+import { useMap as useMapbox, useControls, useAsync, useMarker, usePopup } from 'mapbox-composition';
 import Deferred from '/@/utils/deferred';
 
 const { VITE_MAPBOX_TOKEN: accessToken } = import.meta.env;
@@ -13,8 +13,9 @@ export const useMap = async () => {
   const map = await state.MAP.promise;
 
   const addMarkers = (markers, fn = args => args) => {
+    const context = { usePopup };
     markers.forEach(options => {
-      const marker = useMarker(map, fn(options));
+      const marker = useMarker(map, fn(options, context));
       state.MARKERS[options.id] = marker;
     });
   };

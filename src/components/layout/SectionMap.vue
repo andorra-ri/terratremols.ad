@@ -1,6 +1,7 @@
 <template>
   <section id="map-view">
     <div id="map" />
+    <seism-popup :seism="selectedSeism" to="seism-popup" />
     <div class="panel">
       <div class="panel__toggler">Seisms List</div>
       <header>
@@ -15,7 +16,7 @@
 import { ref, watch, onMounted } from 'vue';
 import { createMap, useMap } from '/@/services/map.service';
 import { useSeismFilter } from '/@/services/seisms.service';
-import { SeismList, SeismFilters } from '/@/components';
+import { SeismList, SeismFilters, SeismPopup } from '/@/components';
 import config from '/@/config.yaml';
 
 const { ripple } = config.markers;
@@ -27,7 +28,7 @@ const changeRipple = ({ size }) => ({ marker }) => {
 
 export default {
   name: 'SectionMap',
-  components: { SeismList, SeismFilters },
+  components: { SeismList, SeismFilters, SeismPopup },
   setup() {
     const map = useMap();
     const filter = ref(() => true);
@@ -37,15 +38,17 @@ export default {
     watch(seisms, async () => {
       const { addMarkers, clearMarkers, updateMarker, getBounds, fitBounds } = await map;
       clearMarkers();
-      addMarkers(seisms.value, seism => {
+      addMarkers(seisms.value, (seism, { usePopup }) => {
         const { id, magnitude, coordinates } = seism;
         const element = document.createElement('div');
         element.classList.add('ripple');
         element.style.setProperty('--point-size', `${8 * Math.sqrt(magnitude)}px`);
-        element.addEventListener('click', () => {
-          selectedSeism.value = seism;
+        const popup = usePopup({
+          name: 'seism-popup',
+          onOpen: () => { selectedSeism.value = seism; },
+          onClose: () => { selectedSeism.value = undefined; },
         });
-        return { id, element, coordinates };
+        return { id, element, coordinates, popup };
       });
       updateMarker(selectedSeism.value?.id, changeRipple(ripple.ACTIVE));
       const bounds = getBounds(seisms.value);
