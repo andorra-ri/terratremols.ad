@@ -71,8 +71,8 @@ export default {
     watch(filters, () => {
       const search = normalize(filters.search);
       const validator = seism => normalize(seism.location).includes(search)
-        && seism.date > filters.dateMin
-        && seism.date < filters.dateMax
+        && seism.date >= filters.dateMin
+        && seism.date <= filters.dateMax
         && seism.magnitude >= filters.magnitude[0]
         && seism.magnitude <= filters.magnitude[1];
       emit('update:modelValue', validator);
