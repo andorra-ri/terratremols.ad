@@ -59,10 +59,10 @@ export default {
       const { updateMarker, flyTo } = await map;
       updateMarker(prev?.id, changeRipple(ripple.IDLE));
       updateMarker(seism?.id, changeRipple(ripple.ACTIVE));
-      if (seism) flyTo({ center: seism?.coordinates, zoom: 11 });
+      if (seism) flyTo({ center: seism.coordinates, zoom: 11 });
     });
 
-    onMounted(async () => createMap('map', config.map));
+    onMounted(() => createMap('map', config.map));
 
     return { seisms, selectedSeism, filter };
   },
