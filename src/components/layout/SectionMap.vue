@@ -36,7 +36,7 @@ export default {
     const selectedSeism = ref(undefined);
 
     watch(seisms, async () => {
-      const { addMarkers, clearMarkers, updateMarker, getBounds, fitBounds } = await map;
+      const { addMarkers, clearMarkers, getBounds, fitBounds } = await map;
       clearMarkers();
       addMarkers(seisms.value, (seism, { usePopup }) => {
         const { id, magnitude, coordinates } = seism;
@@ -50,7 +50,6 @@ export default {
         });
         return { id, element, coordinates, popup };
       });
-      updateMarker(selectedSeism.value?.id, changeRipple(ripple.ACTIVE));
       const bounds = getBounds(seisms.value);
       if ('_sw' in bounds) fitBounds(bounds, { padding: 100, maxZoom: 13 });
     }, { immediate: true });
