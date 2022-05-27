@@ -26,6 +26,8 @@ input {
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
+  line-height: 1.2;
+  font-weight: normal;
 
   &--flat {
     background: transparent;

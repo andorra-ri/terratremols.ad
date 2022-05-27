@@ -29,7 +29,7 @@
       </div>
       <p>
         <a href="https://andorra-ri.github.io/enquesta-sismica/" target="blank" class="btn block">Fill survey</a>
-        <button class="btn btn--flat block">View survey results</button>
+        <a href="#" class="btn btn--flat block">View survey results</a>
       </p>
     </div>
   </teleport>
