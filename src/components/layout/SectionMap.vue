@@ -1,7 +1,10 @@
 <template>
   <section id="map-view">
     <div id="map" />
-    <seism-popup :seism="selectedSeism" to="seism-popup" />
+    <seism-popup
+      v-if="isSeismPopupOpen"
+      :seism="selectedSeism"
+      to="seism-popup" />
     <div class="panel">
       <div class="panel__toggler">Seisms List</div>
       <header>
@@ -31,6 +34,7 @@ export default {
     const filter = ref(() => true);
     const seisms = useSeismFilter(filter);
     const selectedSeism = ref(undefined);
+    const isSeismPopupOpen = ref(false);
 
     watch(seisms, async () => {
       const { addMarkers, clearMarkers, getBounds, fitBounds } = await map;
@@ -40,8 +44,14 @@ export default {
         const element = createRipple({ magnitude });
         const popup = usePopup({
           name: 'seism-popup',
-          onOpen: () => { selectedSeism.value = seism; },
-          onClose: () => { selectedSeism.value = undefined; },
+          onOpen: () => {
+            isSeismPopupOpen.value = true;
+            selectedSeism.value = seism;
+          },
+          onClose: () => {
+            isSeismPopupOpen.value = false;
+            selectedSeism.value = undefined;
+          },
         });
         return { id, element, coordinates, popup };
       });
@@ -51,14 +61,20 @@ export default {
 
     watch(selectedSeism, async (seism, prev) => {
       const { updateMarker, flyTo } = await map;
-      updateMarker(prev?.id, ({ marker }) => updateRipple(marker.getElement(), ripple.IDLE));
-      updateMarker(seism?.id, ({ marker }) => updateRipple(marker.getElement(), ripple.ACTIVE));
-      if (seism) flyTo({ center: seism.coordinates, zoom: 11 });
+      updateMarker(prev?.id, ({ marker }) => {
+        if (marker.getPopup().isOpen()) marker.togglePopup();
+        updateRipple(marker.getElement(), ripple.IDLE);
+      });
+      updateMarker(seism?.id, async ({ marker }) => {
+        await flyTo({ center: seism.coordinates, zoom: 11 });
+        if (!marker.getPopup().isOpen()) marker.togglePopup();
+        updateRipple(marker.getElement(), ripple.ACTIVE);
+      });
     });
 
     onMounted(() => createMap('map', config.map));
 
-    return { seisms, selectedSeism, filter };
+    return { seisms, selectedSeism, isSeismPopupOpen, filter };
   },
 };
 </script>
