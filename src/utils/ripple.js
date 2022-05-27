@@ -3,7 +3,7 @@ export default () => {
     const { magnitude = 1 } = options;
     const element = document.createElement('div');
     element.classList.add('ripple');
-    element.style.setProperty('--point-size', `${8 * Math.sqrt(magnitude)}px`);
+    element.style.setProperty('--point-size', `${8 * magnitude}px`);
     return element;
   };
 
