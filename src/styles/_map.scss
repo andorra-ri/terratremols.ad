@@ -7,6 +7,15 @@
 
 .mapboxgl-ctrl { border-radius: 0; }
 
+.mapboxgl-popup {
+  &-content {
+    padding: var(--s) var(--m);
+    overflow: hidden;
+  }
+
+  &-close-button { outline: none; }
+}
+
 #map {
   position: absolute;
   height: 100%;
@@ -53,3 +62,43 @@
 
   &:hover { --point-size: 16px;}
 };
+
+.seism-popup {
+  margin: var(--s);
+  font-size: 1rem;
+
+  p {
+    position: relative;
+    margin: var(--xs) 0;
+    z-index: 1;
+  }
+
+  &__magnitude {
+    text-align: center;
+    color: #0007;
+    margin: var(--xl) 0 var(--l);
+
+    em {
+      font-size: 1.125rem;
+      color: var(--color-primary);
+    }
+  }
+
+  &__data {
+    margin: 1.5rem 0;
+
+    p {
+      display: flex;
+      line-height: 1.25;
+      margin: 1rem 0 !important;
+    }
+
+    .icon {
+      flex: 0 0 1.25rem;
+      height: 1.25rem;
+      margin-right: 0.5rem;
+      opacity: 0.4;
+    }
+    .label { display: none; }
+  }
+}
