@@ -43,6 +43,7 @@
 import { reactive, watch } from 'vue';
 import Slider from '@vueform/slider';
 import { RemixIcon, DatePicker } from '/@/components';
+import { add } from 'date-fns';
 import { normalize, format } from '/@/utils';
 import config from '/@/config.yaml';
 
@@ -70,9 +71,10 @@ export default {
 
     watch(filters, () => {
       const search = normalize(filters.search);
+      const inclusiveDateMax = add(filters.dateMax, { days: 1 });
       const validator = seism => normalize(seism.location).includes(search)
         && seism.date >= filters.dateMin
-        && seism.date <= filters.dateMax
+        && seism.date <= inclusiveDateMax
         && seism.magnitude >= filters.magnitude[0]
         && seism.magnitude <= filters.magnitude[1];
       emit('update:modelValue', validator);
