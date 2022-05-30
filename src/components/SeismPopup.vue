@@ -8,7 +8,7 @@
         <p class="seism-popup__location">
           <remix-icon name="map-pin" />
           <span class="label">Location</span>
-          {{ seism.coordinates }}
+          {{ seism.geometry.coordinates }}
           Epicenter at {{ seism.from.distance }} km {{ seism.from.direction }} from {{ seism.from.name }}
         </p>
         <p class="seism-popup__date">

@@ -40,7 +40,7 @@ export default {
       const { addMarkers, clearMarkers, getBounds, fitBounds } = await map;
       clearMarkers();
       addMarkers(seisms.value, (seism, { usePopup }) => {
-        const { id, magnitude, coordinates } = seism;
+        const { id, magnitude, geometry: { coordinates } } = seism;
         const element = createRipple({ magnitude });
         const popup = usePopup({
           name: 'seism-popup',
@@ -66,7 +66,7 @@ export default {
         updateRipple(marker.getElement(), ripple.IDLE);
       });
       updateMarker(seism?.id, async ({ marker }) => {
-        await flyTo({ center: seism.coordinates, zoom: 11 });
+        await flyTo({ center: seism.geometry.coordinates, zoom: 11 });
         if (!marker.getPopup().isOpen()) marker.togglePopup();
         updateRipple(marker.getElement(), ripple.ACTIVE);
       });

@@ -16,12 +16,12 @@ const LOCATIONS = [
 
 /* eslint-disable import/prefer-default-export */
 
-export const closestPlace = seism => {
+export const closestPlace = coordinates => {
   const origin = LOCATIONS.reduce((acc, location) => {
-    const distance = round(getDistance(location.coordinates, seism.coordinates), 1);
+    const distance = round(getDistance(location.coordinates, coordinates), 1);
     return !acc || distance < acc.distance ? { ...location, distance } : acc;
   }, null);
-  const azimuth = (360 + getBearing(origin.coordinates, seism.coordinates)) % 360;
+  const azimuth = (360 + getBearing(origin.coordinates, coordinates)) % 360;
   const direction = DIRECTIONS[Math.round(azimuth / 45)];
   return { ...origin, azimuth, direction };
 };

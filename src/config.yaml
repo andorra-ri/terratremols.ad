@@ -80,3 +80,8 @@ footer:
       url: gsfhgdhfg
     - name: +376 742 630
       url: 'tel:+376-742-630'
+
+api:
+  seisms:
+    endpoint: seism
+    schema: seismology

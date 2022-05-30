@@ -31,7 +31,7 @@ export const useMap = async () => {
     if (id in state.MARKERS) fn(state.MARKERS[id]);
   };
 
-  const getBounds = items => items.reduce((acc, { coordinates }) => {
+  const getBounds = items => items.reduce((acc, { geometry: { coordinates } }) => {
     acc.extend(coordinates);
     return acc;
   }, new LngLatBounds());
