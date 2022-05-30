@@ -1,21 +1,21 @@
 locale: en
 
-short_date_format:
-  day: 2-digit
-  month: 2-digit
-  year: numeric
-
-date_format:
-  weekday: short
-  day: numeric
-  month: short
-  year: numeric
-
-time_format:
-  hour: 2-digit
-  minute: 2-digit
-  timeZoneName: short
-  hour12: false
+formats:
+  datetime:
+    DATE:
+      weekday: short
+      day: numeric
+      month: short
+      year: numeric
+    SHORT_DATE:
+      day: 2-digit
+      month: 2-digit
+      year: numeric
+    TIME:
+      hour: 2-digit
+      minute: 2-digit
+      timeZoneName: short
+      hour12: false
 
 map:
   options:
