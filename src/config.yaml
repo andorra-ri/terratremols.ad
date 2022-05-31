@@ -50,7 +50,6 @@ filters:
       options:
         margin: 1
 
-
 footer:
   learn:
     - name: Seismology
@@ -64,21 +63,17 @@ footer:
       url: '#faq'
 
   about:
-    - name: Company
+    - name: Project
       url: '#company'
-    - name: Careers
-      url: '#carrers'
-    - name: Press
-      url: '#press'
-    - name: Terms & Policies
+    - name: Links
+      url: '#links'
+    - name: Política de dades
       url: '#terms'
       target: blank
 
   contact:
     - name: Send a message
       url: 'mailto:terratremols@ari.ad'
-    - name: Request a demo
-      url: gsfhgdhfg
     - name: +376 742 630
       url: 'tel:+376-742-630'
 
@@ -86,3 +81,31 @@ api:
   seisms:
     endpoint: seism
     schema: seismology
+
+locations:
+  # Andorra
+  Encamp: [1.583651, 42.535970]
+  Ordino: [1.533006, 42.556897]
+  Andorra la Vella: [1.521882, 42.507472]
+  Sant Julia de Lòria: [1.492432, 42.468866]
+  Escaldes-Engordany: [1.539143, 42.510778]
+  Pas de la Casa: [1.733257, 42.542628]
+
+  # Espanya
+  Ós de Civís: [1.439186, 42.510714]
+  La Seu d'Urgell: [1.462358, 42.357864]
+  Puigcerdà: [1.927148, 42.431164]
+  Olot: [2.484584, 42.183091]
+  Figueres: [2.960659, 42.267383]
+  Berga: [1.846074, 42.104306]
+  Ponts: [1.186381, 41.915625]
+  Tremp: [0.896047, 42.167213]
+  Sort: [1.131098, 42.413085]
+  Vielha e Mijaran: [0.795597, 42.701706]
+
+  # França
+  Foix: [1.605249, 42.965325]
+  Saint-Girons: [1.147406, 42.982382]
+  Ax-les-Thermes: [1.841654, 42.719727]
+  Prades: [2.423464, 42.617847]
+  Perpignan: [2.893915, 42.699649]
