@@ -1,11 +1,10 @@
 h2 {
-  font-size: 1.75rem;
-  margin-bottom: var(--l);
+  font-size: var(--xl);
+  margin-bottom: var(--m);
   font-weight: 600;
 }
 
 h4 {
-  font-size: 1.125rem;
   margin-bottom: var(--l);
   font-weight: 600;
   text-transform: uppercase;
@@ -22,7 +21,7 @@ a {
 }
 
 p.copyright {
-  font-size: 0.9rem;
+  font-size: var(--s);
   opacity: 0.5;
   text-align: center;
   margin: var(--m);

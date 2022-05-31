@@ -3,7 +3,7 @@ ul.links {
 
   li {
     display: flex;
-    margin: var(--m) 0;
+    margin: var(--s) 0;
   }
 }
 
@@ -12,10 +12,11 @@ ul.seisms {
   overflow: auto;
 
   .seism {
-    padding: var(--l);
+    padding: var(--m) var(--l);
     cursor: pointer;
     display: flex;
     align-items: center;
+    overflow: hidden;
 
     & + .seism { border-top: 1px solid #0000000b; }
 
@@ -42,15 +43,16 @@ ul.seisms {
       left: 50%;
       display: inline-block;
       background: var(--color-primary);
-      padding: var(--xxxs) var(--xxs);
+      padding: var(--xxs) var(--xs);
       font-size: var(--s);
       color: #fff;
       line-height: 1;
+      font-weight: bold;
       transform: translate(-50%, var(--xs));
     }
 
     .ripple {
-      --size: var(--l);
+      --size: var(--m);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);

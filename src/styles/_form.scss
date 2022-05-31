@@ -60,10 +60,11 @@ input {
     border: 1px solid #0001;
     padding: var(--s);
     z-index: 2;
+    font-size: 0.85rem;
 
     header {
       display: flex;
-      line-height: 2;
+      line-height: 1.5;
       text-transform: uppercase;
       font-weight: bold;
     }
@@ -72,7 +73,7 @@ input {
       text-align: center;
       text-transform: uppercase;
       font-size: var(--s);
-      margin: var(--l) 0 var(--s);
+      margin: var(--s) 0;
       opacity: 0.5;
     }
 

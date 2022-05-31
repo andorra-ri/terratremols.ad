@@ -1,5 +1,5 @@
 <template>
-  <details class="collapsible" open>
+  <details class="collapsible">
     <summary><remix-icon name="equalizer" /> Filters</summary>
     <div class="filters">
       <label class="block">
@@ -16,7 +16,8 @@
           v-model="filters.dateMin"
           :format="format.SHORT_DATE"
           :not-after="filters.dateMax"
-          size="7" />
+          placeholder="Pick a date"
+          size="6" />
       </label>
       <label>
         <span>To Date</span>
@@ -24,8 +25,9 @@
           v-model="filters.dateMax"
           :format="format.SHORT_DATE"
           :not-before="filters.dateMin"
+          placeholder="Pick a date"
           :not-after="new Date()"
-          size="7" />
+          size="6" />
       </label>
       <label class="block">
         <span>Magnitude</span>

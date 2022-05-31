@@ -9,8 +9,8 @@
 
 .mapboxgl-popup {
   &-content {
-    padding: var(--s) var(--m);
-    overflow: hidden;
+    padding: var(--xxs) var(--s);
+    min-width: 250px;
   }
 
   &-close-button { outline: none; }
@@ -65,7 +65,7 @@
 
 .seism-popup {
   margin: var(--s);
-  font-size: 1rem;
+  font-size: 0.9rem;
 
   p {
     position: relative;
@@ -85,18 +85,18 @@
   }
 
   &__data {
-    margin: 1.5rem 0;
+    margin: var(--l) 0;
 
     p {
       display: flex;
       line-height: 1.25;
-      margin: 1rem 0 !important;
+      margin: var(--s) 0 !important;
     }
 
     .icon {
-      flex: 0 0 1.25rem;
-      height: 1.25rem;
-      margin-right: 0.5rem;
+      flex: 0 0 var(--m);
+      height: var(--m);
+      margin: var(--xxxs) var(--xs) 0 0;
       opacity: 0.4;
     }
     .label { display: none; }
