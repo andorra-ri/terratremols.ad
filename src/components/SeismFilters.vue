@@ -88,6 +88,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.collapsible summary {
+  color: var(--color-primary);
+  text-align: right;
+  margin: 0;
+  padding: var(--m);
+
+  &::before { display: none; }
+
+  .icon {
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+  }
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;

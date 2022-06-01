@@ -78,10 +78,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-#map-view {
-  position: relative;
-  overflow: hidden;
-}
-</style>

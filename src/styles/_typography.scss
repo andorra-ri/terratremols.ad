@@ -1,6 +1,5 @@
 h2 {
   font-size: var(--xl);
-  margin-bottom: var(--m);
   font-weight: 600;
 }
 
@@ -11,11 +10,20 @@ h4 {
   opacity: 0.3;
 }
 
+p {
+  margin: var(--xs) 0;
+
+  &.note { opacity: 0.5; }
+}
+
+strong { font-weight: bold; }
+
 a {
   color: currentColor;
   font-weight: 600;
   text-decoration: none;
   color: var(--color-primary);
+  display: inline-block;
 
   &:hover { animation: shake 0.75s infinite; }
 }

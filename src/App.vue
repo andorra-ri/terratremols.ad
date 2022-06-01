@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { SectionSidebar, SectionMap, SectionFooter } from '/@/components/layout';
+import * as sections from '/@/components/layout';
 
 export default {
   name: 'App',
-  components: { SectionSidebar, SectionMap, SectionFooter },
+  components: { ...sections },
   setup() {
     return {};
   },

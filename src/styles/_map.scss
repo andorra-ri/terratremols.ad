@@ -3,6 +3,9 @@
 #map-view {
   background: #0001;
   height: 80vh;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .mapboxgl-ctrl { border-radius: 0; }
