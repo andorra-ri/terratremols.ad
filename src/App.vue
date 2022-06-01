@@ -3,6 +3,7 @@
   <main id="main">
     <section-map />
     <section-seismology />
+    <section-faq />
     <section-footer />
   </main>
 </template>
