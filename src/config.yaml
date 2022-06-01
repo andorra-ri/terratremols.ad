@@ -50,6 +50,24 @@ filters:
       options:
         margin: 1
 
+seismology:
+  docs:
+    - name: Basic concepts
+      description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      icon: bookmark
+      url: https://www.terratremols.ad/docs/conceptes_basics_terratremols.pdf
+    - name: Detection systems
+      description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      icon: pulse
+      url: https://www.terratremols.ad/docs/deteccio_terratremols.pdf
+    - name: Hazards & protection
+      description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      icon: shield-cross
+      url: https://www.terratremols.ad/docs/perills_proteccio_terratremols.pdf
+    - name: Seismicity in Andorra
+      description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      url: https://www.terratremols.ad/docs/sismicitat_andorra.pdf
+
 footer:
   learn:
     - name: Seismology

@@ -2,6 +2,7 @@
   <section-sidebar />
   <main id="main">
     <section-map />
+    <section-seismology />
     <section-footer />
   </main>
 </template>
