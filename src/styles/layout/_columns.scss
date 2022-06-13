@@ -1,0 +1,18 @@
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  margin: var(--columns-gap, var(--xl)) 0;
+
+  .column {
+    flex: 1;
+    margin: var(--columns-gap, var(--xl));
+
+    &--tight { flex: none; }
+    &--wide { flex-grow: 2; }
+  }
+
+  .columns {
+    padding: 0;
+    margin: 0;
+  }
+}

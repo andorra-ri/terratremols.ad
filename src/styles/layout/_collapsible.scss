@@ -1,0 +1,21 @@
+details.collapsible {
+  summary {
+    list-style: none;
+    margin: var(--s) 0;
+    cursor: pointer;
+
+    &::before {
+      content: '+';
+      display: inline-block;
+      margin-right: var(--xs);
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+  }
+
+  &[open] {
+    padding-bottom: var(--s);
+
+    summary::before { transform: rotate(45deg); }
+  }
+}
