@@ -2,6 +2,7 @@
   <section-sidebar />
   <main id="main">
     <section-map />
+    <section-news />
     <section-seismology />
     <section-faq />
     <section-footer />

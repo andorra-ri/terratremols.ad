@@ -70,3 +70,17 @@ ul.seisms {
     }
   }
 }
+
+ul.tweets {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: minmax(min-content, max-content);
+  gap: 2rem 4rem;
+
+  img {
+    height: 100px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+}
