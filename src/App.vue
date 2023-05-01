@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import * as sections from '/@/components/layout';
+import * as sections from '/@/layouts';
 
 export default {
   name: 'App',
