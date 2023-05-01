@@ -1,6 +1,6 @@
 <template>
   <details class="collapsible">
-    <summary><remix-icon name="equalizer" /> Filters</summary>
+    <summary><RemixIcon name="equalizer" /> Filters</summary>
     <div class="filters">
       <label class="block">
         <span>Location</span>
@@ -12,22 +12,22 @@
       </label>
       <label>
         <span>From Date</span>
-        <date-picker
+        <DatePicker
           v-model="filters.dateMin"
           :format="format.SHORT_DATE"
           :not-after="filters.dateMax"
           placeholder="Pick a date"
-          size="6" />
+          :size="6" />
       </label>
       <label>
         <span>To Date</span>
-        <date-picker
+        <DatePicker
           v-model="filters.dateMax"
           :format="format.SHORT_DATE"
           :not-before="filters.dateMin"
-          placeholder="Pick a date"
           :not-after="new Date()"
-          size="6" />
+          placeholder="Pick a date"
+          :size="6" />
       </label>
       <label class="block">
         <span>Magnitude</span>
@@ -41,13 +41,16 @@
   </details>
 </template>
 
-<script>
+<script setup lang="ts">
 import { reactive, watch } from 'vue';
 import Slider from '@vueform/slider';
 import { RemixIcon, DatePicker } from '/@/components';
 import { add } from 'date-fns';
 import { normalize, format } from '/@/utils';
 import config from '/@/config.yaml';
+import type { Seism } from '/@/types';
+
+type Filter = (seism: Seism) => boolean;
 
 const INITIAL_STATE = {
   search: '',
@@ -56,35 +59,24 @@ const INITIAL_STATE = {
   magnitude: [0, 10],
 };
 
-export default {
-  name: 'SeismFilters',
-  components: { RemixIcon, DatePicker, Slider },
-  props: {
-    modelValue: {
-      type: Function,
-      default: () => true,
-    },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const filters = reactive({ ...INITIAL_STATE, ...config.filters });
+defineProps<{ modelValue: Filter }>();
 
-    const reset = () => Object.assign(filters, INITIAL_STATE);
+const emit = defineEmits<{(e: 'update:modelValue', value: Filter): void }>();
 
-    watch(filters, () => {
-      const search = normalize(filters.search);
-      const inclusiveDateMax = add(filters.dateMax, { days: 1 });
-      const validator = seism => normalize(seism.location).includes(search)
-        && seism.date >= filters.dateMin
-        && seism.date <= inclusiveDateMax
-        && seism.magnitude >= filters.magnitude[0]
-        && seism.magnitude <= filters.magnitude[1];
-      emit('update:modelValue', validator);
-    }, { immediate: true });
+const filters = reactive({ ...INITIAL_STATE, ...config.filters });
 
-    return { filters, reset, format };
-  },
-};
+const reset = () => Object.assign(filters, INITIAL_STATE);
+
+watch(filters, () => {
+  const search = normalize(filters.search);
+  const inclusiveDateMax = add(filters.dateMax, { days: 1 });
+  const validator = (seism: Seism) => normalize(seism.location).includes(search)
+    && seism.date >= filters.dateMin
+    && seism.date <= inclusiveDateMax
+    && seism.magnitude >= filters.magnitude[0]
+    && seism.magnitude <= filters.magnitude[1];
+  emit('update:modelValue', validator);
+}, { immediate: true });
 </script>
 
 <style lang="scss" scoped>

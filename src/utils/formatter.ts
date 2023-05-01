@@ -8,7 +8,7 @@ export const format = {
     }, {}),
 };
 
-export const round = (number, decimals = 0) => {
+export const round = (number: number, decimals = 0) => {
   const power = 10 ** decimals;
   return Math.round(number * power) / power;
 };

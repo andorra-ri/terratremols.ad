@@ -1,22 +1,22 @@
 <template>
   <div class="datepicker">
     <input
-      :value="format(modelValue)"
-      :placeholder="placeholder"
+      :value="props.modelValue ? props.format(props.modelValue) : undefined"
+      :placeholder="props.placeholder"
       :size="size"
       type="text"
       readonly>
     <div :class="['calendar', { disabled }]">
       <header>
         <a href="#" class="prev" @click.prevent="prevMonth" />
-        <label>{{ monthLabel }}</label>
+        <label>{{ monthFormatter.format(cursor) }} {{ cursorYear }}</label>
         <a href="#" class="next" @click.prevent="nextMonth" />
       </header>
       <ul class="days">
         <li v-for="day in weekdayLabels" :key="day" class="weekdays">{{ day }}</li>
         <li
           v-for="day in days"
-          :key="day.date"
+          :key="day.date.toISOString()"
           :class="day.classes"
           @click="select(day)">
           <slot :day="day">{{ day.label }}</slot>
@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 import {
   add,
@@ -43,83 +43,104 @@ import {
   isWithinInterval,
 } from 'date-fns';
 
-export default {
-  name: 'DatePicker',
-  props: {
-    modelValue: { type: Date, default: undefined },
-    disabled: { type: Boolean, default: false },
-    notBefore: { type: [String, Date], default: null },
-    notAfter: { type: [String, Date], default: null },
-    valid: { type: Array, default: null },
-    default: { type: Date, default: new Date() },
-    locale: { type: String, default: 'en' },
-    format: { type: Function, default: date => date },
-    placeholder: { type: String, default: 'Select a date' },
-    size: { type: [String, Number], default: undefined },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const cursor = ref(startOfMonth(props.modelValue || props.default));
+type DatesList = (string | Date | (string | Date)[])[];
 
-    const prevMonth = () => { cursor.value = add(cursor.value, { months: -1 }); };
-    const nextMonth = () => { cursor.value = add(cursor.value, { months: 1 }); };
+type Day = {
+  date: Date;
+  label: number;
+  disabled: boolean;
+  classes: (string | Record<string, boolean>)[];
+};
 
-    const weekdayLabels = eachDayOfInterval({
-      start: startOfWeek(cursor.value, { weekStartsOn: 1 }),
-      end: endOfWeek(cursor.value, { weekStartsOn: 1 }),
-    }).map(day => new Intl.DateTimeFormat(props.locale, { weekday: 'short' }).format(day));
+type Props = {
+  modelValue?: Date;
+  disabled?: boolean;
+  notBefore?: string | Date;
+  notAfter?: string | Date;
+  invalid?: DatesList;
+  valid?: DatesList;
+  locale?: string;
+  format?: (date: Date) => string;
+  placeholder?: string;
+  size: number;
+};
 
-    const monthLabel = computed(() => {
-      const options = { year: 'numeric', month: 'long' };
-      const dtf = new Intl.DateTimeFormat(props.locale, options);
-      return dtf.format(cursor.value);
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: undefined,
+  locale: 'en',
+  notBefore: undefined,
+  notAfter: undefined,
+  invalid: undefined,
+  valid: undefined,
+  placeholder: 'Select date',
+  format: (date: Date) => date.toLocaleDateString(),
+});
+
+const emit = defineEmits(['update:modelValue', 'select']);
+
+const today = new Date();
+const weekdayFormatter = new Intl.DateTimeFormat(props.locale, { weekday: 'short' });
+const monthFormatter = new Intl.DateTimeFormat(props.locale, { month: 'long' });
+
+const cursor = ref(startOfMonth(props.modelValue || new Date()));
+// Update cursor if date changed externally
+watch(() => props.modelValue, date => {
+  cursor.value = date || new Date();
+});
+
+const cursorYear = computed({
+  get: () => cursor.value.getFullYear(),
+  set: year => cursor.value.setFullYear(year),
+});
+
+const prevMonth = () => { cursor.value = add(cursor.value, { months: -1 }); };
+const nextMonth = () => { cursor.value = add(cursor.value, { months: 1 }); };
+
+const weekdayLabels = eachDayOfInterval({
+  start: startOfWeek(cursor.value, { weekStartsOn: 1 }),
+  end: endOfWeek(cursor.value, { weekStartsOn: 1 }),
+}).map(day => weekdayFormatter.format(day));
+
+const isDisabled = (date: Date) => {
+  const { notBefore, notAfter, invalid, valid } = props;
+  const isLate = notAfter ? isAfter(date, startOfDay(new Date(notAfter))) : false;
+  const isEarly = notBefore ? isBefore(date, startOfDay(new Date(notBefore))) : false;
+  const matchDates = (range: DatesList) => range.some(dates => {
+    if (!Array.isArray(dates)) return isSameDay(date, new Date(dates));
+    return isWithinInterval(date, {
+      start: startOfDay(new Date(dates[0])),
+      end: startOfDay(new Date(dates[1])),
     });
+  });
+  const inInvalidRange = matchDates(invalid || []);
+  const inValidRange = props.valid ? matchDates(valid || []) : true;
+  return isLate || isEarly || inInvalidRange || !inValidRange;
+};
 
-    // Update cursor if date changed externally
-    watch(() => props.modelValue, date => {
-      if (date) cursor.value = date;
-    });
+const days = computed<Day[]>(() => {
+  const start = startOfWeek(startOfMonth(cursor.value), { weekStartsOn: 1 });
+  const end = endOfWeek(endOfMonth(cursor.value), { weekStartsOn: 1 });
+  return eachDayOfInterval({ start, end }).map(date => {
+    const label = date.getDate();
+    const disabled = isDisabled(date);
+    const classes = ['day', {
+      'day--disabled': disabled,
+      'day--outsider': !isSameMonth(date, cursor.value),
+      'day--selected': !!props.modelValue && isSameDay(date, props.modelValue),
+      'day--today': isSameDay(date, today),
+    }];
+    return { date, label, disabled, classes };
+  });
+});
 
-    const select = day => {
-      if (!day.disabled) {
-        emit('update:modelValue', day.date);
-        cursor.value = day.date;
-      }
-    };
-
-    const isDisabled = date => {
-      const { notBefore, notAfter, invalid, valid } = props;
-      const isLate = notAfter ? isAfter(date, startOfDay(new Date(notAfter))) : false;
-      const isEarly = notBefore ? isBefore(date, startOfDay(new Date(notBefore))) : false;
-      const matchDates = range => range.some(dates => (Array.isArray(dates)
-        ? isWithinInterval(date, {
-          start: startOfDay(new Date(dates[0])),
-          end: startOfDay(new Date(dates[1])),
-        })
-        : isSameDay(date, new Date(dates))
-      ));
-      const inInvalidRange = matchDates(invalid || []);
-      const inValidRange = props.valid ? matchDates(valid || []) : true;
-      return isLate || isEarly || inInvalidRange || !inValidRange;
-    };
-
-    const days = computed(() => {
-      const start = startOfWeek(startOfMonth(cursor.value), { weekStartsOn: 1 });
-      const end = endOfWeek(endOfMonth(cursor.value), { weekStartsOn: 1 });
-      return eachDayOfInterval({ start, end }).map(date => {
-        const label = date.getDate();
-        const disabled = isDisabled(date);
-        const classes = ['day', {
-          'day--selected': isSameDay(date, props.modelValue),
-          'day--outsider': !isSameMonth(date, cursor.value),
-          'day--disabled': disabled,
-        }];
-        return { date, label, disabled, classes };
-      });
-    });
-
-    return { days, prevMonth, nextMonth, select, monthLabel, weekdayLabels };
-  },
+const select = (day: Day) => {
+  if (!day.disabled) {
+    const value = Array.isArray(props.modelValue)
+      ? [props.modelValue[1], day.date]
+      : day.date;
+    emit('update:modelValue', value);
+    emit('select', value);
+  }
 };
 </script>
 
@@ -144,7 +165,7 @@ export default {
         content: '';
         height: var(--datepicker-chevron-size, 5px);
         width: var(--datepicker-chevron-size, 5px);
-        border: 1px solid currentColor;
+        border: 1px solid currentcolor;
         border-width: 2px 2px 0 0;
         transform: rotate(45deg);
       }

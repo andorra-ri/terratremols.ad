@@ -18,23 +18,19 @@
   </ul>
 </template>
 
-<script>
+<script setup lang="ts">
 import { format } from '/@/utils';
+import type { Seism } from '/@/types';
 
-export default {
-  name: 'SeismList',
-  props: {
-    modelValue: { type: Object, default: undefined },
-    seisms: { type: Array, required: true },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const selectSeism = seism => {
-      const target = seism?.id === props.modelValue?.id ? undefined : seism;
-      emit('update:modelValue', target);
-    };
+const props = defineProps<{
+  modelValue: Seism;
+  seisms: Seism[];
+}>();
 
-    return { selectSeism, format };
-  },
+const emit = defineEmits<{(e: 'update:modelValue', value: Seism | undefined): void}>();
+
+const selectSeism = (seism: Seism | undefined) => {
+  const target = seism?.id === props.modelValue?.id ? undefined : seism;
+  emit('update:modelValue', target);
 };
 </script>

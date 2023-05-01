@@ -4,13 +4,7 @@
   </header>
 </template>
 
-<script>
-export default {
-  name: 'SectionSidebar',
-  setup() {
-    return {};
-  },
-};
+<script setup lang="ts">
 </script>
 
 <style lang="scss" scoped>

@@ -1,17 +1,9 @@
 <template>
   <svg class="icon">
-    <use :xlink:href="`/@/assets/images/icons.svg#${name}`" />
+    <use :xlink:href="`/@/assets/images/icons.svg#${props.name}`" />
   </svg>
 </template>
 
-<script>
-export default {
-  name: 'RemixIcon',
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-  },
-};
+<script setup lang="ts">
+const props = defineProps<{ name: string }>();
 </script>

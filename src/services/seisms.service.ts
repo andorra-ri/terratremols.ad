@@ -20,6 +20,7 @@ export const loadSeisms = async () => {
     const from = closestPlace(geometry.coordinates);
     return { ...rest, id, geometry, date, location, from };
   });
+  console.log(seisms.value[0]);
 };
 
 export const useSeismFilter = filter => computed(() => seisms.value.filter(filter.value));
