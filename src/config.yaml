@@ -95,11 +95,6 @@ footer:
     - name: +376 742 630
       url: 'tel:+376-742-630'
 
-api:
-  seisms:
-    endpoint: seism
-    schema: seismology
-
 twitter:
   USER: andorra_ri
   HASHTAG: terratremols

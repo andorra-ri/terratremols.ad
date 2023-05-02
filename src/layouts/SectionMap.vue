@@ -10,29 +10,29 @@
       <header>
         <SeismFilters v-model="filter" />
       </header>
-      <SeismList v-model="selectedSeism" :seisms="seisms" />
+      <SeismList v-model="selectedSeism" :seisms="store.state.seisms" />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue';
+import store from '/@/store';
 import { createMap, useMap } from '/@/services/map.service';
-import { useSeismFilter } from '/@/services/seisms.service';
 import { SeismList, SeismFilters, SeismPopup } from '/@/components';
 import { useRipple } from '/@/utils';
 import config from '/@/config.yaml';
 import type { Seism } from '/@/types';
 
-const { createRipple, updateRipple } = useRipple();
-const { ripple } = config.markers;
+// const { createRipple, updateRipple } = useRipple();
+// const { ripple } = config.markers;
 
-const map = useMap();
+// const map = useMap();
 const filter = ref(() => true);
-const seisms = useSeismFilter(filter);
-const selectedSeism = ref(undefined);
+const selectedSeism = ref<Seism>();
 const isSeismPopupOpen = ref(false);
 
+/*
 watch(seisms, async () => {
   const { addMarkers, clearMarkers, getBounds, fitBounds } = await map;
   clearMarkers();
@@ -68,6 +68,10 @@ watch(selectedSeism, async (seism, prev) => {
     updateRipple(marker.getElement(), ripple.ACTIVE);
   });
 });
+*/
 
-onMounted(() => createMap('map', config.map));
+onMounted(() => {
+  createMap('map', config.map);
+  store.loadSeisms();
+});
 </script>

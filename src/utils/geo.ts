@@ -1,25 +1,14 @@
-import getDistance from '@turf/distance';
-import getBearing from '@turf/bearing';
-import type { Point } from '@turf/helpers';
-import { round } from '/@/utils';
-import config from '/@/config.yaml';
+import distance from '@turf/distance';
+import bearing from '@turf/bearing';
+import type { Position } from '@turf/helpers';
 
-const DIRECTIONS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
+const DIRECTIONS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'] as const;
 
-type Places = Record<string, [number, number]>;
-type ClosestPlace = {
-  name: string;
-  coordinates: [number, number];
-  distance: number;
-};
-
-export const closestPlace = (target: Point) => {
-  const origin = Object.entries(config.locations as Places)
-    .reduce((acc, [name, coordinates]) => {
-      const distance = round(getDistance(coordinates, target), 1);
-      return !acc || distance < acc.distance ? { name, coordinates, distance } : acc;
-    }, null as ClosestPlace | null);
-  const azimuth = (360 + getBearing(origin!.coordinates, target)) % 360;
+export const closestLocation = (target: Position, locations: Record<string, Position>) => {
+  const [closest] = Object.entries(locations)
+    .map(([name, coordinates]) => ({ name, coordinates, distance: distance(coordinates, target) }))
+    .sort((a, b) => a.distance - b.distance);
+  const azimuth = (360 + bearing(closest.coordinates, target)) % 360;
   const direction = DIRECTIONS[Math.round(azimuth / 45)];
-  return { ...origin, azimuth, direction };
+  return { ...closest, azimuth, direction };
 };

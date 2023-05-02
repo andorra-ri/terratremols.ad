@@ -10,9 +10,9 @@
         <span class="seism__magnitude">{{ seism.magnitude }}</span>
       </div>
       <div class="seism__details">
-        <span class="seism__date">{{ format.DATE(seism.date) }}</span>
-        <span class="seism__time">{{ format.TIME(seism.date) }}</span>
-        <span class="seism__location">{{ seism.location }}</span>
+        <span class="seism__date">{{ format.DATE(seism.datetime) }}</span>
+        <span class="seism__time">{{ format.TIME(seism.datetime) }}</span>
+        <span class="seism__location">{{ seism.region }}</span>
       </div>
     </li>
   </ul>
@@ -23,7 +23,7 @@ import { format } from '/@/utils';
 import type { Seism } from '/@/types';
 
 const props = defineProps<{
-  modelValue: Seism;
+  modelValue: Seism | undefined;
   seisms: Seism[];
 }>();
 

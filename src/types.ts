@@ -1,19 +1,21 @@
-import type { Point } from '@turf/helpers';
+import type { Point, Position } from '@turf/helpers';
+
+export type Direction = 'N' | 'NE' | 'E' | 'SE' | 'S' | 'SW' | 'W' | 'NW';
 
 export type ClosestLocation = {
   name: string;
   distance: number;
   azimuth: number;
-  coordinates: [number, number];
-  direction: 'N' | 'NE' | 'E' | 'SE' | 'S' | 'SW' | 'W' | 'NW';
+  coordinates: Position;
+  direction: Direction;
 };
 
 export type Seism = {
   id: string;
-  date: Date;
+  datetime: Date;
   magnitude: number;
   depth: number;
-  location: string;
+  region: string;
   from: ClosestLocation;
   geometry: Point;
 };
