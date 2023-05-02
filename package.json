@@ -8,6 +8,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@turf/bbox": "^6.5.0",
     "@turf/bearing": "^6.5.0",
     "@turf/distance": "^6.5.0",
     "@turf/helpers": "^6.5.0",

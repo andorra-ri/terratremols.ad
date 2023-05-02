@@ -1,8 +1,29 @@
 import distance from '@turf/distance';
 import bearing from '@turf/bearing';
-import type { Position } from '@turf/helpers';
+import bbox from '@turf/bbox';
+import { feature, featureCollection, type GeoJSONObject, type Position, type Geometry } from '@turf/helpers';
+
+export type { GeoJSONObject };
+
+export type Featureable = {
+  geometry: Geometry,
+  properties?: object,
+};
 
 const DIRECTIONS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'] as const;
+
+export const toFeatureCollection = (items: Featureable[]) => {
+  const features = items.map(item => {
+    const { geometry, properties, ...rest } = item;
+    return feature(geometry, properties ?? rest);
+  });
+  return featureCollection(features);
+};
+
+export const bounds = (item: GeoJSONObject | Featureable[]) => {
+  const geojson = Array.isArray(item) ? toFeatureCollection(item) : item;
+  return bbox(geojson);
+};
 
 export const closestLocation = (target: Position, locations: Record<string, Position>) => {
   const [closest] = Object.entries(locations)
