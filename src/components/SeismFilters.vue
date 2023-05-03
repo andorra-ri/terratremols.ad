@@ -33,7 +33,7 @@
         <span>Magnitude</span>
         <slider
           v-model="filters.magnitude"
-          v-bind="filters.options.range"
+          v-bind="MAGNITUDE_RANGE_OPTIONS"
           class="range-slider" />
       </label>
       <button class="btn block" @click="reset">Reset filters</button>
@@ -42,41 +42,34 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watch } from 'vue';
+import { computed } from 'vue';
 import Slider from '@vueform/slider';
 import { RemixIcon, DatePicker } from '/@/components';
-import { add } from 'date-fns';
-import { normalize } from '/@/utils';
-import config from '/@/config.yaml';
-import type { Seism } from '/@/types';
+import type { FiltersSeism } from '/@/types';
 
-type Filter = (seism: Seism) => boolean;
-
-const INITIAL_STATE = {
-  search: '',
-  dateMin: null,
-  dateMax: new Date(),
-  magnitude: [0, 10],
+const MAGNITUDE_RANGE_OPTIONS = {
+  max: 10,
+  showTooltip: 'drag',
+  lazy: true,
+  merge: 1,
+  options: { margin: 1 },
 };
 
-defineProps<{ modelValue: Filter }>();
+const props = defineProps<{ modelValue: FiltersSeism }>();
 
-const emit = defineEmits<{(e: 'update:modelValue', value: Filter): void }>();
+/* eslint-disable func-call-spacing */
+/* eslint-disable no-spaced-func */
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: FiltersSeism): void;
+  (e: 'reset'): void;
+}>();
 
-const filters = reactive({ ...INITIAL_STATE, ...config.filters });
+const filters = computed({
+  get: () => props.modelValue,
+  set: value => emit('update:modelValue', value),
+});
 
-const reset = () => Object.assign(filters, INITIAL_STATE);
-
-watch(filters, () => {
-  const search = normalize(filters.search);
-  const inclusiveDateMax = add(filters.dateMax, { days: 1 });
-  const validator = (seism: Seism) => normalize(seism.location).includes(search)
-    && seism.date >= filters.dateMin
-    && seism.date <= inclusiveDateMax
-    && seism.magnitude >= filters.magnitude[0]
-    && seism.magnitude <= filters.magnitude[1];
-  emit('update:modelValue', validator);
-}, { immediate: true });
+const reset = () => emit('reset');
 </script>
 
 <style lang="scss" scoped>

@@ -8,24 +8,23 @@
     <div class="panel">
       <div class="panel__toggler">Seisms List</div>
       <header>
-        <SeismFilters v-model="filter" />
+        <SeismFilters v-model="filters" @reset="resetFilters" />
       </header>
-      <SeismList v-model="state.content" :seisms="store.state.seisms" />
+      <SeismList v-model="state.content" :seisms="seisms" />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue';
+import { reactive, computed, watch, onMounted, toRef } from 'vue';
 import store from '/@/store';
-import { createMap, useMap } from '/@/composables';
+import { createMap, useMap, useFilters } from '/@/composables';
 import { SeismList, SeismFilters, SeismPopup } from '/@/components';
-import { toFeatureCollection } from '/@/utils';
+import { toFeatureCollection, normalize, dateAdd } from '/@/utils';
 import config from '/@/config.yaml';
-import type { Seism } from '/@/types';
+import type { Seism, FiltersSeism } from '/@/types';
 
 const { addLayer, addPopup, fitTo } = useMap();
-const filter = ref(() => true);
 
 const { popup, state, bindClick } = addPopup<Seism>({
   name: 'seism-popup',
@@ -38,8 +37,23 @@ watch(state, ({ content }) => {
   fitTo([content]);
 }, { deep: true });
 
+const DEFAULT_FILTERS: FiltersSeism = {
+  search: '',
+  dateMin: dateAdd(new Date(), { years: -1 }),
+  dateMax: new Date(),
+  magnitude: [0, 10],
+};
+const filters = reactive({ ...DEFAULT_FILTERS });
+const resetFilters = () => Object.assign(filters, DEFAULT_FILTERS);
+const { filter } = useFilters<Seism>();
+const seisms = filter([
+  seism => normalize(seism.region).includes(normalize(filters.search)),
+  seism => seism.datetime >= filters.dateMin && seism.datetime <= filters.dateMax,
+  seism => seism.magnitude >= filters.magnitude[0] && seism.magnitude <= filters.magnitude[1],
+], toRef(store.state, 'seisms'));
+
 addLayer(computed(() => {
-  const source = toFeatureCollection(store.state.seisms);
+  const source = toFeatureCollection(seisms.value);
   return { ...config.layers.SEISMS, source, onClick: bindClick };
 }));
 

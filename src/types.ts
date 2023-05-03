@@ -4,6 +4,7 @@ import type { Point, Position } from '@turf/helpers';
 /* UTILITY TYPES */
 
 export type MaybeRef<T> = T | Ref<T>;
+export type MaybeArray<T> = T | T[];
 
 /* DOMAIN TYPES */
 
@@ -26,4 +27,11 @@ export type Seism = {
   from: ClosestLocation;
   coordinates: number[];
   geometry: Point;
+};
+
+export type FiltersSeism = {
+  search: string;
+  dateMin: Date,
+  dateMax: Date,
+  magnitude: [number, number];
 };
