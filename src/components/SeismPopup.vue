@@ -1,5 +1,5 @@
 <template>
-  <teleport v-if="props.to && props.seism" :key="props.seism.id" :to="`#${props.to}`">
+  <teleport :to="`#${props.to}`">
     <div class="seism-popup">
       <div class="seism-popup__magnitude">
         <p>Magnitude <em>{{ props.seism.magnitude }}</em> seism</p>
@@ -8,26 +8,25 @@
         <p class="seism-popup__location">
           <RemixIcon name="map-pin" />
           <span class="label">Location</span>
-          {{ props.seism.geometry.coordinates }}
           Epicenter at
-          {{ props.seism.from.distance }}km
+          {{ round(props.seism.from.distance, 1) }}km
           {{ props.seism.from.direction }}
           from {{ props.seism.from.name }}
-        </p>
-        <p class="seism-popup__date">
-          <RemixIcon name="calendar-event" />
-          <span class="label">Date</span>
-          {{ format.DATE(props.seism.date) }}
-        </p>
-        <p class="seism-popup__time">
-          <RemixIcon name="time" />
-          <span class="label">Time</span>
-          {{ format.TIME(props.seism.date) }}
         </p>
         <p class="seism-popup__depth">
           <RemixIcon name="download" />
           <span class="label">Depth</span>
           {{ props.seism.depth }} km deep
+        </p>
+        <p class="seism-popup__date">
+          <RemixIcon name="calendar-event" />
+          <span class="label">Date</span>
+          {{ new Date(props.seism.datetime).toLocaleDateString('ca', config.formats.DATE) }}
+        </p>
+        <p class="seism-popup__time">
+          <RemixIcon name="time" />
+          <span class="label">Time</span>
+          {{ new Date(props.seism.datetime).toLocaleTimeString('ca', config.formats.TIME) }}
         </p>
       </div>
       <p>
@@ -39,12 +38,14 @@
 </template>
 
 <script setup lang="ts">
-import { format } from '/@/utils';
 import { RemixIcon } from '/@/components';
 import type { Seism } from '/@/types';
+import config from '/@/config.yaml';
+
+const round = (num: number, decimals = 0) => +num.toFixed(decimals);
 
 const props = defineProps<{
-  seism: Seism | undefined;
+  seism: Seism;
   to: string,
 }>();
 </script>

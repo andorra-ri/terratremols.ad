@@ -10,8 +10,12 @@
         <span class="seism__magnitude">{{ seism.magnitude }}</span>
       </div>
       <div class="seism__details">
-        <span class="seism__date">{{ format.DATE(seism.datetime) }}</span>
-        <span class="seism__time">{{ format.TIME(seism.datetime) }}</span>
+        <span class="seism__date">
+          {{ seism.datetime.toLocaleDateString('ca', config.formats.DATE) }}
+        </span>
+        <span class="seism__time">
+          {{ seism.datetime.toLocaleTimeString('ca', config.formats.TIME) }}
+        </span>
         <span class="seism__location">{{ seism.region }}</span>
       </div>
     </li>
@@ -19,8 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import { format } from '/@/utils';
 import type { Seism } from '/@/types';
+import config from '/@/config.yaml';
 
 const props = defineProps<{
   modelValue: Seism | undefined;

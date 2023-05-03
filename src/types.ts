@@ -24,5 +24,6 @@ export type Seism = {
   depth: number;
   region: string;
   from: ClosestLocation;
+  coordinates: number[];
   geometry: Point;
 };

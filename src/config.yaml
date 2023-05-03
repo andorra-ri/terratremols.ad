@@ -1,21 +1,16 @@
 locale: en
 
 formats:
-  datetime:
-    DATE:
-      weekday: short
-      day: numeric
-      month: short
-      year: numeric
-    SHORT_DATE:
-      day: 2-digit
-      month: 2-digit
-      year: numeric
-    TIME:
-      hour: 2-digit
-      minute: 2-digit
-      timeZoneName: short
-      hour12: false
+  DATE:
+    weekday: short
+    day: numeric
+    month: long
+    year: numeric
+  TIME:
+    hour: 2-digit
+    minute: 2-digit
+    timeZoneName: short
+    hour12: true
 
 map:
   style: mapbox://styles/mapbox/light-v10

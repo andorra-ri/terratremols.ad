@@ -7,5 +7,6 @@ export const adaptSeism = (seism: SeismDTO): Seism => {
   const { guid: id, coordinates: geometry, ...rest } = seism;
   const datetime = new Date(seism.datetime);
   const from = closestLocation(geometry.coordinates, config.locations);
-  return { ...rest, id, geometry, datetime, from };
+  const { coordinates } = geometry;
+  return { ...rest, id, geometry, datetime, coordinates, from };
 };

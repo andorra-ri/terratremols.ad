@@ -14,7 +14,7 @@
         <span>From Date</span>
         <DatePicker
           v-model="filters.dateMin"
-          :format="format.SHORT_DATE"
+          :format="date => date.toLocaleDateString('ca')"
           :not-after="filters.dateMax"
           placeholder="Pick a date"
           :size="6" />
@@ -23,7 +23,7 @@
         <span>To Date</span>
         <DatePicker
           v-model="filters.dateMax"
-          :format="format.SHORT_DATE"
+          :format="date => date.toLocaleDateString('ca')"
           :not-before="filters.dateMin"
           :not-after="new Date()"
           placeholder="Pick a date"
@@ -46,7 +46,7 @@ import { reactive, watch } from 'vue';
 import Slider from '@vueform/slider';
 import { RemixIcon, DatePicker } from '/@/components';
 import { add } from 'date-fns';
-import { normalize, format } from '/@/utils';
+import { normalize } from '/@/utils';
 import config from '/@/config.yaml';
 import type { Seism } from '/@/types';
 
