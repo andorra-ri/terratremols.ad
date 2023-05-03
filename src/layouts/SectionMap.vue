@@ -1,80 +1,50 @@
 <template>
   <section id="map-view">
     <div id="map" />
-    <seism-popup
-      v-if="isSeismPopupOpen"
-      :seism="selectedSeism"
-      to="seism-popup" />
+    <SeismPopup
+      v-if="state.content"
+      :seism="state.content"
+      :to="state.name" />
     <div class="panel">
       <div class="panel__toggler">Seisms List</div>
       <header>
-        <seism-filters v-model="filter" />
+        <SeismFilters v-model="filter" />
       </header>
-      <seism-list v-model="selectedSeism" :seisms="seisms" />
+      <SeismList v-model="state.content" :seisms="store.state.seisms" />
     </div>
   </section>
 </template>
 
-<script>
-import { ref, watch, onMounted } from 'vue';
-import { createMap, useMap } from '/@/services/map.service';
-import { useSeismFilter } from '/@/services/seisms.service';
+<script setup lang="ts">
+import { ref, computed, watch, onMounted } from 'vue';
+import store from '/@/store';
+import { createMap, useMap } from '/@/composables';
 import { SeismList, SeismFilters, SeismPopup } from '/@/components';
-import { useRipple } from '/@/utils';
+import { toFeatureCollection } from '/@/utils';
 import config from '/@/config.yaml';
+import type { Seism } from '/@/types';
 
-const { createRipple, updateRipple } = useRipple();
-const { ripple } = config.markers;
+const { addLayer, addPopup, fitTo } = useMap();
+const filter = ref(() => true);
 
-export default {
-  name: 'SectionMap',
-  components: { SeismList, SeismFilters, SeismPopup },
-  setup() {
-    const map = useMap();
-    const filter = ref(() => true);
-    const seisms = useSeismFilter(filter);
-    const selectedSeism = ref(undefined);
-    const isSeismPopupOpen = ref(false);
+const { popup, state, bindClick } = addPopup<Seism>({
+  name: 'seism-popup',
+  snap: true,
+});
 
-    watch(seisms, async () => {
-      const { addMarkers, clearMarkers, getBounds, fitBounds } = await map;
-      clearMarkers();
-      addMarkers(seisms.value, (seism, { usePopup }) => {
-        const { id, magnitude, geometry: { coordinates } } = seism;
-        const element = createRipple({ magnitude });
-        const popup = usePopup({
-          name: 'seism-popup',
-          onOpen: () => {
-            isSeismPopupOpen.value = true;
-            selectedSeism.value = seism;
-          },
-          onClose: () => {
-            isSeismPopupOpen.value = false;
-            selectedSeism.value = undefined;
-          },
-        });
-        return { id, element, coordinates, popup };
-      });
-      const bounds = getBounds(seisms.value);
-      if ('_sw' in bounds) fitBounds(bounds, { padding: 100, maxZoom: 13 });
-    }, { immediate: true });
+watch(state, ({ content }) => {
+  if (!content || !('geometry' in content)) return;
+  popup.value?.setLocation(content.geometry.coordinates);
+  fitTo([content]);
+}, { deep: true });
 
-    watch(selectedSeism, async (seism, prev) => {
-      const { updateMarker, flyTo } = await map;
-      updateMarker(prev?.id, ({ marker }) => {
-        if (marker.getPopup().isOpen()) marker.togglePopup();
-        updateRipple(marker.getElement(), ripple.IDLE);
-      });
-      updateMarker(seism?.id, async ({ marker }) => {
-        await flyTo({ center: seism.geometry.coordinates, zoom: 11 });
-        if (!marker.getPopup().isOpen()) marker.togglePopup();
-        updateRipple(marker.getElement(), ripple.ACTIVE);
-      });
-    });
+addLayer(computed(() => {
+  const source = toFeatureCollection(store.state.seisms);
+  return { ...config.layers.SEISMS, source, onClick: bindClick };
+}));
 
-    onMounted(() => createMap('map', config.map));
-
-    return { seisms, selectedSeism, isSeismPopupOpen, filter };
-  },
-};
+onMounted(() => {
+  createMap('map', config.map);
+  store.loadSeisms();
+});
 </script>

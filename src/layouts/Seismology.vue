@@ -7,9 +7,9 @@
       </div>
       <div class="column column--wide">
         <ul>
-          <li v-for="doc in docs" :key="doc.name">
+          <li v-for="doc in config.seismology.docs" :key="doc.name">
             <a :href="doc.url" target="blank">
-              <remix-icon :name="doc.icon" />
+              <RemixIcon :name="doc.icon" />
               {{ doc.name }}
             </a>
             <p class="note">{{ doc.description }}</p>
@@ -20,17 +20,9 @@
   </section>
 </template>
 
-<script>
+<script setup lang="ts">
 import { RemixIcon } from '/@/components';
 import config from '/@/config.yaml';
-
-export default {
-  name: 'SectionSeismology',
-  components: { RemixIcon },
-  setup() {
-    return { ...config.seismology };
-  },
-};
 </script>
 
 <style lang="scss" scoped>

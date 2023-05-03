@@ -7,15 +7,15 @@
       </div>
       <div class="column">
         <h4>Learn</h4>
-        <link-list :links="learn" />
+        <LinkList :links="config.footer.learn" />
       </div>
       <div class="column">
         <h4>About</h4>
-        <link-list :links="about" />
+        <LinkList :links="config.footer.about" />
       </div>
       <div class="column">
         <h4>Contact</h4>
-        <link-list :links="contact" />
+        <LinkList :links="config.footer.contact" />
       </div>
     </div>
 
@@ -25,17 +25,9 @@
   </footer>
 </template>
 
-<script>
+<script setup lang="ts">
 import { LinkList } from '/@/components';
-import { footer } from '/@/config.yaml';
-
-export default {
-  name: 'SectionFooter',
-  components: { LinkList },
-  setup() {
-    return { ...footer };
-  },
-};
+import config from '/@/config.yaml';
 </script>
 
 <style lang="scss" scoped>

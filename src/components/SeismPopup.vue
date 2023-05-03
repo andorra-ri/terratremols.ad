@@ -1,30 +1,32 @@
 <template>
-  <teleport v-if="to && seism" :key="seism.id" :to="`#${to}`">
+  <teleport :to="`#${props.to}`">
     <div class="seism-popup">
       <div class="seism-popup__magnitude">
-        <p>Magnitude <em>{{ seism.magnitude }}</em> seism</p>
+        <p>Magnitude <em>{{ props.seism.magnitude }}</em> seism</p>
       </div>
       <div class="seism-popup__data">
         <p class="seism-popup__location">
-          <remix-icon name="map-pin" />
+          <RemixIcon name="map-pin" />
           <span class="label">Location</span>
-          {{ seism.geometry.coordinates }}
-          Epicenter at {{ seism.from.distance }} km {{ seism.from.direction }} from {{ seism.from.name }}
-        </p>
-        <p class="seism-popup__date">
-          <remix-icon name="calendar-event" />
-          <span class="label">Date</span>
-          {{ format.DATE(seism.date) }}
-        </p>
-        <p class="seism-popup__time">
-          <remix-icon name="time" />
-          <span class="label">Time</span>
-          {{ format.TIME(seism.date) }}
+          Epicenter at
+          {{ round(props.seism.from.distance, 1) }}km
+          {{ props.seism.from.direction }}
+          from {{ props.seism.from.name }}
         </p>
         <p class="seism-popup__depth">
-          <remix-icon name="download" />
+          <RemixIcon name="download" />
           <span class="label">Depth</span>
-          {{ seism.depth }} km deep
+          {{ props.seism.depth }} km deep
+        </p>
+        <p class="seism-popup__date">
+          <RemixIcon name="calendar-event" />
+          <span class="label">Date</span>
+          {{ new Date(props.seism.datetime).toLocaleDateString('ca', config.formats.DATE) }}
+        </p>
+        <p class="seism-popup__time">
+          <RemixIcon name="time" />
+          <span class="label">Time</span>
+          {{ new Date(props.seism.datetime).toLocaleTimeString('ca', config.formats.TIME) }}
         </p>
       </div>
       <p>
@@ -35,19 +37,15 @@
   </teleport>
 </template>
 
-<script>
-import { format } from '/@/utils';
+<script setup lang="ts">
 import { RemixIcon } from '/@/components';
+import type { Seism } from '/@/types';
+import config from '/@/config.yaml';
 
-export default {
-  name: 'SeismPopup',
-  components: { RemixIcon },
-  props: {
-    seism: { type: Object, default: undefined },
-    to: { type: String, required: true },
-  },
-  setup() {
-    return { format };
-  },
-};
+const round = (num: number, decimals = 0) => +num.toFixed(decimals);
+
+const props = defineProps<{
+  seism: Seism;
+  to: string,
+}>();
 </script>

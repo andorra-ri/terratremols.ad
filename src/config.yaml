@@ -1,34 +1,43 @@
 locale: en
 
 formats:
-  datetime:
-    DATE:
-      weekday: short
-      day: numeric
-      month: short
-      year: numeric
-    SHORT_DATE:
-      day: 2-digit
-      month: 2-digit
-      year: numeric
-    TIME:
-      hour: 2-digit
-      minute: 2-digit
-      timeZoneName: short
-      hour12: false
+  DATE:
+    weekday: short
+    day: numeric
+    month: long
+    year: numeric
+  TIME:
+    hour: 2-digit
+    minute: 2-digit
+    timeZoneName: short
+    hour12: true
 
 map:
-  options:
-    style: mapbox://styles/mapbox/light-v10
-    center: [1.6, 42.55]
-    zoom: 10
-    maxPitch: 0
-    customAttribution: Earthquake data provided by <a href="https://www.icgc.cat/ca/Ciutada/Explora-Catalunya/Terratremols" target="blank">Institut Cartogràfic i Geològic de Catalunya</a>
+  style: mapbox://styles/mapbox/light-v10
+  center: [1.6, 42.55]
+  zoom: 10
+  minZoom: 7
+  maxZoom: 13
+  customAttribution: Earthquake data provided by <a href="https://www.icgc.cat/ca/Ciutada/Explora-Catalunya/Terratremols" target="blank">Institut Cartogràfic i Geològic de Catalunya</a>
   controls:
-    navigation:
+    Navigation:
       position: top-right
-    scale:
+      showCompass: false
+    Scale:
       position: bottom-right
+
+layers:
+  SEISMS:
+    name: seisms
+    layers:
+      - name: seisms
+        type: circle
+        paint:
+          circle-radius: 3
+          circle-color: '#d34'
+          circle-stroke-color: '#d34'
+          circle-stroke-opacity: 0.15
+          circle-stroke-width: [interpolate, [exponential, 2], [get, magnitude], 1, 5, 7, 100]
 
 markers:
   ripple:
@@ -94,11 +103,6 @@ footer:
       url: 'mailto:terratremols@ari.ad'
     - name: +376 742 630
       url: 'tel:+376-742-630'
-
-api:
-  seisms:
-    endpoint: seism
-    schema: seismology
 
 twitter:
   USER: andorra_ri
