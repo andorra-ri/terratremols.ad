@@ -24,6 +24,7 @@ map:
   zoom: 10
   minZoom: 7
   maxZoom: 13
+  scrollZoom: false
   customAttribution: Earthquake data provided by <a href="https://www.icgc.cat/ca/Ciutada/Explora-Catalunya/Terratremols" target="blank">Institut Cartogràfic i Geològic de Catalunya</a>
   controls:
     Navigation:
