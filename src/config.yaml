@@ -1,5 +1,7 @@
 locale: en
 
+surveyURL: https://andorra-ri.github.io/enquesta-sismica/
+
 newsfeed:
   dateLimit:
     days: -14

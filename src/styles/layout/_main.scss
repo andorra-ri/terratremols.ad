@@ -1,14 +1,13 @@
+html {
+  scroll-behavior: smooth;
+}
+
 #app {
   font: 1rem / 1.2 Poppins, sans-serif;
   background: var(--bgcolor);
   color: var(--textcolor);
   font-size: 200;
-  display: flex;
   height: 100vh;
-}
-
-#sidebar {
-  width: 240px;
 }
 
 #main {
