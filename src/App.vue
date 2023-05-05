@@ -2,7 +2,7 @@
   <Sidebar />
   <main id="main">
     <SectionMap />
-    <News />
+    <NewsFeed />
     <Seismology />
     <Faq />
     <Footer />
@@ -10,5 +10,5 @@
 </template>
 
 <script setup lang="ts">
-import { Sidebar, SectionMap, News, Seismology, Faq, Footer } from '/@/layouts';
+import { Sidebar, SectionMap, NewsFeed, Seismology, Faq, Footer } from '/@/layouts';
 </script>

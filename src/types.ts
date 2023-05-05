@@ -35,3 +35,9 @@ export type FiltersSeism = {
   dateMax: Date,
   magnitude: [number, number];
 };
+
+export type NewsFeedStory = {
+  id: string;
+  text: string;
+  createdAt: string;
+};

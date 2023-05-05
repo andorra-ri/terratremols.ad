@@ -1,5 +1,9 @@
 locale: en
 
+newsfeed:
+  dateLimit:
+    days: -14
+
 formats:
   DATE:
     weekday: short
@@ -90,17 +94,6 @@ footer:
       url: 'mailto:terratremols@ari.ad'
     - name: +376 742 630
       url: 'tel:+376-742-630'
-
-twitter:
-  USER: andorra_ri
-  HASHTAG: terratremols
-  LINK_REGEX: '(https?:\/\/[^\s]+)'
-  REMOVE_REGEX:
-    - '^RT\s'
-    - '(?<!\w)@\w+' # Citations @username
-    - '(?<!\w)#\w+' # Citations #hashtag
-    # - '(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])' # emojis
-    - '(https?:\/\/[^\s]+)' # links
 
 locations:
   # Andorra
