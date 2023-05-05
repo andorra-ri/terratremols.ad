@@ -15,7 +15,10 @@ html {
   overflow: auto;
 }
 
-section { margin: var(--xxxl) 0; }
+section {
+  margin: var(--xxxl) 0;
+  scroll-margin: var(--xxxl);
+}
 
 .content { padding: 0 var(--xl); }
 
