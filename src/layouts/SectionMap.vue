@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed, watch, onMounted, toRef } from 'vue';
+import { reactive, computed, watchEffect, onMounted, toRef } from 'vue';
 import store from '/@/store';
 import { createMap, useMap, useFilters } from '/@/composables';
 import { toFeatureCollection, normalize, dateAdd } from '/@/utils';
@@ -33,12 +33,6 @@ const { popup, state, bindClick } = addPopup<Seism>({
   name: 'seism-popup',
   snap: true,
 });
-
-watch(state, ({ content }) => {
-  if (!content || !('geometry' in content)) return;
-  popup.value?.setLocation(content.geometry.coordinates);
-  fitTo([content]);
-}, { deep: true });
 
 const DEFAULT_FILTERS: FiltersSeism = {
   search: '',
@@ -59,6 +53,14 @@ addLayer(computed(() => {
   const source = toFeatureCollection(seisms.value);
   return { ...config.layers.SEISMS, source, onClick: bindClick };
 }));
+
+watchEffect(() => {
+  const { content } = state.value;
+  if (content) popup.value?.setLocation(content.coordinates);
+  else popup.value?.popup.remove();
+  const points = content && 'geometry' in content ? [content] : seisms.value;
+  fitTo(points, { padding: 100 });
+});
 
 onMounted(() => {
   createMap('map', config.map);
