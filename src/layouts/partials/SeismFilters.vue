@@ -1,6 +1,6 @@
 <template>
   <details class="collapsible">
-    <summary><RemixIcon name="equalizer" /> Filters</summary>
+    <summary>Filters</summary>
     <div class="filters">
       <label class="block">
         <span>Location</span>
@@ -17,7 +17,7 @@
           :format="date => date.toLocaleDateString('ca')"
           :not-after="filters.dateMax"
           placeholder="Pick a date"
-          :size="6" />
+          :size="8" />
       </label>
       <label>
         <span>To Date</span>
@@ -27,7 +27,7 @@
           :not-before="filters.dateMin"
           :not-after="new Date()"
           placeholder="Pick a date"
-          :size="6" />
+          :size="8" />
       </label>
       <label class="block">
         <span>Magnitude</span>
@@ -44,7 +44,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import Slider from '@vueform/slider';
-import { RemixIcon, DatePicker } from '/@/components';
+import { DatePicker } from '/@/components';
 import type { FiltersSeism } from '/@/types';
 
 const MAGNITUDE_RANGE_OPTIONS = {
@@ -73,18 +73,11 @@ const reset = () => emit('reset');
 </script>
 
 <style lang="scss" scoped>
-.collapsible summary {
-  color: var(--color-primary);
-  text-align: right;
-  margin: 0;
-  padding: var(--m);
-
-  &::before { display: none; }
-
-  .icon {
-    height: 1em;
-    width: 1em;
-    vertical-align: middle;
+.collapsible {
+  summary {
+    color: var(--color-primary);
+    margin: 0;
+    padding: 1rem;
   }
 }
 

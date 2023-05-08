@@ -1,14 +1,6 @@
-@import url('mapbox-gl/dist/mapbox-gl.css');
+@import 'mapbox-gl/dist/mapbox-gl.css';
 
-#map-view {
-  background: #0001;
-  height: 80vh;
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.mapboxgl-ctrl { border-radius: 0; }
+.mapboxgl-ctrl { border-radius: var(--border-radius); }
 
 .mapboxgl-popup {
   &-content {
@@ -20,51 +12,9 @@
 }
 
 #map {
-  position: absolute;
   height: 100%;
   width: 100%;
 }
-
-.ripple {
-  --color: var(--marker-color);
-  --border-color: var(--marker-border-color);
-  --size: var(--xl);
-  --point-size: 8px;
-
-  position: absolute;
-  margin: auto;
-  box-sizing: border-box;
-  background: var(--color);
-  background-clip: content-box;
-  height: var(--point-size);
-  width: var(--point-size);
-  border-radius: 50%;
-  border: 1px solid var(--border-color);
-  cursor: pointer;
-  transition: height 0.25s ease, width 0.25s ease;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    display: block;
-    height: calc(100% + var(--size));
-    width: calc(100% + var(--size));
-    border-radius: 50%;
-    border: 1px solid var(--color);
-    background: radial-gradient(circle at center, transparent 25%, var(--color) 150%);
-    margin: calc((100% + var(--size)) / -2);
-    animation: ripple 2s infinite ease-out both;
-    pointer-events: none;
-    box-sizing: border-box;
-  }
-
-  &::after { animation-delay: 1s; }
-
-  &:hover { --point-size: 16px;}
-};
 
 .seism-popup {
   margin: var(--s);

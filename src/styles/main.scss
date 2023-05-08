@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;600&display=swap');
-
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap';
 @import
   'layout',
   'typography',
@@ -9,7 +8,7 @@
   'animation';
 
 :root {
-  font-size: 16px;
+  font-size: 14px;
 
   --color-primary: #d34;
   --color-primary--light: #d346;
@@ -49,4 +48,6 @@
   --slider-tooltip-radius: 0;
   --slider-tooltip-py: var(--xxxs);
   --slider-tooltip-px: var(--xs);
+
+  --border-radius: 3px;
 }

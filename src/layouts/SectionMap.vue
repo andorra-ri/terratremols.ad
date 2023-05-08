@@ -1,17 +1,20 @@
 <template>
   <section id="map-view">
+    <div class="panel">
+      <header>
+        <SeismFilters
+          v-model="filters"
+          @reset="resetFilters" />
+      </header>
+      <SeismList
+        v-model="state.content"
+        :seisms="seisms" />
+    </div>
     <div id="map" />
     <SeismPopup
       v-if="state.content"
       :seism="state.content"
       :to="state.name" />
-    <div class="panel">
-      <div class="panel__toggler">Seisms List</div>
-      <header>
-        <SeismFilters v-model="filters" @reset="resetFilters" />
-      </header>
-      <SeismList v-model="state.content" :seisms="seisms" />
-    </div>
   </section>
 </template>
 
@@ -19,8 +22,8 @@
 import { reactive, computed, watch, onMounted, toRef } from 'vue';
 import store from '/@/store';
 import { createMap, useMap, useFilters } from '/@/composables';
-import { SeismList, SeismFilters, SeismPopup } from '/@/components';
 import { toFeatureCollection, normalize, dateAdd } from '/@/utils';
+import { SeismList, SeismFilters, SeismPopup } from './partials';
 import config from '/@/config.yaml';
 import type { Seism, FiltersSeism } from '/@/types';
 
@@ -62,3 +65,26 @@ onMounted(() => {
   store.loadSeisms();
 });
 </script>
+
+<style lang="scss" scoped>
+#map-view {
+  display: flex;
+  background: #0001;
+  height: 80vh;
+  margin: 0;
+  border: 1px solid transparent;
+  border-width: 1px 0;
+
+  .panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--bgcolor);
+    border-right: 1px solid #0001;
+    flex: 0 0 290px;
+    box-sizing: border-box;
+
+    & > header { border-bottom: 1px solid #0001; }
+  }
+}
+</style>
