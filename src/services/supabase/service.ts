@@ -25,6 +25,7 @@ export const getSeisms = async () => {
     headers: { 'Accept-Profile': 'seismology' },
     qs: {
       magnitude: 'gte.2',
+      order: 'datetime.desc',
     },
   });
   return seisms.map(adaptSeism);
