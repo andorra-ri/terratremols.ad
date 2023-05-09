@@ -48,7 +48,8 @@ import { DatePicker } from '/@/components';
 import type { FiltersSeism } from '/@/types';
 
 const MAGNITUDE_RANGE_OPTIONS = {
-  max: 10,
+  min: 2,
+  max: 9,
   showTooltip: 'drag',
   lazy: true,
   merge: 1,

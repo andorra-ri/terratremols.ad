@@ -23,6 +23,9 @@ const query = async <T>(endpoint: string, options?: QueryOptions): Promise<T> =>
 export const getSeisms = async () => {
   const seisms = await query<Seism[]>('seism', {
     headers: { 'Accept-Profile': 'seismology' },
+    qs: {
+      magnitude: 'gte.2',
+    },
   });
   return seisms.map(adaptSeism);
 };
