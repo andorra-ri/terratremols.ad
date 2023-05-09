@@ -15,8 +15,7 @@ formats:
   TIME:
     hour: 2-digit
     minute: 2-digit
-    timeZoneName: short
-    hour12: true
+    hour12: false
 
 map:
   style: mapbox://styles/mapbox/light-v10

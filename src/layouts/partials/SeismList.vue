@@ -16,6 +16,7 @@
         </span>
         <span class="seism__time">
           {{ seism.datetime.toLocaleTimeString('ca', config.formats.TIME) }}
+          local time
         </span>
         <span class="seism__location">{{ seism.region }}</span>
       </div>
