@@ -1,5 +1,7 @@
 locale: en
 
+surveyURL: https://andorra-ri.github.io/enquesta-sismica/
+
 newsfeed:
   dateLimit:
     days: -14
@@ -13,8 +15,7 @@ formats:
   TIME:
     hour: 2-digit
     minute: 2-digit
-    timeZoneName: short
-    hour12: true
+    hour12: false
 
 map:
   style: mapbox://styles/mapbox/light-v10
@@ -22,6 +23,7 @@ map:
   zoom: 10
   minZoom: 7
   maxZoom: 13
+  scrollZoom: false
   customAttribution: Earthquake data provided by <a href="https://www.icgc.cat/ca/Ciutada/Explora-Catalunya/Terratremols" target="blank">Institut Cartogràfic i Geològic de Catalunya</a>
   controls:
     Navigation:
@@ -37,11 +39,13 @@ layers:
       - name: seisms
         type: circle
         paint:
-          circle-radius: 3
           circle-color: '#d34'
+          circle-radius: 2
           circle-stroke-color: '#d34'
           circle-stroke-opacity: 0.15
-          circle-stroke-width: [interpolate, [exponential, 2], [get, magnitude], 1, 5, 7, 100]
+          circle-stroke-width: [interpolate, [exponential, 2], [zoom],
+            0, 0,
+            13, [/, [/, [get, magnitude], 0.005], [cos, ['*', 42.5, [/, [pi], 180]]]]]
 
 markers:
   ripple:
@@ -97,8 +101,10 @@ footer:
 
 locations:
   # Andorra
+  Canillo: [1.601101, 42.566381]
   Encamp: [1.583651, 42.535970]
   Ordino: [1.533006, 42.556897]
+  La Massana: [1.515489, 42.545048]
   Andorra la Vella: [1.521882, 42.507472]
   Sant Julia de Lòria: [1.492432, 42.468866]
   Escaldes-Engordany: [1.539143, 42.510778]

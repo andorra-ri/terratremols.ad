@@ -1,4 +1,4 @@
-export { default as Sidebar } from './Sidebar.vue';
+export { default as Topbar } from './Topbar.vue';
 export { default as Footer } from './Footer.vue';
 export { default as SectionMap } from './SectionMap.vue';
 export { default as Seismology } from './Seismology.vue';

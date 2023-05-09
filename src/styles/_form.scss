@@ -5,8 +5,9 @@ input {
   vertical-align: middle;
   background: #fff;
   border: 1px solid #0002;
-  margin: var(--xxs);
-  padding: var(--s) var(--m);
+  border-radius: var(--border-radius);
+  margin: 0.125rem;
+  padding: 0.75rem;
   outline: none;
   text-overflow: ellipsis;
   box-sizing: border-box;
@@ -16,18 +17,17 @@ input {
 }
 
 .btn {
+  all: unset;
   display: inline-block;
-  border: 1px solid var(--color-primary);
   background: var(--color-primary);
   color: #fff;
-  padding: var(--s) var(--m);
-  margin: var(--xxs);
+  padding: 0.75rem 1rem;
+  margin: 0.125rem;
   vertical-align: middle;
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
-  line-height: 1.2;
-  font-weight: normal;
+  border-radius: var(--border-radius);
 
   &--flat {
     background: transparent;
@@ -42,7 +42,7 @@ input {
     width: 100%;
   }
 
-  &:hover { animation: shake 0.75s infinite; }
+  &:hover { animation: shake 0.75s 1; }
 };
 
 .datepicker {
@@ -55,37 +55,35 @@ input {
     position: absolute;
     top: 100%;
     left: 0;
-    margin: 0 var(--xxs);
+    margin: 0 0.125rem;
     background: #fff;
-    border: 1px solid #0001;
+    border: 1px solid #0002;
     padding: var(--s);
     z-index: 2;
-    font-size: 0.85rem;
+    border-radius: var(--border-radius);
 
     header {
       display: flex;
       line-height: 1.5;
-      text-transform: uppercase;
       font-weight: bold;
     }
 
     .weekdays {
       text-align: center;
-      text-transform: uppercase;
       font-size: var(--s);
       margin: var(--s) 0;
       opacity: 0.5;
     }
 
     .day {
-      padding: var(--xs);
+      padding: 0.5rem;
+      border-radius: var(--border-radius);
 
       &--outsider { opacity: 0.25; }
 
       &--selected {
         background: var(--color-primary);
         color: #fff;
-        border-radius: var(--datepicker-border-radius);
         opacity: 1;
       }
 
@@ -101,24 +99,19 @@ input {
 }
 
 .range-slider {
-  margin: var(--l) var(--s);
+  margin: 1.5rem 1rem;
 
-  .slider-active {
-    box-shadow: 0 0 0 var(--xs) var(--color-primary--light)
-  }
+  .slider-active { box-shadow: 0 0 0 var(--xs) var(--color-primary--light); }
 }
 
 label {
-  display: inline-block;
   margin: var(--xs) 0;
   display: flex;
   flex-direction: column;
 
   span {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    font-weight: bold;
-    opacity: 0.5;
+    font-size: 0.9rem;
+    opacity: 0.6;
     margin: 0 var(--xxs);
   }
 }

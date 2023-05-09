@@ -1,5 +1,5 @@
 <template>
-  <Sidebar />
+  <Topbar />
   <main id="main">
     <SectionMap />
     <NewsFeed />
@@ -10,5 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import { Sidebar, SectionMap, NewsFeed, Seismology, Faq, Footer } from '/@/layouts';
+import store from '/@/store';
+import { Topbar, SectionMap, NewsFeed, Seismology, Faq, Footer } from '/@/layouts';
+
+store.loadNewsFeed();
 </script>

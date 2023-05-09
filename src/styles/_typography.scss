@@ -19,13 +19,12 @@ p {
 strong { font-weight: bold; }
 
 a {
-  color: currentColor;
   font-weight: 600;
   text-decoration: none;
   color: var(--color-primary);
   display: inline-block;
 
-  &:hover { animation: shake 0.75s infinite; }
+  &:hover { animation: shake 0.75s 1; }
 }
 
 p.copyright {
