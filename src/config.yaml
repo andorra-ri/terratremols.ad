@@ -101,8 +101,10 @@ footer:
 
 locations:
   # Andorra
+  Canillo: [1.601101, 42.566381]
   Encamp: [1.583651, 42.535970]
   Ordino: [1.533006, 42.556897]
+  La Massana: [1.515489, 42.545048]
   Andorra la Vella: [1.521882, 42.507472]
   Sant Julia de Lòria: [1.492432, 42.468866]
   Escaldes-Engordany: [1.539143, 42.510778]
