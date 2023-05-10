@@ -16,6 +16,9 @@ nav:
 contact:
   send_message: Envia un missage
 
+newsfeed:
+  title: Últimes notícies
+
 seismology:
   title: Sismologia
   caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.

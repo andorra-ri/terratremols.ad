@@ -1,12 +1,10 @@
 <template>
   <section id="newsfeed" class="content">
     <template v-if="store.state.newsfeed.length">
-      <h2>Latest News</h2>
+      <h2>{{ message('newsfeed.title') }}</h2>
       <ul class="tweets">
         <li v-for="story in store.state.newsfeed" :key="story.id">
-          <p class="note">
-            {{ new Date(story.createdAt).toLocaleDateString('ca', config.formats.DATE) }}
-          </p>
+          <p class="note">{{ formatDate(story.createdAt) }}</p>
           <p>{{ story.text }}</p>
         </li>
       </ul>
@@ -16,5 +14,7 @@
 
 <script setup lang="ts">
 import store from '/@/store';
-import config from '/@/config.yaml';
+import { useI10n } from '/@/composables';
+
+const { message, formatDate } = useI10n();
 </script>

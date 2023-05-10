@@ -4,6 +4,7 @@ type I10nOptions = {
   locale: string;
   messages: Record<string, Record<string, any>>;
   dateFormat?: Intl.DateTimeFormatOptions;
+  timeFormat?: Intl.DateTimeFormatOptions;
 };
 
 type I10nProps = {
@@ -33,7 +34,15 @@ export const useI10n = () => {
     return entry.replace(REPLACE_REGEX, (match, key) => object?.[key.trim()] || match);
   };
 
-  const formatDate = (date: Date) => date.toLocaleTimeString([state.locale], state.dateFormat);
+  const formatDate = (date: Date | number | string, format?: Intl.DateTimeFormatOptions) => {
+    const { locale, dateFormat } = state;
+    return new Date(date).toLocaleDateString([locale], format || dateFormat);
+  };
+
+  const formatTime = (date: Date | number | string, format?: Intl.DateTimeFormatOptions) => {
+    const { locale, timeFormat } = state;
+    return new Date(date).toLocaleTimeString([locale], format || timeFormat);
+  };
 
   const I10n: FunctionalComponent<I10nProps> = (props, ctx) => {
     const entry = objectPath(state.messages, props.path) as string;
@@ -44,5 +53,5 @@ export const useI10n = () => {
   const setLocale = (locale: string) => { state.locale = locale; };
   const { locale } = toRefs(state);
 
-  return { message, formatDate, I10n, locale, setLocale };
+  return { message, formatDate, formatTime, I10n, locale, setLocale };
 };
