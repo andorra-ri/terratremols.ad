@@ -2,17 +2,19 @@
   <section id="seismology">
     <div class="columns">
       <div class="column">
-        <h2>Seismology</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <h2>{{ message('seismology.title') }}</h2>
+        <p>{{ message('seismology.caption') }}</p>
       </div>
       <div class="column column--wide">
         <ul>
-          <li v-for="doc in config.seismology.docs" :key="doc.name">
-            <a :href="doc.url" target="blank">
-              <RemixIcon :name="doc.icon" />
-              {{ doc.name }}
+          <li v-for="resource in config.seismology.resources" :key="resource.name">
+            <a :href="resource.url" target="blank">
+              <RemixIcon :name="resource.icon" />
+              {{ message(`seismology.resources.${resource.id}.title`) }}
             </a>
-            <p class="note">{{ doc.description }}</p>
+            <p class="note">
+              {{ message(`seismology.resources.${resource.id}.caption`) }}
+            </p>
           </li>
         </ul>
       </div>
@@ -21,8 +23,11 @@
 </template>
 
 <script setup lang="ts">
+import { useI10n } from '/@/composables';
 import { RemixIcon } from '/@/components';
 import config from '/@/config.yaml';
+
+const { message } = useI10n();
 </script>
 
 <style lang="scss" scoped>

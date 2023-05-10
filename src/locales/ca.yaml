@@ -16,5 +16,21 @@ nav:
 contact:
   send_message: Envia un missage
 
+seismology:
+  title: Sismologia
+  caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  resources:
+    basic:
+      title: Conspetes bàsics
+      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    detection:
+      title: Sistemes de detecció
+      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    hazards:
+      title: Riscos i protecció
+      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    andorra:
+      title: Sismicitat a Andorra
+      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
 
 copyright: Andorra Recerca + Innovació. All rights reserved.
