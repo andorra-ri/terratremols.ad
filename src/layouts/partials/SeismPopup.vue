@@ -30,8 +30,19 @@
         </p>
       </div>
       <p>
-        <a href="https://andorra-ri.github.io/enquesta-sismica/" target="blank" class="btn block">Fill survey</a>
-        <a href="#" class="btn btn--flat block">View survey results</a>
+        <a
+          v-if="report"
+          :href="props.report"
+          class="btn btn--flat block">
+          View survey results
+        </a>
+        <a
+          v-else
+          :href="config.surveyURL"
+          target="blank"
+          class="btn block">
+          Fill survey
+        </a>
       </p>
     </div>
   </teleport>
@@ -46,6 +57,7 @@ const round = (num: number, decimals = 0) => +num.toFixed(decimals);
 
 const props = defineProps<{
   seism: Seism;
+  report: string | undefined;
   to: string,
 }>();
 </script>

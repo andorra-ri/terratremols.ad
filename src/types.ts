@@ -36,6 +36,11 @@ export type FiltersSeism = {
   magnitude: [number, number];
 };
 
+export type SeismReport = {
+  id: string;
+  url: string;
+};
+
 export type NewsFeedStory = {
   id: string;
   text: string;

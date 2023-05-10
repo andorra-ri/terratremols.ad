@@ -14,4 +14,5 @@ import store from '/@/store';
 import { Topbar, SectionMap, NewsFeed, Seismology, Faq, Footer } from '/@/layouts';
 
 store.loadNewsFeed();
+store.loadSeismReports();
 </script>
