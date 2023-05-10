@@ -74,29 +74,29 @@ seismology:
 
 footer:
   learn:
-    - name: Seismology
+    - id: nav.seismology
       url: '#seismology'
-    - name: Seismic Survey
+    - id: nav.survey
       url: https://andorra-ri.github.io/enquesta-sismica/
       target: blank
-    - name: News
+    - id: nav.news
       url: '#news'
-    - name: FAQ
+    - id: nav.faq
       url: '#faq'
 
   about:
-    - name: Project
-      url: '#company'
-    - name: Links
+    - id: nav.project
+      url: '#project'
+    - id: nav.links
       url: '#links'
-    - name: Política de dades
+    - id: nav.data_policy
       url: '#terms'
       target: blank
 
   contact:
-    - name: Send a message
+    - id: contact.send_message
       url: 'mailto:terratremols@ari.ad'
-    - name: +376 742 630
+    - id: +376 742 630
       url: 'tel:+376-742-630'
 
 locations:

@@ -3,31 +3,32 @@
     <div class="columns">
       <div class="column column--wide">
         <img src="/@/assets/images/logo.svg" class="logo">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quia officia quibusdam cupiditate reprehenderit et laboriosam.</p>
+        <p>{{ message('description') }}</p>
       </div>
       <div class="column">
-        <h4>Learn</h4>
+        <h4>{{ message('nav.learn') }}</h4>
         <LinkList :links="config.footer.learn" />
       </div>
       <div class="column">
-        <h4>About</h4>
+        <h4>{{ message('nav.about') }}</h4>
         <LinkList :links="config.footer.about" />
       </div>
       <div class="column">
-        <h4>Contact</h4>
+        <h4>{{ message('nav.contact') }}</h4>
         <LinkList :links="config.footer.contact" />
       </div>
     </div>
 
-    <p class="copyright">
-      © 2022 &middot; Andorra Recerca + Innovació. All rights reserved.
-    </p>
+    <p class="copyright">&copy; 2023 &middot; {{ message('copyright') }}</p>
   </footer>
 </template>
 
 <script setup lang="ts">
+import { useI10n } from '/@/composables';
 import { LinkList } from '/@/components';
 import config from '/@/config.yaml';
+
+const { message } = useI10n();
 </script>
 
 <style lang="scss" scoped>

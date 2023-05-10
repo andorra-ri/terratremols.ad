@@ -1,1 +1,20 @@
 title: terratremols.ad
+description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quia officia quibusdam cupiditate reprehenderit et laboriosam.
+
+nav:
+  learn: Divulgació
+  news: Notícies
+  seismology: Sismologia
+  faq: FAQ
+  survey: Enquesta
+  about: Nosaltres
+  project: Projecte
+  links: Enllaços
+  data_policy: Política de dades
+  contact: Contacte
+
+contact:
+  send_message: Envia un missage
+
+
+copyright: Andorra Recerca + Innovació. All rights reserved.
