@@ -34,6 +34,15 @@ seism:
     W: O
     NW: NO
 
+filters:
+  filters: Filtres
+  region: Regió
+  region_name: Nom de la regió
+  from: Des de
+  until: Fins a
+  magnitude: Magnitud
+  reset: Esborrar filtres
+
 survey:
   fill: Emplena Enquesta
   results: Resultats Enquesta
