@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="columns">
+    <div class="columns content">
       <div class="column column--wide">
         <img src="/@/assets/images/logo.svg" class="logo">
         <p>{{ message('description') }}</p>

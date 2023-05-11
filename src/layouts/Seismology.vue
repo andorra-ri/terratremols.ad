@@ -1,5 +1,5 @@
 <template>
-  <section id="seismology">
+  <section id="seismology" class="content">
     <div class="columns">
       <div class="column">
         <h2>{{ message('seismology.title') }}</h2>

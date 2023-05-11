@@ -1,5 +1,5 @@
 <template>
-  <section id="faq">
+  <section id="faq" class="content">
     <div class="columns">
       <div class="column">
         <h2>{{ message('faq.title') }}</h2>
