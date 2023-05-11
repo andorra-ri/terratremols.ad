@@ -1,42 +1,46 @@
 <template>
   <details class="collapsible">
-    <summary>Filters</summary>
+    <summary>{{ message('filters.filters') }}</summary>
     <div class="filters">
       <label class="block">
-        <span>Location</span>
+        <span>{{ message('filters.region') }}</span>
         <input
           v-model="filters.search"
-          placeholder="Enter location name"
+          :placeholder="message('filters.region_name')"
           type="text"
           class="block">
       </label>
       <label>
-        <span>From Date</span>
+        <span>{{ message('filters.from') }}</span>
         <DatePicker
           v-model="filters.dateMin"
-          :format="date => date.toLocaleDateString('ca')"
+          :locale="locale"
+          :format="dateFormat"
           :not-after="filters.dateMax"
-          placeholder="Pick a date"
+          :placeholder="message('filters.pick_date')"
           :size="8" />
       </label>
       <label>
-        <span>To Date</span>
+        <span>{{ message('filters.until') }}</span>
         <DatePicker
           v-model="filters.dateMax"
-          :format="date => date.toLocaleDateString('ca')"
+          :locale="locale"
+          :format="dateFormat"
           :not-before="filters.dateMin"
           :not-after="new Date()"
-          placeholder="Pick a date"
+          :placeholder="message('filters.pick_date')"
           :size="8" />
       </label>
       <label class="block">
-        <span>Magnitude</span>
+        <span>{{ message('filters.magnitude') }}</span>
         <slider
           v-model="filters.magnitude"
           v-bind="MAGNITUDE_RANGE_OPTIONS"
           class="range-slider" />
       </label>
-      <button class="btn block" @click="reset">Reset filters</button>
+      <button class="btn block" @click="reset">
+        {{ message('filters.reset') }}
+      </button>
     </div>
   </details>
 </template>
@@ -44,6 +48,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import Slider from '@vueform/slider';
+import { useI10n } from '/@/composables';
 import { DatePicker } from '/@/components';
 import type { FiltersSeism } from '/@/types';
 
@@ -71,6 +76,13 @@ const filters = computed({
 });
 
 const reset = () => emit('reset');
+
+const { message, formatDate, locale } = useI10n();
+const dateFormat = (date: Date) => formatDate(date, {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+});
 </script>
 
 <style lang="scss" scoped>

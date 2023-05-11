@@ -12,9 +12,11 @@ formats:
     day: numeric
     month: long
     year: numeric
+    timeZone: Europe/Andorra
   TIME:
     hour: 2-digit
     minute: 2-digit
+    timeZone: Europe/Andorra
     hour12: false
 
 map:
@@ -24,7 +26,7 @@ map:
   minZoom: 7
   maxZoom: 13
   scrollZoom: false
-  customAttribution: Earthquake data provided by <a href="https://www.icgc.cat/ca/Ciutada/Explora-Catalunya/Terratremols" target="blank">Institut Cartogràfic i Geològic de Catalunya</a>
+  customAttribution: Dades proporcionades per <a href="https://www.icgc.cat/ca/Ciutada/Explora-Catalunya/Terratremols" target="blank">Institut Cartogràfic i Geològic de Catalunya</a>
   controls:
     Navigation:
       position: top-right
@@ -55,48 +57,44 @@ markers:
       size: 200px
 
 seismology:
-  docs:
-    - name: Basic concepts
-      description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  resources:
+    - id: basic
       icon: bookmark
       url: https://www.terratremols.ad/docs/conceptes_basics_terratremols.pdf
-    - name: Detection systems
-      description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    - id: detection
       icon: pulse
       url: https://www.terratremols.ad/docs/deteccio_terratremols.pdf
-    - name: Hazards & protection
-      description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    - id: hazards
       icon: shield-cross
       url: https://www.terratremols.ad/docs/perills_proteccio_terratremols.pdf
-    - name: Seismicity in Andorra
-      description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    - id: andorra
       url: https://www.terratremols.ad/docs/sismicitat_andorra.pdf
 
 footer:
   learn:
-    - name: Seismology
+    - id: nav.seismology
       url: '#seismology'
-    - name: Seismic Survey
+    - id: nav.survey
       url: https://andorra-ri.github.io/enquesta-sismica/
       target: blank
-    - name: News
+    - id: nav.news
       url: '#news'
-    - name: FAQ
+    - id: nav.faq
       url: '#faq'
 
   about:
-    - name: Project
-      url: '#company'
-    - name: Links
+    - id: nav.project
+      url: '#project'
+    - id: nav.links
       url: '#links'
-    - name: Política de dades
+    - id: nav.data_policy
       url: '#terms'
       target: blank
 
   contact:
-    - name: Send a message
+    - id: contact.send_message
       url: 'mailto:terratremols@ari.ad'
-    - name: +376 742 630
+    - id: +376 742 630
       url: 'tel:+376-742-630'
 
 locations:

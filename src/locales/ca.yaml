@@ -1,0 +1,71 @@
+title: terratremols.ad
+description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quia officia quibusdam cupiditate reprehenderit et laboriosam.
+
+nav:
+  learn: Divulgació
+  news: Notícies
+  seismology: Sismologia
+  faq: FAQ
+  survey: Enquesta
+  about: Nosaltres
+  project: Projecte
+  links: Enllaços
+  data_policy: Política de dades
+  contact: Contacte
+
+contact:
+  send_message: Envia un missage
+
+newsfeed:
+  title: Últimes notícies
+
+seism:
+  epicenter: Epicentre a {distance}km {direction} de {name}
+  magnitude: Magnitud {magnitude}
+  depth: '{depth}km de profunditat'
+  time: '{time} hora local'
+  direction:
+    N: N
+    NE: NE
+    E: E
+    SE: SE
+    S: S
+    SW: SO
+    W: O
+    NW: NO
+
+filters:
+  filters: Filtres
+  region: Regió
+  region_name: Nom de la regió
+  from: Des de
+  until: Fins a
+  magnitude: Magnitud
+  reset: Esborrar filtres
+
+survey:
+  fill: Emplena Enquesta
+  results: Resultats Enquesta
+
+seismology:
+  title: Sismologia
+  caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  resources:
+    basic:
+      title: Conspetes bàsics
+      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    detection:
+      title: Sistemes de detecció
+      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    hazards:
+      title: Riscos i protecció
+      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    andorra:
+      title: Sismicitat a Andorra
+      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
+faq:
+  title: Preguntes Freqüents
+  caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
+copyright: Andorra Recerca + Innovació. All rights reserved.
