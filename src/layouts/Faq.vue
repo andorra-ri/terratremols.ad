@@ -2,14 +2,14 @@
   <section id="faq">
     <div class="columns">
       <div class="column">
-        <h2>Frequent Asked Questions</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <h2>{{ message('faq.title') }}</h2>
+        <p>{{ message('faq.caption') }}</p>
       </div>
       <div class="column column--wide">
         <details
-          v-for="(question, i) in faq"
+          v-for="question, i in faq[locale]"
           :key="i"
-          :open="i === 0"
+          :open="true"
           class="collapsible">
           <summary><strong>{{ question.question }}</strong></summary>
           <p>{{ question.answer }}</p>
@@ -19,13 +19,9 @@
   </section>
 </template>
 
-<script>
+<script setup lang="ts">
+import { useI10n } from '/@/composables';
 import faq from '/@/assets/faq.yaml';
 
-export default {
-  name: 'SectionFaq',
-  setup() {
-    return { faq };
-  },
-};
+const { message, locale } = useI10n();
 </script>
