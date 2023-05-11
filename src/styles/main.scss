@@ -10,44 +10,25 @@
 :root {
   font-size: 14px;
 
+  /* Colors */
   --color-primary: #d34;
-  --color-primary--light: #d346;
-  --color-primary--extralight: #fee;
-
   --bgcolor: #fff;
   --textcolor: #333;
 
-  --xxxs: 0.125rem;
-  --xxs: 0.25rem;
-  --xs: 0.5rem;
-  --s: 0.75rem;
-  --m: 1rem;
-  --l: 1.5rem;
-  --xl: 2rem;
-  --xxl: 3rem;
-  --xxxl: 5rem;
-
-  --columns-gap: 2rem;
-
-  --marker-color: var(--color-primary--light);
-  --marker-border-color: var(--color-primary);
-
-  --slider-bg: #0002;
+  /* Slider */
+  --slider-bg: #0001;
   --slider-connect-bg: var(--color-primary);
-  --slider-height: var(--xxs);
-
+  --slider-height: 4px;
   --slider-handle-bg: var(--color-primary);
-  --slider-handle-width: var(--l);
-  --slider-handle-height: var(--l);
+  --slider-handle-width: 1.5rem;
+  --slider-handle-height: 1.5rem;
   --slider-handle-shadow: none;
-
   --slider-tooltip-font-size: 1rem;
   --slider-tooltip-font-weight: 200;
   --slider-tooltip-bg: var(--color-primary);
   --slider-tooltip-color: #fff;
   --slider-tooltip-radius: 0;
-  --slider-tooltip-py: var(--xxxs);
-  --slider-tooltip-px: var(--xs);
 
+  /* Borders */
   --border-radius: 3px;
 }

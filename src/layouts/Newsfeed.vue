@@ -2,7 +2,7 @@
   <section id="newsfeed" class="content">
     <template v-if="store.state.newsfeed.length">
       <h2>{{ message('newsfeed.title') }}</h2>
-      <ul class="tweets">
+      <ul class="newsfeed">
         <li v-for="story in store.state.newsfeed" :key="story.id">
           <p class="note">{{ formatDate(story.createdAt) }}</p>
           <p>{{ story.text }}</p>

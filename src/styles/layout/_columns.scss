@@ -1,11 +1,10 @@
 .columns {
   display: flex;
   flex-wrap: wrap;
-  margin: var(--columns-gap, var(--xl)) 0;
+  gap: 2rem;
 
   .column {
     flex: 1;
-    margin: var(--columns-gap, var(--xl));
 
     &--tight { flex: none; }
     &--wide { flex-grow: 2; }

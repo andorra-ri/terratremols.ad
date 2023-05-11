@@ -35,13 +35,13 @@ const { message } = useI10n();
   ul {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: var(--xxl);
+    gap: 2rem;
 
     .icon {
-      height: var(--xl);
-      width: var(--xl);
+      height: 2rem;
+      width: 2rem;
       display: block;
-      margin-bottom: var(--s);
+      margin-bottom: 0.5rem;
     }
   }
 }

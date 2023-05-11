@@ -1,20 +1,20 @@
 details.collapsible {
   summary {
     list-style: none;
-    margin: var(--s) 0;
+    padding: 1rem 0;
     cursor: pointer;
 
     &::before {
       content: '+';
       display: inline-block;
-      margin-right: var(--xs);
+      margin-right: 0.5rem;
       font-weight: bold;
       transition: all 0.3s ease;
     }
   }
 
   &[open] {
-    padding-bottom: var(--s);
+    padding-bottom: 1rem;
 
     summary::before { transform: rotate(45deg); }
   }

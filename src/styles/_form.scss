@@ -58,7 +58,7 @@ input {
     margin: 0 0.125rem;
     background: #fff;
     border: 1px solid #0002;
-    padding: var(--s);
+    padding: 0.5rem;
     z-index: 2;
     border-radius: var(--border-radius);
 
@@ -70,8 +70,8 @@ input {
 
     .weekdays {
       text-align: center;
-      font-size: var(--s);
-      margin: var(--s) 0;
+      font-size: 0.75rem;
+      margin: 0.5rem 0;
       opacity: 0.5;
     }
 
@@ -101,17 +101,17 @@ input {
 .range-slider {
   margin: 1.5rem 1rem;
 
-  .slider-active { box-shadow: 0 0 0 var(--xs) var(--color-primary--light); }
+  .slider-active { box-shadow: 0 0 0 0.25rem var(--color-primary); }
 }
 
 label {
-  margin: var(--xs) 0;
+  margin: 0.5rem 0;
   display: flex;
   flex-direction: column;
 
   span {
     font-size: 0.9rem;
     opacity: 0.6;
-    margin: 0 var(--xxs);
+    margin: 0 0.25rem;
   }
 }

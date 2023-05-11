@@ -108,7 +108,7 @@ ul.seisms {
     }
 
     &__marker {
-      margin: 0 var(--xl) 0 var(--s);
+      margin: 0 2rem 0 0.5rem;
       position: relative;
       border-bottom: 1px solid green;
     }
