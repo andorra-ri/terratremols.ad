@@ -1,9 +1,8 @@
 {
-  "name": "vite-app",
-  "version": "0.0.0",
+  "name": "terratremols.ad",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "dev:functions": "netlify dev",
     "lint": "eslint . --ext .vue,.ts --ignore-path .gitignore && stylelint **/*.{scss,vue}",
     "build": "vite build"
   },
