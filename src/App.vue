@@ -1,17 +1,17 @@
 <template>
-  <Topbar />
+  <TopBar />
   <main id="main">
-    <SectionMap />
+    <SeismsMap />
     <NewsFeed />
     <Seismology />
-    <Faq />
+    <FAQ />
     <Footer />
   </main>
 </template>
 
 <script setup lang="ts">
 import store from '/@/store';
-import { Topbar, SectionMap, NewsFeed, Seismology, Faq, Footer } from '/@/layouts';
+import { TopBar, SeismsMap, NewsFeed, Seismology, FAQ, Footer } from '/@/layouts';
 
 store.loadNewsFeed();
 store.loadSeismReports();
