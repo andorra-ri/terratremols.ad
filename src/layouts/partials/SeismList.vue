@@ -11,12 +11,9 @@
         <span class="seism__magnitude">{{ seism.magnitude }}</span>
       </div>
       <div class="seism__details">
-        <span class="seism__date">
-          {{ seism.datetime.toLocaleDateString('ca', config.formats.DATE) }}
-        </span>
+        <span class="seism__date">{{ formatDate(seism.datetime) }}</span>
         <span class="seism__time">
-          {{ seism.datetime.toLocaleTimeString('ca', config.formats.TIME) }}
-          local time
+          {{ message('seism.time', { time: formatTime(seism.datetime) }) }}
         </span>
         <span class="seism__location">{{ seism.region }}</span>
       </div>
@@ -25,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
+import { useI10n } from '/@/composables';
 import type { Seism } from '/@/types';
-import config from '/@/config.yaml';
 
 const props = defineProps<{
   modelValue: Seism | undefined;
@@ -34,6 +31,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{(e: 'update:modelValue', value: Seism | undefined): void}>();
+
+const { message, formatDate, formatTime } = useI10n();
 
 const selectSeism = (seism: Seism | undefined) => {
   const target = seism?.id === props.modelValue?.id ? undefined : seism;

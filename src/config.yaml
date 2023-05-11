@@ -12,9 +12,11 @@ formats:
     day: numeric
     month: long
     year: numeric
+    timeZone: Europe/Andorra
   TIME:
     hour: 2-digit
     minute: 2-digit
+    timeZone: Europe/Andorra
     hour12: false
 
 map:
@@ -24,7 +26,7 @@ map:
   minZoom: 7
   maxZoom: 13
   scrollZoom: false
-  customAttribution: Earthquake data provided by <a href="https://www.icgc.cat/ca/Ciutada/Explora-Catalunya/Terratremols" target="blank">Institut Cartogràfic i Geològic de Catalunya</a>
+  customAttribution: Dades proporcionades per <a href="https://www.icgc.cat/ca/Ciutada/Explora-Catalunya/Terratremols" target="blank">Institut Cartogràfic i Geològic de Catalunya</a>
   controls:
     Navigation:
       position: top-right

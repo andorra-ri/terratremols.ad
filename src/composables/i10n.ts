@@ -12,6 +12,8 @@ type I10nProps = {
   path: string,
 };
 
+type Stringable = string | { toString: () => string };
+
 const REPLACE_REGEX = /{([^{}]+)}/g; // Match text between curly braces
 
 const state = reactive<I10nOptions>({
@@ -28,10 +30,10 @@ const objectPath = (obj: Record<string, any>, path: string): any => {
 export const createI10n = (options: Partial<I10nOptions>) => Object.assign(state, options);
 
 export const useI10n = () => {
-  const message = (path: string, object?: Record<string, string>): string => {
+  const message = (path: string, object?: Record<string, Stringable>): string => {
     const locale = state.locale in state.messages ? state.locale : Object.keys(state.messages)[0];
     const entry = objectPath(state.messages[locale], path) as string;
-    return entry.replace(REPLACE_REGEX, (match, key) => object?.[key.trim()] || match);
+    return entry.replace(REPLACE_REGEX, (match, key) => object?.[key.trim()]?.toString() || match);
   };
 
   const formatDate = (date: Date | number | string, format?: Intl.DateTimeFormatOptions) => {

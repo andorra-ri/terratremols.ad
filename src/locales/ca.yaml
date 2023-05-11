@@ -19,6 +19,25 @@ contact:
 newsfeed:
   title: Últimes notícies
 
+seism:
+  epicenter: Epicentre a {distance}km {direction} de {name}
+  magnitude: Magnitud {magnitude}
+  depth: '{depth}km de profunditat'
+  time: '{time} hora local'
+  direction:
+    N: N
+    NE: NE
+    E: E
+    SE: SE
+    S: S
+    SW: SO
+    W: O
+    NW: NO
+
+survey:
+  fill: Emplena Enquesta
+  results: Resultats Enquesta
+
 seismology:
   title: Sismologia
   caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
