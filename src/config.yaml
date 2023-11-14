@@ -61,14 +61,16 @@ seismology:
     - id: basic
       icon: bookmark
       url: https://www.terratremols.ad/docs/conceptes_basics_terratremols.pdf
-    - id: detection
+    - id: andorra
+      icon: focus
+      url: https://www.terratremols.ad/docs/sismicitat_andorra.pdf
+    - id: seismicity
       icon: pulse
-      url: https://www.terratremols.ad/docs/deteccio_terratremols.pdf
+      url: https://www.terratremols.ad/docs/activitat_sismica.pdf
     - id: hazards
       icon: shield-cross
-      url: https://www.terratremols.ad/docs/perills_proteccio_terratremols.pdf
-    - id: andorra
-      url: https://www.terratremols.ad/docs/sismicitat_andorra.pdf
+      url: https://www.terratremols.ad/docs/risc_sismic_andorra.pdf
+
 
 footer:
   learn:

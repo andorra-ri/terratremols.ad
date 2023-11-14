@@ -53,16 +53,16 @@ seismology:
   caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
   resources:
     basic:
-      title: Conspetes bàsics
-      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    detection:
-      title: Sistemes de detecció
-      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    hazards:
-      title: Riscos i protecció
+      title: Conceptes bàsics
       caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
     andorra:
       title: Sismicitat a Andorra
+      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    seismicity:
+      title: Activitat sísmica
+      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    hazards:
+      title: Risc sísmic a Andorra
       caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
 
 faq:
