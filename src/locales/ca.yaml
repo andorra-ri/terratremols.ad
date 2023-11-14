@@ -45,7 +45,7 @@ filters:
   reset: Esborrar filtres
 
 survey:
-  fill: Emplena Enquesta
+  fill: Emplena enquesta
   results: Resultats Enquesta
 
 seismology:
@@ -66,7 +66,7 @@ seismology:
       caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
 
 faq:
-  title: Preguntes Freqüents
+  title: Preguntes freqüents
   caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
 
 copyright: Andorra Recerca + Innovació. All rights reserved.
