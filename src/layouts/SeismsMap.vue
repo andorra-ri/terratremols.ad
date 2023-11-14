@@ -39,7 +39,7 @@ const DEFAULT_FILTERS: FiltersSeism = {
   search: '',
   dateMin: dateAdd(new Date(), { years: -1 }),
   dateMax: new Date(),
-  magnitude: [0, 10],
+  magnitude: [-1, 10],
 };
 const filters = reactive({ ...DEFAULT_FILTERS });
 const resetFilters = () => Object.assign(filters, DEFAULT_FILTERS);
