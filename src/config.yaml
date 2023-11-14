@@ -74,24 +74,24 @@ footer:
   learn:
     - id: nav.seismology
       url: '#seismology'
-    - id: nav.survey
-      url: https://andorra-ri.github.io/enquesta-sismica/
-      target: blank
-    - id: nav.news
-      url: '#news'
+    - id: nav.tips
+      url: https://www.protecciocivil.ad/info-riscos/sismes
     - id: nav.faq
       url: '#faq'
 
-  about:
-    - id: nav.project
-      url: '#project'
+  act:
+    - id: nav.survey
+      url: https://andorra-ri.github.io/enquesta-sismica/
+      target: blank
     - id: nav.links
       url: '#links'
-    - id: nav.data_policy
-      url: '#terms'
+    - id: nav.privacy_policy
+      url: https://ari.ad/politica-privadesa
       target: blank
 
-  contact:
+  info:
+    - id: nav.news
+      url: '#news'
     - id: contact.send_message
       url: 'mailto:terratremols@ari.ad'
     - id: +376 742 630

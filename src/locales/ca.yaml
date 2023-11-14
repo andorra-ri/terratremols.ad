@@ -1,17 +1,18 @@
 title: terratremols.ad
-description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quia officia quibusdam cupiditate reprehenderit et laboriosam.
+description: Web sobre els terratrèmols i la seva gestió a Andorra. Gestionada per Andorra Recerca + Innovació.
 
 nav:
-  learn: Divulgació
+  learn: Aprèn
   news: Notícies
   seismology: Sismologia
+  tips: Autoprotecció
   faq: FAQ
-  survey: Enquesta
-  about: Nosaltres
-  project: Projecte
+  act: Actua
+  survey: Emplena enquesta
   links: Enllaços
-  data_policy: Política de dades
-  contact: Contacte
+  privacy: Política de dades
+  privacy_policy: Política de privadesa
+  info: Informa't
 
 contact:
   send_message: Envia un missage

@@ -10,12 +10,12 @@
         <LinkList :links="config.footer.learn" />
       </div>
       <div class="column">
-        <h4>{{ message('nav.about') }}</h4>
-        <LinkList :links="config.footer.about" />
+        <h4>{{ message('nav.act') }}</h4>
+        <LinkList :links="config.footer.act" />
       </div>
       <div class="column">
-        <h4>{{ message('nav.contact') }}</h4>
-        <LinkList :links="config.footer.contact" />
+        <h4>{{ message('nav.info') }}</h4>
+        <LinkList :links="config.footer.info" />
       </div>
     </div>
 
