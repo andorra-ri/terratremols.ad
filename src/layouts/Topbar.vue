@@ -8,6 +8,7 @@
         </li>
       </ul>
       <a class="btn" :href="config.surveyURL" target="_blank">
+        <RemixIcon name="survey" />
         {{ message('nav.survey') }}
       </a>
     </nav>
@@ -17,6 +18,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import store from '/@/store';
+import { RemixIcon } from '/@/components';
 import { useI10n } from '/@/composables';
 import config from '/@/config.yaml';
 
