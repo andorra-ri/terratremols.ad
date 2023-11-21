@@ -9,7 +9,6 @@
         <details
           v-for="question, i in faq[locale]"
           :key="i"
-          :open="true"
           class="collapsible">
           <summary><strong>{{ question.question }}</strong></summary>
           <p>{{ question.answer }}</p>
