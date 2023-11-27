@@ -1,9 +1,9 @@
 <template>
   <ul class="seisms">
     <li
-      v-for="seism in seisms"
+      v-for="seism in props.seisms"
       :key="seism.id"
-      :class="['seism', { 'seism--active': seism.id === modelValue?.id }]"
+      :class="['seism', { 'seism--active': seism.id === selected?.id }]"
       :style="`--magnitude:${seism.magnitude}`"
       @click="selectSeism(seism)">
       <div class="seism__marker">
@@ -26,17 +26,15 @@ import { useI10n } from '/@/composables';
 import type { Seism } from '/@/types';
 
 const props = defineProps<{
-  modelValue: Seism | undefined;
   seisms: Seism[];
 }>();
 
-const emit = defineEmits<{(e: 'update:modelValue', value: Seism | undefined): void}>();
+const selected = defineModel<Seism | undefined>({ required: true });
 
 const { message, formatDate, formatTime } = useI10n();
 
 const selectSeism = (seism: Seism | undefined) => {
-  const target = seism?.id === props.modelValue?.id ? undefined : seism;
-  emit('update:modelValue', target);
+  selected.value = seism?.id === selected.value?.id ? undefined : seism;
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="datepicker">
     <input
-      :value="props.modelValue ? props.format(props.modelValue) : undefined"
+      :value="selected ? props.format(selected) : undefined"
       :placeholder="props.placeholder"
       :size="size"
       type="text"
@@ -53,7 +53,6 @@ type Day = {
 };
 
 type Props = {
-  modelValue?: Date;
   disabled?: boolean;
   notBefore?: string | Date;
   notAfter?: string | Date;
@@ -66,7 +65,6 @@ type Props = {
 };
 
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: undefined,
   locale: 'en',
   notBefore: undefined,
   notAfter: undefined,
@@ -76,17 +74,19 @@ const props = withDefaults(defineProps<Props>(), {
   format: (date: Date) => date.toLocaleDateString(),
 });
 
-const emit = defineEmits(['update:modelValue', 'select']);
+const selected = defineModel<Date | undefined>({ required: true });
+
+const emit = defineEmits<{
+  select: [date: Date | undefined];
+}>();
 
 const today = new Date();
 const weekdayFormatter = new Intl.DateTimeFormat(props.locale, { weekday: 'short' });
 const monthFormatter = new Intl.DateTimeFormat(props.locale, { month: 'long' });
 
-const cursor = ref(startOfMonth(props.modelValue || new Date()));
+const cursor = ref(startOfMonth(selected.value || new Date()));
 // Update cursor if date changed externally
-watch(() => props.modelValue, date => {
-  cursor.value = date || new Date();
-});
+watch(selected, date => { cursor.value = date || new Date(); });
 
 const cursorYear = computed({
   get: () => cursor.value.getFullYear(),
@@ -126,7 +126,7 @@ const days = computed<Day[]>(() => {
     const classes = ['day', {
       'day--disabled': disabled,
       'day--outsider': !isSameMonth(date, cursor.value),
-      'day--selected': !!props.modelValue && isSameDay(date, props.modelValue),
+      'day--selected': !!selected.value && isSameDay(date, selected.value),
       'day--today': isSameDay(date, today),
     }];
     return { date, label, disabled, classes };
@@ -135,11 +135,8 @@ const days = computed<Day[]>(() => {
 
 const select = (day: Day) => {
   if (!day.disabled) {
-    const value = Array.isArray(props.modelValue)
-      ? [props.modelValue[1], day.date]
-      : day.date;
-    emit('update:modelValue', value);
-    emit('select', value);
+    selected.value = day.date;
+    emit('select', selected.value);
   }
 };
 </script>

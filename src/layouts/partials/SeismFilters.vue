@@ -46,7 +46,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import Slider from '@vueform/slider';
 import { useI10n } from '/@/composables';
 import { DatePicker } from '/@/components';
@@ -61,19 +60,11 @@ const MAGNITUDE_RANGE_OPTIONS = {
   options: { margin: 1 },
 };
 
-const props = defineProps<{ modelValue: FiltersSeism }>();
+const filters = defineModel<FiltersSeism>({ required: true });
 
-/* eslint-disable func-call-spacing */
-/* eslint-disable no-spaced-func */
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: FiltersSeism): void;
-  (e: 'reset'): void;
+  reset: [],
 }>();
-
-const filters = computed({
-  get: () => props.modelValue,
-  set: value => emit('update:modelValue', value),
-});
 
 const reset = () => emit('reset');
 
