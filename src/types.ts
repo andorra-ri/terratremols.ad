@@ -53,4 +53,5 @@ export type LearnDocument = {
   name: string;
   category: LearnCategory
   url: string;
+  order: number;
 };

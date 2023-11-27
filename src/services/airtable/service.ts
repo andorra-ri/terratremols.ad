@@ -37,7 +37,7 @@ export const getSeismReports = async () => {
 
 export const getLearnDocuments = async () => {
   const docs = await airtable.select<LearnDocument>('seismology', {
-    fields: ['name', 'category', 'file'],
+    fields: ['name', 'category', 'file', 'order'],
     where: {
       valid: { checked: true },
       published: { checked: true },

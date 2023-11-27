@@ -12,6 +12,6 @@ export const adaptNewsFeedStory = (story: DTO.NewsFeedStory): NewsFeedStory => {
 };
 
 export const adaptLearnDocument = (document: DTO.LearnDocument): LearnDocument => {
-  const { name, category, file: [{ url }] } = document;
-  return { name, category, url };
+  const { name, category, order, file: [{ url }] } = document;
+  return { name, category, order, url };
 };

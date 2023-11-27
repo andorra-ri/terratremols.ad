@@ -31,4 +31,5 @@ export type LearnDocument = {
   name: string;
   category: 'BASICS' | 'IN_ANDORRA' | 'ACTIVITY' | 'HAZARDS';
   file: Attachment[];
+  order: number;
 };

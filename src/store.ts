@@ -35,6 +35,7 @@ const loadNewsFeed = async () => {
 
 const loadLearnDocuments = async () => {
   state.docs = await airtable.getLearnDocuments();
+  state.docs.sort((a, b) => a.order - b.order);
 };
 
 export default {
