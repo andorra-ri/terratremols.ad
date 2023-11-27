@@ -2,19 +2,21 @@ import { reactive } from 'vue';
 import supabase from '/@/services/supabase';
 import airtable from '/@/services/airtable';
 import { dateAdd, indexate } from '/@/utils';
-import type { Seism, SeismReport, NewsFeedStory } from '/@/types';
+import type { Seism, SeismReport, NewsFeedStory, LearnDocument } from '/@/types';
 import config from '/@/config.yaml';
 
 type State = {
   seisms: Seism[];
   reports: Record<string, SeismReport>,
   newsfeed: NewsFeedStory[];
+  docs: LearnDocument[];
 };
 
 const state = reactive<State>({
   seisms: [],
   reports: {},
   newsfeed: [],
+  docs: [],
 });
 
 const loadSeisms = async () => {
@@ -31,9 +33,14 @@ const loadNewsFeed = async () => {
   state.newsfeed = await airtable.getNewsFeed({ dateLimit });
 };
 
+const loadLearnDocuments = async () => {
+  state.docs = await airtable.getLearnDocuments();
+};
+
 export default {
   state,
   loadSeisms,
   loadSeismReports,
   loadNewsFeed,
+  loadLearnDocuments,
 };

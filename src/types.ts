@@ -46,3 +46,11 @@ export type NewsFeedStory = {
   text: string;
   createdAt: string;
 };
+
+export type LearnCategory = 'BASICS' | 'IN_ANDORRA' | 'ACTIVITY' | 'HAZARDS';
+
+export type LearnDocument = {
+  name: string;
+  category: LearnCategory
+  url: string;
+};
