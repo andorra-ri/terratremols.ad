@@ -26,3 +26,9 @@ export type NewsFeedStory = {
   text: string;
   created_at: string;
 };
+
+export type LearnDocument = {
+  name: string;
+  category: 'BASICS' | 'IN_ANDORRA' | 'ACTIVITY' | 'HAZARDS';
+  file: Attachment[];
+};
