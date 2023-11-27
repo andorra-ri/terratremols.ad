@@ -41,8 +41,10 @@ const DEFAULT_FILTERS: FiltersSeism = {
   dateMax: new Date(),
   magnitude: [-1, 10],
 };
+
 const filters = reactive({ ...DEFAULT_FILTERS });
 const resetFilters = () => Object.assign(filters, DEFAULT_FILTERS);
+
 const { filter } = useFilters<Seism>();
 const seisms = filter([
   seism => normalize(seism.region).includes(normalize(filters.search)),
