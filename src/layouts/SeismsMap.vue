@@ -58,9 +58,9 @@ addLayer(computed(() => {
 watchEffect(() => {
   const { content } = state.value;
   if (content) popup.value?.setLocation(content.coordinates);
-  else popup.value?.popup.remove();
+  else popup.value?.clear();
   const points = content && 'geometry' in content ? [content] : seisms.value;
-  fitTo(points, { padding: 100 });
+  if (points.length) fitTo(points, { padding: 100 });
 });
 
 onMounted(() => {

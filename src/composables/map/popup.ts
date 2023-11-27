@@ -6,7 +6,7 @@ import type { Map, PopupOptions, MapMouseEvent } from './types';
 import type { MaybeRef } from '/@/types';
 
 type Options = {
-  snap: boolean;
+  snap?: boolean;
 } & PopupOptions;
 
 export default (map: Deferred<Map>) => {
@@ -41,7 +41,7 @@ export default (map: Deferred<Map>) => {
 
     onUnmounted(() => {
       scope.stop();
-      popup.value?.popup.remove();
+      popup.value?.clear();
       popup.value = undefined;
     });
 

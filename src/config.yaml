@@ -36,9 +36,9 @@ map:
 
 layers:
   SEISMS:
-    name: seisms
+    id: seisms
     layers:
-      - name: seisms
+      - id: seisms
         type: circle
         paint:
           circle-color: '#d34'

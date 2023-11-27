@@ -1,4 +1,4 @@
-import { useMap as useMapbox, useControls } from 'mapbox-composition';
+import { createMap as _createMap } from 'mapbox-composition';
 import useLayer from './layer';
 import usePopup from './popup';
 import useAsync from './async';
@@ -10,20 +10,11 @@ const { VITE_MAPBOX_TOKEN } = import.meta.env;
 const map = new Deferred<Map>();
 
 export const createMap = async (container: string | HTMLElement, options: MapOptions) => {
-  const { controls = {}, ...mapOptions } = options;
   // eslint-disable-next-line no-underscore-dangle
-  const _map = await useMapbox(container, {
+  const _map = await _createMap(container, {
     accessToken: VITE_MAPBOX_TOKEN,
-    ...mapOptions,
+    ...options,
   });
-
-  const addControl = useControls(_map);
-  Object.entries(controls).forEach(([name, control]) => {
-    // eslint-disable-next-line
-    // @ts-ignore
-    addControl[`add${name}`](control);
-  });
-
   map.resolve(_map);
 };
 
