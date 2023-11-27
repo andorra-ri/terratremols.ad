@@ -58,18 +58,14 @@ markers:
 
 seismology:
   resources:
-    - id: basic
+    - id: BASICS
       icon: bookmark
-      url: https://www.terratremols.ad/docs/conceptes_basics_terratremols.pdf
-    - id: andorra
+    - id: IN_ANDORRA
       icon: focus
-      url: https://www.terratremols.ad/docs/sismicitat_andorra.pdf
-    - id: seismicity
+    - id: ACTIVITY
       icon: pulse
-      url: https://www.terratremols.ad/docs/activitat_sismica.pdf
-    - id: hazards
+    - id: HAZARDS
       icon: shield-cross
-      url: https://www.terratremols.ad/docs/risc_sismic_andorra.pdf
 
 
 footer:

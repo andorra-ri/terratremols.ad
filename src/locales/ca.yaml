@@ -50,20 +50,20 @@ survey:
 
 seismology:
   title: Sismologia
-  caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  caption: Per saber-ne més sobre els terratrèmols i conèixer la seva activitat i gestió a Andorra.
   resources:
-    basic:
+    BASICS:
       title: Conceptes bàsics
-      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    andorra:
+      caption: Nocions fonamentals sobre els terratrèmols.
+    IN_ANDORRA:
       title: Sismicitat a Andorra
-      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    seismicity:
+      caption: Recopilació de la sismicitat històrica i actual d’Andorra.
+    ACTIVITY:
       title: Activitat sísmica
-      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    hazards:
+      caption: Detecció i enregistrament dels terratrèmols a Andorra.
+    HAZARDS:
       title: Risc sísmic a Andorra
-      caption: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      caption: Treballs de recerca i gestió del risc a Andorra.
 
 faq:
   title: Preguntes freqüents
