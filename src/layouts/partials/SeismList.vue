@@ -8,7 +8,7 @@
       @click="selectSeism(seism)">
       <div class="seism__marker">
         <div class="ripple" :style="`--point-size:${8 * Math.sqrt(seism.magnitude)}px`" />
-        <span class="seism__magnitude">{{ seism.magnitude }}</span>
+        <span class="seism__magnitude">{{ seism.magnitude.toFixed(1) }}</span>
       </div>
       <div class="seism__details">
         <span class="seism__date">{{ formatDate(seism.datetime) }}</span>
