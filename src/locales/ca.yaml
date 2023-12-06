@@ -36,7 +36,7 @@ seism:
     NW: NO
 
 filters:
-  filters: Filtres
+  filters: Cerca personalitzada
   region: Regió
   region_name: Nom de la regió
   from: Des de
@@ -57,13 +57,13 @@ seismology:
       caption: Nocions fonamentals sobre els terratrèmols.
     IN_ANDORRA:
       title: Sismicitat a Andorra
-      caption: Recopilació de la sismicitat històrica i actual d’Andorra.
+      caption: Recopilació de la sismicitat històrica i actual.
     ACTIVITY:
       title: Activitat sísmica
       caption: Detecció i enregistrament dels terratrèmols a Andorra.
     HAZARDS:
       title: Risc sísmic a Andorra
-      caption: Treballs de recerca i gestió del risc a Andorra.
+      caption: Treballs de recerca i gestió del risc al país.
 
 faq:
   title: Preguntes freqüents
