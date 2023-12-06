@@ -2,16 +2,17 @@
   <details class="collapsible">
     <summary>{{ message('filters.filters') }}</summary>
     <div class="filters">
-      <label class="block">
-        <span>{{ message('filters.region') }}</span>
-        <input
+      <div class="label block">
+        <em>{{ message('filters.region') }}</em>
+        <Selector
           v-model="filters.search"
-          :placeholder="message('filters.region_name')"
-          type="text"
-          class="block">
-      </label>
-      <label>
-        <span>{{ message('filters.from') }}</span>
+          :options="props.regions"
+          :placeholder="message('filters.select_region')"
+          class="block"
+          clearable />
+      </div>
+      <label class="label">
+        <em>{{ message('filters.from') }}</em>
         <DatePicker
           v-model="filters.dateMin"
           :locale="locale"
@@ -20,8 +21,8 @@
           :placeholder="message('filters.pick_date')"
           :size="8" />
       </label>
-      <label>
-        <span>{{ message('filters.until') }}</span>
+      <label class="label">
+        <em>{{ message('filters.until') }}</em>
         <DatePicker
           v-model="filters.dateMax"
           :locale="locale"
@@ -31,8 +32,8 @@
           :placeholder="message('filters.pick_date')"
           :size="8" />
       </label>
-      <label class="block">
-        <span>{{ message('filters.magnitude') }}</span>
+      <label class="label block">
+        <em>{{ message('filters.magnitude') }}</em>
         <slider
           v-model="filters.magnitude"
           v-bind="MAGNITUDE_RANGE_OPTIONS"
@@ -48,7 +49,7 @@
 <script setup lang="ts">
 import Slider from '@vueform/slider';
 import { useI10n } from '/@/composables';
-import { DatePicker } from '/@/components';
+import { DatePicker, Selector } from '/@/components';
 import type { FiltersSeism } from '/@/types';
 
 const MAGNITUDE_RANGE_OPTIONS = {
@@ -59,6 +60,10 @@ const MAGNITUDE_RANGE_OPTIONS = {
   merge: 1,
   options: { margin: 1 },
 };
+
+const props = defineProps<{
+  regions: string[],
+}>();
 
 const filters = defineModel<FiltersSeism>({ required: true });
 

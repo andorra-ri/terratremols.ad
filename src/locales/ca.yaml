@@ -38,7 +38,7 @@ seism:
 filters:
   filters: Cerca personalitzada
   region: Regió
-  region_name: Nom de la regió
+  select_region: Selecciona una regió
   from: Des de
   until: Fins a
   magnitude: Magnitud
