@@ -4,6 +4,7 @@
       <header>
         <SeismFilters
           v-model="filters"
+          :regions="regions"
           @reset="resetFilters" />
       </header>
       <SeismList
@@ -47,10 +48,12 @@ const resetFilters = () => Object.assign(filters, DEFAULT_FILTERS);
 
 const { filter } = useFilters<Seism>();
 const seisms = filter([
-  seism => normalize(seism.region).includes(normalize(filters.search)),
+  seism => normalize(seism.region).includes(normalize(filters.search || '')),
   seism => seism.datetime >= filters.dateMin && seism.datetime <= filters.dateMax,
   seism => seism.magnitude >= filters.magnitude[0] && seism.magnitude <= filters.magnitude[1],
 ], toRef(store.state, 'seisms'));
+
+const regions = computed(() => [...new Set(store.state.seisms.map(seism => seism.region))].sort());
 
 addLayer(computed(() => {
   const source = toFeatureCollection(seisms.value);
