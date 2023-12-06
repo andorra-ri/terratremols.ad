@@ -21,8 +21,8 @@
           :placeholder="message('filters.pick_date')"
           :size="8" />
       </label>
-      <label>
-        <span>{{ message('filters.until') }}</span>
+      <label class="label">
+        <em>{{ message('filters.until') }}</em>
         <DatePicker
           v-model="filters.dateMax"
           :locale="locale"
@@ -32,8 +32,8 @@
           :placeholder="message('filters.pick_date')"
           :size="8" />
       </label>
-      <label class="block">
-        <span>{{ message('filters.magnitude') }}</span>
+      <label class="label block">
+        <em>{{ message('filters.magnitude') }}</em>
         <slider
           v-model="filters.magnitude"
           v-bind="MAGNITUDE_RANGE_OPTIONS"
