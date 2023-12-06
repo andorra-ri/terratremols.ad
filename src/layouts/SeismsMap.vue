@@ -10,6 +10,7 @@
       <SeismList
         v-model="state.content"
         :seisms="seisms" />
+      <footer>{{ message('filters.last_days', { days: period }) }}</footer>
     </div>
     <div id="map" />
     <SeismPopup
@@ -23,12 +24,13 @@
 <script setup lang="ts">
 import { reactive, computed, watchEffect, onMounted, toRef } from 'vue';
 import store from '/@/store';
-import { createMap, useMap, useFilters } from '/@/composables';
-import { toFeatureCollection, normalize, dateAdd } from '/@/utils';
+import { createMap, useMap, useFilters, useI10n } from '/@/composables';
+import { toFeatureCollection, normalize, dateAdd, dayDifference } from '/@/utils';
 import { SeismList, SeismFilters, SeismPopup } from './partials';
 import config from '/@/config.yaml';
 import type { Seism, FiltersSeism } from '/@/types';
 
+const { message } = useI10n();
 const { addLayer, addPopup, fitTo } = useMap();
 
 const { popup, state, bindClick } = addPopup<Seism>({
@@ -38,7 +40,7 @@ const { popup, state, bindClick } = addPopup<Seism>({
 
 const DEFAULT_FILTERS: FiltersSeism = {
   search: '',
-  dateMin: dateAdd(new Date(), { years: -1 }),
+  dateMin: dateAdd(new Date(), { months: -1 }),
   dateMax: new Date(),
   magnitude: [-1, 10],
 };
@@ -53,6 +55,7 @@ const seisms = filter([
   seism => seism.magnitude >= filters.magnitude[0] && seism.magnitude <= filters.magnitude[1],
 ], toRef(store.state, 'seisms'));
 
+const period = computed(() => dayDifference(filters.dateMax, filters.dateMin));
 const regions = computed(() => [...new Set(store.state.seisms.map(seism => seism.region))].sort());
 
 addLayer(computed(() => {
@@ -93,6 +96,13 @@ onMounted(() => {
     box-sizing: border-box;
 
     & > header { border-bottom: 1px solid #0001; }
+
+    footer {
+      padding: 0.5rem 0.25rem;
+      background: #8881;
+      color: #888b;
+      border-top: 1px solid #8881;
+    }
   }
 }
 </style>

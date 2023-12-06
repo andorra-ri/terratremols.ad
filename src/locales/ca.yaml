@@ -43,6 +43,7 @@ filters:
   until: Fins a
   magnitude: Magnitud
   reset: Esborrar filtres
+  last_days: Terratrèmols dels últims {days} dies
 
 survey:
   fill: Emplena enquesta
