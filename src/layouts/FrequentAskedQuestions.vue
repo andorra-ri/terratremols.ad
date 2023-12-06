@@ -9,6 +9,7 @@
         <details
           v-for="question, i in faq[locale]"
           :key="i"
+          :open="i === 0"
           class="collapsible">
           <summary><strong>{{ question.question }}</strong></summary>
           <p>{{ question.answer }}</p>
@@ -24,3 +25,11 @@ import faq from '/@/assets/faq.yaml';
 
 const { message, locale } = useI10n();
 </script>
+
+<style lang="scss" scoped>
+.collapsible summary + p {
+  border-left: 1px solid #8884;
+  margin: 0 0 0 0.35rem;
+  padding-left: 1rem;
+}
+</style>
