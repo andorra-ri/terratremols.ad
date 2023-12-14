@@ -63,13 +63,7 @@ addLayer(computed(() => {
   return { ...config.layers.SEISMS, source, onClick: bindClick };
 }));
 
-watchEffect(() => {
-  const { content } = state.value;
-  if (content) popup.value?.setLocation(content.coordinates);
-  else popup.value?.clear();
-  const points = content && 'geometry' in content ? [content] : seisms.value;
-  if (points.length) fitTo(points, { padding: 100 });
-});
+watchEffect(() => seisms.value.length && fitTo(seisms.value, { padding: 100 }));
 
 onMounted(() => {
   createMap('map', config.map);
