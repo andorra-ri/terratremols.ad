@@ -42,12 +42,18 @@ layers:
         type: circle
         paint:
           circle-color: '#d34'
-          circle-radius: 2
+          circle-radius: [interpolate, [exponential, 2],
+            [get, magnitude],
+            0, 2,
+            2, 5,
+            4, 7,
+            6, 8,
+            8, 10,
+            10, 11]
+          circle-opacity: 0.8
           circle-stroke-color: '#d34'
-          circle-stroke-opacity: 0.15
-          circle-stroke-width: [interpolate, [exponential, 2], [zoom],
-            0, 0,
-            13, [/, [/, [get, magnitude], 0.005], [cos, ['*', 42.5, [/, [pi], 180]]]]]
+          circle-stroke-width: 5
+          circle-stroke-opacity: 0.2
 
 markers:
   ripple:
