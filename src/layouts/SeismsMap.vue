@@ -58,7 +58,7 @@ const DEFAULT_FILTERS: FiltersSeism = {
   search: '',
   dateMin: dateAdd(new Date(), { months: -1 }),
   dateMax: new Date(),
-  magnitude: [-1, 10],
+  magnitude: [-2, 9],
 };
 
 const filters = reactive({ ...DEFAULT_FILTERS });
