@@ -1,12 +1,15 @@
 <template>
   <section id="map-view">
     <div class="panel">
-      <header>
+      <details class="collapsible">
+        <summary>
+          {{ message('filters.filters') }}
+        </summary>
         <SeismFilters
           v-model="filters"
           :regions="regions"
           @reset="resetFilters" />
-      </header>
+      </details>
       <SeismList
         v-model="state.content"
         :seisms="seisms" />
@@ -97,6 +100,13 @@ onMounted(() => {
       color: #888b;
       border-top: 1px solid #8881;
     }
+  }
+}
+
+.collapsible {
+  summary {
+    color: var(--color-primary);
+    border-bottom: 1px solid #8882;
   }
 }
 </style>
