@@ -3,6 +3,7 @@
     <div class="seism-popup">
       <ul class="metrics">
         <li class="seism-popup__location">
+          {{ props.seism.id }}
           <RemixIcon name="map-pin" />
           {{
             message('seism.epicenter', {
@@ -30,8 +31,8 @@
         </li>
       </ul>
       <a
-        v-if="report"
-        :href="props.report"
+        v-if="seism.report"
+        :href="props.seism.report"
         class="btn btn--flat block">
         {{ message('survey.results') }}
       </a>
@@ -59,7 +60,6 @@ const round = (num: number, decimals = 0) => +num.toFixed(decimals);
 
 const props = defineProps<{
   seism: Seism;
-  report: string | undefined;
   to: string,
 }>();
 

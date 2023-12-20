@@ -29,6 +29,7 @@ export type Seism = {
   from: ClosestLocation;
   coordinates: number[];
   geometry: Point;
+  report?: string;
 };
 
 export type FiltersSeism = {

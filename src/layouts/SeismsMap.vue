@@ -24,7 +24,6 @@
     <SeismPopup
       v-if="selectedSeism"
       :seism="selectedSeism"
-      :report="store.state.reports[selectedSeism.id]?.url"
       :to="state.name" />
   </section>
 </template>
