@@ -2,7 +2,7 @@
   <footer>
     <div class="columns content">
       <div class="column column--wide">
-        <img src="/@/assets/images/logo.svg" class="logo">
+        <img src="/@/assets/images/logo_ari.png" class="logo">
         <p>{{ message('description') }}</p>
       </div>
       <div class="column">

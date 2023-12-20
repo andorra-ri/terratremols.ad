@@ -1,6 +1,7 @@
 <template>
   <header id="topbar">
-    <img src="/@/assets/images/logo.svg" class="logo">
+    <img src="/@/assets/images/logo_ari.png" class="logo">
+    <h1>terratremols.ad</h1>
     <nav class="main-nav">
       <ul>
         <li v-for="section in sections" :key="section.id">
@@ -35,10 +36,12 @@ const sections = computed(() => [
 #topbar {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 1rem;
   z-index: 2;
   box-sizing: border-box;
+
+  .logo { height: 2rem; }
 
   .main-nav {
     display: flex;
