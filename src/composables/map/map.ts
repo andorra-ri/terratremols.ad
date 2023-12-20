@@ -1,4 +1,5 @@
-import { createMap as _createMap } from 'mapbox-composition';
+import { createMap as _createMap, useControls } from 'mapbox-composition';
+import LegendControl from 'mapboxgl-legend';
 import useLayer from './layer';
 import usePopup from './popup';
 import useAsync from './async';
@@ -15,6 +16,11 @@ export const createMap = async (container: string | HTMLElement, options: MapOpt
     accessToken: VITE_MAPBOX_TOKEN,
     ...options,
   });
+
+  const legend = new LegendControl();
+  const { addControl } = useControls(_map);
+  addControl('legend', 'bottom-left', legend);
+
   map.resolve(_map);
 };
 

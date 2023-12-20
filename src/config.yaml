@@ -46,14 +46,18 @@ layers:
             [get, magnitude],
             0, 2,
             2, 5,
-            4, 7,
-            6, 8,
-            8, 10,
-            10, 11]
+            4, 8,
+            6, 12,
+            10, 17]
           circle-opacity: 0.8
           circle-stroke-color: '#417abe'
           circle-stroke-width: 5
           circle-stroke-opacity: 0.2
+        metadata:
+          name: Sismes
+          labels:
+            0: false
+            '#417abe': false
 
 markers:
   ripple:
