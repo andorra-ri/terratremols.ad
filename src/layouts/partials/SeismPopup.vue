@@ -36,7 +36,7 @@
         {{ message('survey.results') }}
       </a>
       <a
-        v-else
+        v-if="elapsedDays < 15"
         :href="config.surveyURL"
         target="blank"
         class="btn block">
@@ -47,6 +47,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import { useI10n } from '/@/composables';
 import { RemixIcon } from '/@/components';
 import type { Seism } from '/@/types';
@@ -61,6 +62,11 @@ const props = defineProps<{
   report: string | undefined;
   to: string,
 }>();
+
+const elapsedDays = computed(() => {
+  const MS_IN_DAY = 1000 * 3600 * 24;
+  return Math.ceil(Date.now() - props.seism.datetime.getTime()) / MS_IN_DAY;
+});
 </script>
 
 <style lang="scss" scoped>
