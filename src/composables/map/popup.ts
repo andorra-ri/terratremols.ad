@@ -28,7 +28,10 @@ export default (map: Deferred<Map>) => {
       const [{ geometry, properties }] = features;
       if (_options.value.snap && geometry.type === 'Point') popup.value?.setLocation(geometry.coordinates);
       else popup.value?.setLocation(lngLat);
-      state.value.content = parse(properties) as UnwrapRef<T> | undefined;
+      state.value = {
+        ...state.value,
+        content: parse(properties) as UnwrapRef<T> | undefined,
+      };
     };
 
     const scope = effectScope();
