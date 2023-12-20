@@ -1,12 +1,20 @@
 <template>
   <section id="map-view">
     <div class="panel">
-      <header>
+      <details class="collapsible">
+        <summary>
+          {{ message('filters.filters') }}
+          <aside>
+            <button @click="download(CSV_NAME)">
+              <RemixIcon name="download" />
+            </button>
+          </aside>
+        </summary>
         <SeismFilters
           v-model="filters"
           :regions="regions"
           @reset="resetFilters" />
-      </header>
+      </details>
       <SeismList
         v-model="state.content"
         :seisms="seisms" />
@@ -24,7 +32,8 @@
 <script setup lang="ts">
 import { reactive, computed, watchEffect, onMounted, toRef } from 'vue';
 import store from '/@/store';
-import { createMap, useMap, useFilters, useI10n } from '/@/composables';
+import { RemixIcon } from '/@/components';
+import { createMap, useMap, useFilters, useI10n, useCsv } from '/@/composables';
 import { toFeatureCollection, normalize, dateAdd, dayDifference } from '/@/utils';
 import { SeismList, SeismFilters, SeismPopup } from './partials';
 import config from '/@/config.yaml';
@@ -57,6 +66,13 @@ const seisms = filter([
 
 const period = computed(() => dayDifference(filters.dateMax, filters.dateMin));
 const regions = computed(() => [...new Set(store.state.seisms.map(seism => seism.region))].sort());
+
+const CSV_NAME = 'terratrèmols';
+const { download } = useCsv(seisms, seism => {
+  const { datetime, magnitude, depth, region, coordinates: [lon, lat] } = seism;
+  const timestamp = datetime.toISOString();
+  return { timestamp, lon, lat, magnitude, depth, region };
+});
 
 addLayer(computed(() => {
   const source = toFeatureCollection(seisms.value);
@@ -96,6 +112,28 @@ onMounted(() => {
       background: #8881;
       color: #888b;
       border-top: 1px solid #8881;
+    }
+  }
+}
+
+.collapsible {
+  summary {
+    color: var(--color-primary);
+    border-bottom: 1px solid #8882;
+    display: flex;
+
+    aside {
+      margin: -1rem 0;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+
+      button {
+        all: unset;
+        background: #8881;
+        padding: 0.5em 0.65em;
+        border-radius: 0.25em;
+      }
     }
   }
 }
