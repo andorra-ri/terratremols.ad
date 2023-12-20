@@ -16,35 +16,43 @@
           @reset="resetFilters" />
       </details>
       <SeismList
-        v-model="state.content"
+        v-model="selectedSeism"
         :seisms="seisms" />
       <footer>{{ message('filters.last_days', { days: period }) }}</footer>
     </div>
     <div id="map" />
     <SeismPopup
-      v-if="state.content"
-      :seism="state.content"
-      :report="store.state.reports[state.content.id]?.url"
+      v-if="selectedSeism"
+      :seism="selectedSeism"
+      :report="store.state.reports[selectedSeism.id]?.url"
       :to="state.name" />
   </section>
 </template>
 
 <script setup lang="ts">
-import { reactive, computed, watchEffect, onMounted, toRef } from 'vue';
+import { ref, reactive, computed, watchEffect, onMounted, toRef, watch } from 'vue';
 import store from '/@/store';
 import { RemixIcon } from '/@/components';
 import { createMap, useMap, useFilters, useI10n, useCsv } from '/@/composables';
 import { toFeatureCollection, normalize, dateAdd, dayDifference } from '/@/utils';
 import { SeismList, SeismFilters, SeismPopup } from './partials';
 import config from '/@/config.yaml';
-import type { Seism, FiltersSeism } from '/@/types';
+import type { Seism, FiltersSeism, Replace } from '/@/types';
 
 const { message } = useI10n();
 const { addLayer, addPopup, fitTo } = useMap();
 
-const { popup, state, bindClick } = addPopup<Seism>({
+const { state, bindClick } = addPopup<Replace<{ datetime: string }, Seism>>({
   name: 'seism-popup',
   snap: true,
+});
+
+const selectedSeism = ref<Seism>();
+watch(state, ({ content }) => {
+  selectedSeism.value = content ? {
+    ...content,
+    datetime: new Date(content.datetime),
+  } : undefined;
 });
 
 const DEFAULT_FILTERS: FiltersSeism = {
