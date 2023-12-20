@@ -15,7 +15,7 @@
         </li>
         <li class="seism-popup__magnitude">
           <RemixIcon name="focus" />
-          {{ message('seism.magnitude', props.seism) }}
+          {{ message('seism.magnitude', { magnitude: props.seism.magnitude.toFixed(1) }) }}
         </li>
         <li class="seism-popup__depth">
           <RemixIcon name="download" />
