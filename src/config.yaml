@@ -57,6 +57,10 @@ layers:
           name: Sismes
           labels:
             0: false
+            2: Mag. 2
+            4: Mag. 4
+            6: Mag. 6
+            10: Mag. 10
             '#417abe': false
 
 markers:
