@@ -1,5 +1,5 @@
 import type { Ref } from 'vue';
-import type { Point, Position } from '@turf/helpers';
+import type { Geometry, Point, Position } from '@turf/helpers';
 
 /* UTILITY TYPES */
 
@@ -9,6 +9,7 @@ export type MaybeArray<T> = T | T[];
 export type Replace<O extends object, T extends object> = O & Omit<T, keyof O>;
 
 /* DOMAIN TYPES */
+export type { Geometry, Point };
 
 export type Direction = 'N' | 'NE' | 'E' | 'SE' | 'S' | 'SW' | 'W' | 'NW';
 

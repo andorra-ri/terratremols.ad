@@ -3,20 +3,27 @@ import { usePopup } from 'mapbox-composition';
 import { parse } from './utils';
 import { uid, type Deferred } from '/@/utils';
 import type { Map, PopupOptions, MapMouseEvent } from './types';
-import type { MaybeRef } from '/@/types';
+import type { MaybeRef, Geometry } from '/@/types';
 
 type Options = {
   snap?: boolean;
 } & PopupOptions;
+
+type State<T> = {
+  name: string,
+  content: T | undefined,
+  geometry: Geometry | undefined
+};
 
 export default (map: Deferred<Map>) => {
   const addPopup = <T>(options: MaybeRef<Options> = {}) => {
     const _options = ref(options); // eslint-disable-line no-underscore-dangle
 
     const popup = ref<ReturnType<typeof usePopup>>();
-    const state = ref<{ name: string, content: T | undefined}>({
+    const state = ref<State<T>>({
       name: _options.value.name || `popup-${uid()}`,
       content: undefined,
+      geometry: undefined,
     });
 
     (async () => {
@@ -31,6 +38,7 @@ export default (map: Deferred<Map>) => {
       state.value = {
         ...state.value,
         content: parse(properties) as UnwrapRef<T> | undefined,
+        geometry: geometry as Geometry,
       };
     };
 

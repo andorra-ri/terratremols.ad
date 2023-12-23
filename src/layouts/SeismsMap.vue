@@ -29,27 +29,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watchEffect, onMounted, toRef, watch } from 'vue';
+import { ref, reactive, computed, watch, onMounted, toRef } from 'vue';
 import store from '/@/store';
 import { RemixIcon } from '/@/components';
 import { createMap, useMap, useFilters, useI10n, useCsv } from '/@/composables';
 import { toFeatureCollection, normalize, dateAdd, dayDifference } from '/@/utils';
 import { SeismList, SeismFilters, SeismPopup } from './partials';
 import config from '/@/config.yaml';
-import type { Seism, FiltersSeism, Replace } from '/@/types';
+import type { Seism, FiltersSeism, Replace, Point } from '/@/types';
 
 const { message } = useI10n();
 const { addLayer, addPopup, fitTo } = useMap();
 
-const { state, bindClick } = addPopup<Replace<{ datetime: string }, Seism>>({
+type SeismPopupState = Replace<{ datetime: string }, Omit<Seism, 'geometry'>>;
+
+const { popup, state, bindClick } = addPopup<SeismPopupState>({
   name: 'seism-popup',
   snap: true,
 });
 
 const selectedSeism = ref<Seism>();
-watch(state, ({ content }) => {
+watch(state, ({ content, geometry }) => {
   selectedSeism.value = content ? {
     ...content,
+    geometry: geometry as Point,
     datetime: new Date(content.datetime),
   } : undefined;
 });
@@ -86,7 +89,13 @@ addLayer(computed(() => {
   return { ...config.layers.SEISMS, source, onClick: bindClick };
 }));
 
-watchEffect(() => seisms.value.length && fitTo(seisms.value, { padding: 100 }));
+watch(seisms, value => value.length && fitTo(value, { padding: 100 }));
+watch(selectedSeism, value => {
+  if (value) {
+    popup.value?.setLocation(value.coordinates);
+    fitTo([value], { padding: 100 });
+  } else popup.value?.clear();
+});
 
 onMounted(() => {
   createMap('map', config.map);
