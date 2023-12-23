@@ -3,7 +3,6 @@
     <div class="seism-popup">
       <ul class="metrics">
         <li class="seism-popup__location">
-          {{ props.seism.id }}
           <RemixIcon name="map-pin" />
           {{
             message('seism.epicenter', {
