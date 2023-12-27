@@ -17,7 +17,7 @@ type Stringable = string | { toString: () => string };
 const REPLACE_REGEX = /{([^{}]+)}/g; // Match text between curly braces
 
 const state = reactive<I10nOptions>({
-  locale: Intl.DateTimeFormat().resolvedOptions().locale.split('-')[0],
+  locale: 'ca',
   messages: {},
   dateFormat: undefined,
 });
@@ -27,7 +27,12 @@ const objectPath = (obj: Record<string, any>, path: string): any => {
   return keys.reduce((acc, key) => acc?.[key], obj) || path;
 };
 
-export const createI10n = (options: Partial<I10nOptions>) => Object.assign(state, options);
+export const createI10n = (options: Partial<I10nOptions>) => {
+  const preferred = Intl.DateTimeFormat().resolvedOptions().locale.split('-')[0];
+  const fallback = Object.keys(options.messages || {}).includes(preferred) ? preferred : 'ca';
+  const locale = options.locale ?? fallback;
+  Object.assign(state, options, { locale });
+};
 
 export const useI10n = () => {
   const message = (path: string, object?: Record<string, Stringable>): string => {
