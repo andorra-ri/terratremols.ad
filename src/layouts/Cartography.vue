@@ -3,9 +3,7 @@
     <div class="panel">
       <Collapsible :title="message('filters.filters')">
         <template #aside>
-          <SeismsDownload
-            name="terratremols"
-            :seisms="seisms" />
+          <SeismsDownload :seisms="seisms" />
         </template>
         <SeismFilters
           v-model="filters"
