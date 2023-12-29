@@ -30,7 +30,7 @@ import { Collapsible } from '/@/components';
 import { createMap, useI10n } from '/@/composables';
 import { dayDifference } from '/@/utils';
 import { SeismList, SeismFilters, SeismPopup, SeismsDownload } from './partials';
-import useSeisms from './use.seisms';
+import { useSeisms } from './composables';
 import config from '/@/config.yaml';
 
 const { message } = useI10n();

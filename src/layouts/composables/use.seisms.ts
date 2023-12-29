@@ -18,7 +18,7 @@ const DEFAULT_FILTERS: FiltersSeism = {
   magnitude: [-2, 9],
 };
 
-export default (seismsList: Ref<Seism[]>) => {
+export const useSeisms = (seismsList: Ref<Seism[]>) => {
   const selected = ref<Seism>();
   const filters = reactive({ ...DEFAULT_FILTERS });
 
