@@ -5,9 +5,9 @@
         <summary>
           {{ message('filters.filters') }}
           <aside>
-            <button @click="download(CSV_NAME)">
-              <RemixIcon name="download" />
-            </button>
+            <SeismsDownload
+              name="terratremols"
+              :seisms="seisms" />
           </aside>
         </summary>
         <SeismFilters
@@ -31,10 +31,9 @@
 <script setup lang="ts">
 import { computed, onMounted, toRef } from 'vue';
 import store from '/@/store';
-import { RemixIcon } from '/@/components';
-import { createMap, useI10n, useCsv } from '/@/composables';
-import { SeismList, SeismFilters, SeismPopup } from './partials';
+import { createMap, useI10n } from '/@/composables';
 import { dayDifference } from '/@/utils';
+import { SeismList, SeismFilters, SeismPopup, SeismsDownload } from './partials';
 import useSeisms from './use.seisms';
 import config from '/@/config.yaml';
 
@@ -44,13 +43,6 @@ const { seisms, selected, filters, resetFilters, popup } = useSeisms(toRef(store
 
 const period = computed(() => dayDifference(filters.dateMax, filters.dateMin));
 const regions = computed(() => [...new Set(store.state.seisms.map(seism => seism.region))].sort());
-
-const CSV_NAME = 'terratrèmols';
-const { download } = useCsv(seisms, seism => {
-  const { datetime, magnitude, depth, region, coordinates: [lon, lat] } = seism;
-  const timestamp = datetime.toISOString();
-  return { timestamp, lon, lat, magnitude, depth, region };
-});
 
 onMounted(() => {
   createMap('map', config.map);
@@ -98,13 +90,6 @@ onMounted(() => {
       margin-left: auto;
       display: flex;
       align-items: center;
-
-      button {
-        all: unset;
-        background: #8881;
-        padding: 0.5em 0.65em;
-        border-radius: 0.25em;
-      }
     }
   }
 }
