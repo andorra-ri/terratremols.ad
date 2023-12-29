@@ -16,63 +16,31 @@
           @reset="resetFilters" />
       </details>
       <SeismList
-        v-model="selectedSeism"
+        v-model="selected"
         :seisms="seisms" />
       <footer>{{ message('filters.last_days', { days: period }) }}</footer>
     </div>
     <div id="map" />
     <SeismPopup
-      v-if="selectedSeism"
-      :seism="selectedSeism"
-      :to="state.name" />
+      v-if="selected && popup"
+      :seism="selected"
+      :to="popup.name" />
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch, onMounted, toRef } from 'vue';
+import { computed, onMounted, toRef } from 'vue';
 import store from '/@/store';
 import { RemixIcon } from '/@/components';
-import { createMap, useMap, useFilters, useI10n, useCsv } from '/@/composables';
-import { toFeatureCollection, normalize, dateAdd, dayDifference } from '/@/utils';
+import { createMap, useI10n, useCsv } from '/@/composables';
 import { SeismList, SeismFilters, SeismPopup } from './partials';
+import { dayDifference } from '/@/utils';
+import useSeisms from './use.seisms';
 import config from '/@/config.yaml';
-import type { Seism, FiltersSeism, Replace, Point } from '/@/types';
 
 const { message } = useI10n();
-const { addLayer, addPopup, fitTo } = useMap();
 
-type SeismPopupState = Replace<{ datetime: string }, Omit<Seism, 'geometry'>>;
-
-const { popup, state, bindClick } = addPopup<SeismPopupState>({
-  name: 'seism-popup',
-  snap: true,
-});
-
-const selectedSeism = ref<Seism>();
-watch(state, ({ content, geometry }) => {
-  selectedSeism.value = content ? {
-    ...content,
-    geometry: geometry as Point,
-    datetime: new Date(content.datetime),
-  } : undefined;
-});
-
-const DEFAULT_FILTERS: FiltersSeism = {
-  search: '',
-  dateMin: dateAdd(new Date(), { months: -1 }),
-  dateMax: new Date(),
-  magnitude: [-2, 9],
-};
-
-const filters = reactive({ ...DEFAULT_FILTERS });
-const resetFilters = () => Object.assign(filters, DEFAULT_FILTERS);
-
-const { filter } = useFilters<Seism>();
-const seisms = filter([
-  seism => normalize(seism.region).includes(normalize(filters.search || '')),
-  seism => seism.datetime >= filters.dateMin && seism.datetime <= filters.dateMax,
-  seism => seism.magnitude >= filters.magnitude[0] && seism.magnitude <= filters.magnitude[1],
-], toRef(store.state, 'seisms'));
+const { seisms, selected, filters, resetFilters, popup } = useSeisms(toRef(store.state, 'seisms'));
 
 const period = computed(() => dayDifference(filters.dateMax, filters.dateMin));
 const regions = computed(() => [...new Set(store.state.seisms.map(seism => seism.region))].sort());
@@ -82,19 +50,6 @@ const { download } = useCsv(seisms, seism => {
   const { datetime, magnitude, depth, region, coordinates: [lon, lat] } = seism;
   const timestamp = datetime.toISOString();
   return { timestamp, lon, lat, magnitude, depth, region };
-});
-
-addLayer(computed(() => {
-  const source = toFeatureCollection(seisms.value);
-  return { ...config.layers.SEISMS, source, onClick: bindClick };
-}));
-
-watch(seisms, value => value.length && fitTo(value, { padding: 100 }));
-watch(selectedSeism, value => {
-  if (value) {
-    popup.value?.setLocation(value.coordinates);
-    fitTo([value], { padding: 100 });
-  } else popup.value?.clear();
 });
 
 onMounted(() => {

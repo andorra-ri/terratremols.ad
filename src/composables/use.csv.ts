@@ -17,6 +17,7 @@ export const useCsv = <T extends object, U extends object>(
   };
 
   watch(data, _data => {
+    if (!_data.length) return;
     const keys = Object.keys(formatter(_data[0])).join(',');
     const rows = _data.map(item => Object.values(formatter(item)).join(','));
     const csv = new Blob([[keys, ...rows].join('\r\n')], { type: 'text/csv;charset=utf-8;' });
