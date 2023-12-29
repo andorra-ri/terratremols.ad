@@ -23,11 +23,20 @@ defineSlots<{
 </script>
 
 <style lang="scss" scoped>
-.collapsible {
+details.collapsible {
   summary {
-    color: var(--color-primary);
-    border-bottom: 1px solid #8882;
     display: flex;
+    list-style: none;
+    padding: 1rem;
+    cursor: pointer;
+
+    &::before {
+      content: '+';
+      display: inline-block;
+      margin-right: 0.5rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
 
     aside {
       margin: -1rem 0;
@@ -36,5 +45,7 @@ defineSlots<{
       align-items: center;
     }
   }
+
+  &[open] summary::before { transform: rotate(45deg); }
 }
 </style>

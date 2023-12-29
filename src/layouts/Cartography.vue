@@ -64,8 +64,6 @@ onMounted(() => {
     flex: 0 0 290px;
     box-sizing: border-box;
 
-    & > header { border-bottom: 1px solid #0001; }
-
     footer {
       padding: 0.5rem 0.25rem;
       background: #8881;
@@ -73,5 +71,9 @@ onMounted(() => {
       border-top: 1px solid #8881;
     }
   }
+}
+
+.collapsible {
+  border-bottom: 1px solid #8882;
 }
 </style>

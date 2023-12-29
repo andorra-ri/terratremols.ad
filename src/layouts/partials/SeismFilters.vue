@@ -83,7 +83,7 @@ const dateFormat = (date: Date) => formatDate(date, {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 1rem;
+  padding: 1rem;
 
   .block { flex-basis: 100%; }
 }
