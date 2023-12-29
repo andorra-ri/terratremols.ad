@@ -1,7 +1,7 @@
 <template>
   <NavBar />
   <main id="main">
-    <SeismsMap />
+    <Cartography />
     <NewsList />
     <Seismology />
     <FrequentAskedQuestions />
@@ -13,7 +13,7 @@
 import store from '/@/store';
 import {
   NavBar,
-  SeismsMap,
+  Cartography,
   NewsList,
   Seismology,
   FrequentAskedQuestions,

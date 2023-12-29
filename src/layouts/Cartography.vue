@@ -1,5 +1,5 @@
 <template>
-  <section id="map-view">
+  <section id="cartography">
     <div class="panel">
       <details class="collapsible">
         <summary>
@@ -51,7 +51,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-#map-view {
+#cartography {
   display: flex;
   background: #0001;
   height: 80vh;
