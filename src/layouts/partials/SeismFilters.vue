@@ -17,7 +17,7 @@
         :format="dateFormat"
         :not-after="filters.dateMax"
         :placeholder="message('filters.pick_date')"
-        :size="8" />
+        :size="10" />
     </label>
     <label class="label">
       <em>{{ message('filters.until') }}</em>
@@ -28,7 +28,7 @@
         :not-before="filters.dateMin"
         :not-after="new Date()"
         :placeholder="message('filters.pick_date')"
-        :size="8" />
+        :size="10" />
     </label>
     <label class="label block">
       <em>{{ message('filters.magnitude') }}</em>
