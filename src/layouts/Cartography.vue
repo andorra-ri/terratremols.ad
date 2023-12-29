@@ -1,20 +1,17 @@
 <template>
   <section id="cartography">
     <div class="panel">
-      <details class="collapsible">
-        <summary>
-          {{ message('filters.filters') }}
-          <aside>
-            <SeismsDownload
-              name="terratremols"
-              :seisms="seisms" />
-          </aside>
-        </summary>
+      <Collapsible :title="message('filters.filters')">
+        <template #aside>
+          <SeismsDownload
+            name="terratremols"
+            :seisms="seisms" />
+        </template>
         <SeismFilters
           v-model="filters"
           :regions="regions"
           @reset="resetFilters" />
-      </details>
+      </Collapsible>
       <SeismList
         v-model="selected"
         :seisms="seisms" />
@@ -31,6 +28,7 @@
 <script setup lang="ts">
 import { computed, onMounted, toRef } from 'vue';
 import store from '/@/store';
+import { Collapsible } from '/@/components';
 import { createMap, useI10n } from '/@/composables';
 import { dayDifference } from '/@/utils';
 import { SeismList, SeismFilters, SeismPopup, SeismsDownload } from './partials';
@@ -75,21 +73,6 @@ onMounted(() => {
       background: #8881;
       color: #888b;
       border-top: 1px solid #8881;
-    }
-  }
-}
-
-.collapsible {
-  summary {
-    color: var(--color-primary);
-    border-bottom: 1px solid #8882;
-    display: flex;
-
-    aside {
-      margin: -1rem 0;
-      margin-left: auto;
-      display: flex;
-      align-items: center;
     }
   }
 }
