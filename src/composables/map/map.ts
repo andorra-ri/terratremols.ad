@@ -17,7 +17,7 @@ export const createMap = async (container: string | HTMLElement, options: MapOpt
     ...options,
   });
 
-  const legend = new LegendControl();
+  const legend = new LegendControl(options.legend);
   const { addControl } = useControls(_map);
   addControl('legend', 'bottom-left', legend);
 

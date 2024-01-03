@@ -33,6 +33,12 @@ map:
       showCompass: false
     Scale:
       position: bottom-right
+  legend:
+    layers:
+      seisms:
+        attributes:
+          - circle-color
+          - circle-radius
 
 layers:
   SEISMS:
