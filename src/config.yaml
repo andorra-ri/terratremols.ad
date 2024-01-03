@@ -41,7 +41,7 @@ layers:
       - id: seisms
         type: circle
         paint:
-          circle-color: '#417abe'
+          circle-color: [case, [boolean, [get, last]], red, '#417abe']
           circle-radius: [interpolate, [exponential, 2],
             [get, magnitude],
             0, 2,
@@ -50,8 +50,8 @@ layers:
             6, 20,
             10, 30]
           circle-opacity: 0.8
-          circle-stroke-color: '#417abe'
-          circle-stroke-width: 5
+          circle-stroke-color: [case, [boolean, [get, last]], red, '#417abe']
+          circle-stroke-width: [case, [boolean, [get, last]], 10, 5]
           circle-stroke-opacity: 0.2
         metadata:
           name: Terratrèmols
@@ -62,6 +62,7 @@ layers:
             6: Mag. 6
             10: Mag. 10
             '#417abe': false
+            red: Últim terratrèmol
 
 markers:
   ripple:
