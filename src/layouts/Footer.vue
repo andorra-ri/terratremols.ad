@@ -19,7 +19,12 @@
       </div>
     </div>
 
-    <p class="copyright">&copy; 2023 &middot; {{ message('copyright') }}</p>
+    <p class="copyright">
+      &copy;
+      {{ new Date().getFullYear() }}
+      &middot;
+      {{ message('copyright') }}
+    </p>
   </footer>
 </template>
 
