@@ -15,7 +15,7 @@ const DEFAULT_FILTERS: FiltersSeism = {
   search: '',
   dateMin: dateAdd(new Date(), { months: -1 }),
   dateMax: new Date(),
-  magnitude: [-2, 9],
+  magnitude: [1, 9],
 };
 
 export const useSeisms = (seismsList: Ref<Seism[]>) => {
