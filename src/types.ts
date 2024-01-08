@@ -13,6 +13,12 @@ export type { Geometry, Point };
 
 export type Direction = 'N' | 'NE' | 'E' | 'SE' | 'S' | 'SW' | 'W' | 'NW';
 
+export type Station = {
+  id: string;
+  name: string;
+  coordinates: Position;
+};
+
 export type ClosestLocation = {
   name: string;
   distance: number;

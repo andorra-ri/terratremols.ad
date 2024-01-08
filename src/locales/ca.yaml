@@ -21,6 +21,9 @@ contact:
 newsfeed:
   title: Últimes notícies
 
+station:
+  name: Estació sísmica
+
 seism:
   epicenter: Epicentre a {distance}km {direction} de {name}
   magnitude: Magnitud {magnitude}

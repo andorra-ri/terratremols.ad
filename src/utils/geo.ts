@@ -1,7 +1,7 @@
 import distance from '@turf/distance';
 import bearing from '@turf/bearing';
 import bbox from '@turf/bbox';
-import { feature, featureCollection, type GeoJSONObject, type Position, type Geometry } from '@turf/helpers';
+import { point, feature, featureCollection, type GeoJSONObject, type Position, type Geometry } from '@turf/helpers';
 
 export type { GeoJSONObject };
 
@@ -11,6 +11,8 @@ export type Featureable = {
 };
 
 const DIRECTIONS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'] as const;
+
+export const toPoint = point;
 
 export const toFeatureCollection = (items: Featureable[]) => {
   const features = items.map(item => {

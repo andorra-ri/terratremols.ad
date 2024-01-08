@@ -1,0 +1,10 @@
+STATIONS:
+  - id: ARBS
+    name: La Rabassa
+    coordinates: [1.5337, 42.4344]
+  - id: PAND
+    name: Pic de Padern
+    coordinates: [1.5466, 42.5225]
+  - id: SCOL
+    name: Santa Coloma
+    coordinates: [1.4962, 42.4930]

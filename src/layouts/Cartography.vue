@@ -20,6 +20,10 @@
       v-if="selected && popup"
       :seism="selected"
       :to="popup.name" />
+    <StationPopup
+      v-if="station.content"
+      :station="station.content"
+      :to="station.name" />
   </section>
 </template>
 
@@ -29,12 +33,14 @@ import store from '/@/store';
 import { Collapsible } from '/@/components';
 import { createMap, useI10n } from '/@/composables';
 import { dayDifference } from '/@/utils';
-import { SeismList, SeismFilters, SeismPopup, SeismsDownload } from './partials';
-import { useSeisms } from './composables';
+import { SeismList, SeismFilters, SeismPopup, SeismsDownload, StationPopup } from './partials';
+import { useSeisms, useStations } from './composables';
+import stations from '/@/assets/stations.yaml';
 import config from '/@/config.yaml';
 
 const { message } = useI10n();
 
+const station = useStations(stations.STATIONS);
 const { seisms, selected, filters, resetFilters, popup } = useSeisms(toRef(store.state, 'seisms'));
 
 const period = computed(() => dayDifference(filters.dateMax, filters.dateMin));
