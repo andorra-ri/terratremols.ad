@@ -20,6 +20,10 @@
       v-if="selected && popup"
       :seism="selected"
       :to="popup.name" />
+    <StationPopup
+      v-if="station.content"
+      :station="station.content"
+      :to="station.name" />
   </section>
 </template>
 
