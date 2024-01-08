@@ -2,7 +2,7 @@ import { ref, watch, effectScope, onUnmounted, type UnwrapRef } from 'vue';
 import { usePopup } from 'mapbox-composition';
 import { parse } from './utils';
 import { uid, type Deferred } from '/@/utils';
-import type { Map, PopupOptions, MapMouseEvent } from './types';
+import type { Map, PopupOptions, MapLayerMouseEvent } from './types';
 import type { MaybeRef, Geometry } from '/@/types';
 
 type Options = {
@@ -31,7 +31,7 @@ export default (map: Deferred<Map>) => {
       popup.value = usePopup(resolved, _options.value);
     })();
 
-    const bindClick = ({ lngLat, features }: MapMouseEvent) => {
+    const bindClick = ({ lngLat, features }: MapLayerMouseEvent) => {
       const [{ geometry, properties }] = features;
       if (_options.value.snap && geometry.type === 'Point') popup.value?.setLocation(geometry.coordinates);
       else popup.value?.setLocation(lngLat);
