@@ -35,12 +35,27 @@ map:
       position: bottom-right
   legend:
     layers:
+      stations: true
       seisms:
         attributes:
           - circle-color
           - circle-radius
 
 layers:
+  STATIONS:
+    id: stations
+    images:
+      sensor: /icons/sensor.png
+    layers:
+      - id: stations
+        type: symbol
+        layout:
+          icon-allow-overlap: true
+          icon-size: 0.2
+          icon-image: sensor
+        metadata:
+          name: stations
+
   SEISMS:
     id: seisms
     layers:
