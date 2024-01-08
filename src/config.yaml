@@ -54,7 +54,9 @@ layers:
           icon-size: 0.2
           icon-image: sensor
         metadata:
-          name: stations
+          name: Estacions sísmiques
+          labels:
+            sensor: Estació sísmica
 
   SEISMS:
     id: seisms
