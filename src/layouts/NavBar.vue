@@ -1,7 +1,7 @@
 <template>
   <header id="topbar">
     <img src="/@/assets/images/logo_ari.png" class="logo">
-    <h1>terratremols.ad</h1>
+    <h1>Observatori del Risc Sísmic d'Andorra</h1>
     <nav class="main-nav">
       <ul>
         <li v-for="section in sections" :key="section.id">
