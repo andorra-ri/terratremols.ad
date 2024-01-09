@@ -9,7 +9,7 @@ nav:
   faq: Preguntes freqüents
   docs: Documents
   act: Actua
-  survey: Emplena enquesta
+  survey: Enquesta sísmica
   links: Enllaços
   privacy: Política de dades
   privacy_policy: Política de privadesa
@@ -50,7 +50,7 @@ filters:
   last_days: Terratrèmols dels últims {days} dies
 
 survey:
-  fill: Emplena enquesta
+  fill: Emplenar enquesta
   results: Resultats Enquesta
 
 seismology:

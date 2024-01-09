@@ -40,6 +40,7 @@
         :href="config.surveyURL"
         target="blank"
         class="btn block">
+        <RemixIcon name="survey" />
         {{ message('survey.fill') }}
       </a>
     </div>

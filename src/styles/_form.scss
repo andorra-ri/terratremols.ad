@@ -71,6 +71,7 @@ input[type="text"] {
   all: unset;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: var(--color-primary);
   color: #fff;
@@ -89,7 +90,7 @@ input[type="text"] {
   }
 
   &.block {
-    display: block;
+    display: flex;
     margin-left: 0;
     margin-right: 0;
     width: 100%;
