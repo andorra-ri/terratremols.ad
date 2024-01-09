@@ -123,12 +123,12 @@ footer:
   learn:
     - id: nav.seismology
       url: '#seismology'
-    - id: nav.tips
-      url: https://www.protecciocivil.ad/info-riscos/sismes
     - id: nav.docs
       url: https://andrecercainnovacio-my.sharepoint.com/:f:/g/personal/ngallego_ari_ad/Ek1yBMifB-JHtybGRIKGn-QBYLFpQ08g2uFec4ur2e-OsA?e=ZUPXPc
     - id: nav.faq
       url: '#faq'
+    - id: nav.tips
+      url: https://www.protecciocivil.ad/info-riscos/sismes
 
   act:
     - id: nav.survey

@@ -5,8 +5,8 @@ nav:
   learn: Aprèn
   news: Notícies
   seismology: Sismologia
-  tips: Autoprotecció
-  faq: FAQ
+  tips: Protecció Civil
+  faq: Preguntes freqüents
   docs: Documents
   act: Actua
   survey: Emplena enquesta
@@ -16,7 +16,7 @@ nav:
   info: Informa't
 
 contact:
-  send_message: Envia un missage
+  send_message: terratremols@ari.ad
 
 newsfeed:
   title: Últimes notícies
