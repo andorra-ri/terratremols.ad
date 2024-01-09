@@ -14,6 +14,7 @@ export const createMap = async (container: string | HTMLElement, options: MapOpt
   // eslint-disable-next-line no-underscore-dangle
   const _map = await _createMap(container, {
     accessToken: VITE_MAPBOX_TOKEN,
+    cooperativeGestures: true,
     ...options,
   });
 
