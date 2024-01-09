@@ -17,3 +17,10 @@
   height: 100%;
   width: 100%;
 }
+
+.mapboxgl-ctrl-legend-pane--seisms .bubbles li {
+  &::before {
+    background: #417abe70;
+    border-color: #0002;
+  }
+}
