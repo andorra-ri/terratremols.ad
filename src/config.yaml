@@ -1,6 +1,6 @@
 locale: en
 
-surveyURL: https://enquesta.terratremols.ad/
+surveyURL: &survey https://enquesta.terratremols.ad/
 
 newsfeed:
   dateLimit:
@@ -136,7 +136,7 @@ footer:
 
   act:
     - id: nav.survey
-      url: https://andorra-ri.github.io/enquesta-sismica/
+      url: *survey
       target: blank
     - id: nav.links
       url: '#links'
