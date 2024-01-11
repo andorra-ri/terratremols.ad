@@ -37,7 +37,7 @@
       </a>
       <a
         v-if="elapsedDays < 15"
-        :href="config.surveyURL"
+        :href="`${config.surveyURL}?id=${seism.id}`"
         target="blank"
         class="btn block">
         <RemixIcon name="survey" />
