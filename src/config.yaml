@@ -1,10 +1,14 @@
 locale: en
 
+seismogramsURL: https://svyhccttsxgjrefxiiro.supabase.co/storage/v1/object/public/seismograms/
 surveyURL: &survey https://enquesta.terratremols.ad/
 
 newsfeed:
   dateLimit:
     days: -14
+
+realtime:
+  interval: 5 # in minutes
 
 formats:
   DATE:

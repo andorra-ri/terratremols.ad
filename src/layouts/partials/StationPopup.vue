@@ -6,10 +6,10 @@
         {{ props.station.name }}
       </h3>
       <a
-        :href="`${SEISMOGRAMS_URL}${props.station.id}.latest.png#${Date.now()}`"
+        :href="`${config.seismogramsURL}${props.station.id}.latest.png#${Date.now()}`"
         target="_blank"
         class="seismogram">
-        <img :src="`${SEISMOGRAMS_URL}${props.station.id}.latest.png#${Date.now()}`">
+        <img :src="`${config.seismogramsURL}${props.station.id}.latest.png#${Date.now()}`">
       </a>
     </div>
   </teleport>
@@ -18,10 +18,9 @@
 <script setup lang="ts">
 import { useI10n } from '/@/composables';
 import type { Station } from '/@/types';
+import config from '/@/config.yaml';
 
 const { message } = useI10n();
-
-const SEISMOGRAMS_URL = 'https://svyhccttsxgjrefxiiro.supabase.co/storage/v1/object/public/seismograms/';
 
 const props = defineProps<{
   station: Station;

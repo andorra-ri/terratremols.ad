@@ -3,6 +3,7 @@
   <main id="main">
     <Cartography />
     <NewsList />
+    <Realtime />
     <Seismology />
     <FrequentAskedQuestions />
     <Footer />
@@ -15,6 +16,7 @@ import {
   NavBar,
   Cartography,
   NewsList,
+  Realtime,
   Seismology,
   FrequentAskedQuestions,
   Footer,

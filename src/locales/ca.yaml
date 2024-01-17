@@ -54,6 +54,10 @@ survey:
   fill: Emplenar enquesta
   results: Resultats Enquesta
 
+realtime:
+  title: En temps real
+  caption: Descobreix l'activitat sísmica en (quasi) temps real. Els sismogrames s'actualitzen cada {interval} minuts.
+
 seismology:
   title: Sismologia
   caption: Per saber-ne més sobre els terratrèmols i conèixer la seva activitat i gestió a Andorra.
