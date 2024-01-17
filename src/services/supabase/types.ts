@@ -7,4 +7,5 @@ export type Seism = {
   depth: number;
   magnitude: number;
   region: string;
+  validated: boolean;
 };

@@ -36,6 +36,7 @@ export type Seism = {
   from: ClosestLocation;
   coordinates: number[];
   geometry: Point;
+  validated: boolean;
   report?: string;
 };
 

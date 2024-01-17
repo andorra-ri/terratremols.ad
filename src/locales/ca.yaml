@@ -29,6 +29,7 @@ seism:
   magnitude: Magnitud {magnitude}
   depth: '{depth}km de profunditat'
   time: '{time} hora local'
+  validation: Aquest terratrèmol encara no ha estat revisat per un expert
   direction:
     N: N
     NE: NE

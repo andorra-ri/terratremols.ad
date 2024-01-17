@@ -29,6 +29,9 @@
           {{ message('seism.time', { time: formatTime(props.seism.datetime) }) }}
         </li>
       </ul>
+      <p v-if="!seism.validated" class="callout">
+        {{ message('seism.validation') }}
+      </p>
       <a
         v-if="seism.report"
         :href="props.seism.report"
@@ -73,6 +76,7 @@ const elapsedDays = computed(() => {
 .seism-popup {
   margin: 1rem 0.75rem;
   font-size: 1rem;
+  width: 17rem;
 
   .metrics{
     margin: 1.5rem 0;
