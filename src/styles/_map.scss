@@ -18,6 +18,8 @@
   width: 100%;
 }
 
+.mapboxgl-ctrl-legend-pane--seisms .list--color li::before { border-radius: 50% !important; }
+
 .mapboxgl-ctrl-legend-pane--seisms .bubbles li {
   &::before {
     background: #417abe70;
