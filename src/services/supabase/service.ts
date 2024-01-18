@@ -20,10 +20,31 @@ const query = async <T>(endpoint: string, options?: QueryOptions): Promise<T> =>
   }
 };
 
-export const getSeisms = async () => {
+export type GetSeismsOptions = {
+  magnitude?: [number, number];
+  dates?: [Date, Date];
+};
+
+export const getSeisms = async (options?: GetSeismsOptions) => {
+  const { magnitude, dates } = options || {};
+
+  const ranges = [
+    ...(magnitude ? [
+      `magnitude.gte.${magnitude[0]}`,
+      `magnitude.lte.${magnitude[1]}`,
+    ] : []),
+    ...(dates ? [
+      `datetime.gte.${dates[0].toISOString()}`,
+      `datetime.lte.${dates[1].toISOString()}`,
+    ] : []),
+  ];
+
   const seisms = await query<Seism[]>('seism', {
     headers: { 'Accept-Profile': 'seismology' },
-    qs: { order: 'datetime.desc' },
+    qs: {
+      ...(ranges.length ? { and: `(${ranges.join(',')})` } : {}),
+      order: 'datetime.desc',
+    },
   });
   return seisms.map(adaptSeism);
 };
