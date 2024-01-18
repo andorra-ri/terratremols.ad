@@ -3,7 +3,7 @@
     <div class="label block">
       <em>{{ message('filters.region') }}</em>
       <Selector
-        v-model="filters.search"
+        v-model="filters.region"
         :options="props.regions"
         :placeholder="message('filters.select_region')"
         class="block"

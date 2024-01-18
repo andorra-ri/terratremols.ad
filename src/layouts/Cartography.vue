@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, toRef } from 'vue';
+import { computed, onMounted } from 'vue';
 import store from '/@/store';
 import { Collapsible } from '/@/components';
 import { createMap, useI10n } from '/@/composables';
@@ -41,15 +41,12 @@ import config from '/@/config.yaml';
 const { message } = useI10n();
 
 const station = useStations(stations.STATIONS);
-const { seisms, selected, filters, resetFilters, popup } = useSeisms(toRef(store.state, 'seisms'));
+const { seisms, selected, filters, resetFilters, popup } = useSeisms();
 
 const period = computed(() => dayDifference(filters.dateMax, filters.dateMin));
 const regions = computed(() => [...new Set(store.state.seisms.map(seism => seism.region))].sort());
 
-onMounted(() => {
-  createMap('map', config.map);
-  store.loadSeisms();
-});
+onMounted(() => createMap('map', config.map));
 </script>
 
 <style lang="scss" scoped>

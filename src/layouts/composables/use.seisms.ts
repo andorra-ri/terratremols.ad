@@ -1,6 +1,7 @@
-import { ref, reactive, computed, watch, type Ref } from 'vue';
+import { ref, reactive, computed, watchEffect, watch, toRef } from 'vue';
+import store from '/@/store';
 import { useMap, useFilters } from '/@/composables';
-import { normalize, dateAdd, toFeatureCollection } from '/@/utils';
+import { dateAdd, toFeatureCollection } from '/@/utils';
 import type { Seism, Replace, Point, FiltersSeism } from '/@/types';
 import config from '/@/config.yaml';
 
@@ -12,24 +13,22 @@ type PopupState = Replace<{
 const POPUP_NAME = 'seisms-popup';
 
 const DEFAULT_FILTERS: FiltersSeism = {
-  search: '',
+  region: '',
   dateMin: dateAdd(new Date(), { months: -1 }),
   dateMax: new Date(),
   magnitude: [1, 9],
 };
 
-export const useSeisms = (seismsList: Ref<Seism[]>) => {
+export const useSeisms = () => {
   const selected = ref<Seism>();
   const filters = reactive({ ...DEFAULT_FILTERS });
 
   const resetFilters = () => Object.assign(filters, DEFAULT_FILTERS);
 
   const { filter } = useFilters<Seism>();
-  const filteredSeisms = filter([
-    seism => normalize(seism.region).includes(normalize(filters.search || '')),
-    seism => seism.datetime >= filters.dateMin && seism.datetime <= filters.dateMax,
-    seism => seism.magnitude >= filters.magnitude[0] && seism.magnitude <= filters.magnitude[1],
-  ], seismsList);
+  const seisms = filter([
+    seism => !filters.region || seism.region === filters.region,
+  ], toRef(store.state, 'seisms'));
 
   const { addLayer, addPopup, fitTo } = useMap();
 
@@ -39,14 +38,22 @@ export const useSeisms = (seismsList: Ref<Seism[]>) => {
   });
 
   addLayer(computed(() => {
-    const { id: lastId } = seismsList.value[0] || {};
-    const features = filteredSeisms.value.map(seism => {
+    const { id: lastId } = seisms.value[0] || {};
+    const features = seisms.value.map(seism => {
       const last = seism.id === lastId;
       return { ...seism, last };
     }).reverse(); // Reverse to place last on top
     const source = toFeatureCollection(features);
     return { ...config.layers.SEISMS, source, onClick: bindClick };
   }));
+
+  watchEffect(() => seisms.value.length && fitTo(seisms.value, { padding: 100 }));
+
+  watch(
+    [() => filters.dateMin, () => filters.dateMax, () => filters.magnitude],
+    ([dateMin, dateMax, magnitude]) => store.loadSeisms({ dates: [dateMin, dateMax], magnitude }),
+    { immediate: true },
+  );
 
   watch(state, ({ content, geometry }) => {
     selected.value = content ? {
@@ -56,8 +63,6 @@ export const useSeisms = (seismsList: Ref<Seism[]>) => {
     } : undefined;
   });
 
-  watch(filteredSeisms, seisms => seisms.length && fitTo(seisms, { padding: 100 }));
-
   watch(selected, seism => {
     if (seism) {
       popup.value?.setLocation(seism.coordinates);
@@ -65,5 +70,5 @@ export const useSeisms = (seismsList: Ref<Seism[]>) => {
     } else popup.value?.clear();
   });
 
-  return { seisms: filteredSeisms, selected, filters, resetFilters, popup };
+  return { seisms, selected, filters, resetFilters, popup };
 };
