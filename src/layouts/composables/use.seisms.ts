@@ -38,9 +38,8 @@ export const useSeisms = () => {
   });
 
   addLayer(computed(() => {
-    const { id: lastId } = seisms.value[0] || {};
     const features = seisms.value.map(seism => {
-      const last = seism.id === lastId;
+      const last = seism.id === store.state.lastSeism?.id;
       return { ...seism, last };
     }).reverse(); // Reverse to place last on top
     const source = toFeatureCollection(features);

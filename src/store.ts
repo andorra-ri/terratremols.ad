@@ -6,6 +6,7 @@ import type { Seism, SeismReport, NewsFeedStory, LearnDocument } from '/@/types'
 import config from '/@/config.yaml';
 
 type State = {
+  lastSeism: Seism | undefined;
   seisms: Seism[];
   reports: Record<string, SeismReport>,
   newsfeed: NewsFeedStory[];
@@ -13,6 +14,7 @@ type State = {
 };
 
 const state = reactive<State>({
+  lastSeism: undefined,
   seisms: [],
   reports: {},
   newsfeed: [],
@@ -20,6 +22,7 @@ const state = reactive<State>({
 });
 
 const loadSeisms = async (options?: GetSeismsOptions) => {
+  if (!state.lastSeism) state.lastSeism = await supabase.getLastSeism();
   const [seisms, reports] = await Promise.all([
     supabase.getSeisms(options),
     airtable.getSeismReports(),
