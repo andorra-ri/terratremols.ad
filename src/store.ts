@@ -1,11 +1,12 @@
 import { reactive } from 'vue';
-import supabase from '/@/services/supabase';
+import supabase, { type GetSeismsOptions } from '/@/services/supabase';
 import airtable from '/@/services/airtable';
 import { dateAdd, indexate } from '/@/utils';
 import type { Seism, SeismReport, NewsFeedStory, LearnDocument } from '/@/types';
 import config from '/@/config.yaml';
 
 type State = {
+  lastSeism: Seism | undefined;
   seisms: Seism[];
   reports: Record<string, SeismReport>,
   newsfeed: NewsFeedStory[];
@@ -13,15 +14,17 @@ type State = {
 };
 
 const state = reactive<State>({
+  lastSeism: undefined,
   seisms: [],
   reports: {},
   newsfeed: [],
   docs: [],
 });
 
-const loadSeisms = async () => {
+const loadSeisms = async (options?: GetSeismsOptions) => {
+  if (!state.lastSeism) state.lastSeism = await supabase.getLastSeism();
   const [seisms, reports] = await Promise.all([
-    supabase.getSeisms(),
+    supabase.getSeisms(options),
     airtable.getSeismReports(),
   ]);
   const reportDict = indexate('id', reports);

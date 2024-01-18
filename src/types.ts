@@ -41,7 +41,7 @@ export type Seism = {
 };
 
 export type FiltersSeism = {
-  search: string;
+  region: string;
   dateMin: Date,
   dateMax: Date,
   magnitude: [number, number];
