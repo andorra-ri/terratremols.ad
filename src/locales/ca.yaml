@@ -7,7 +7,7 @@ nav:
   seismology: Sismologia
   tips: Protecció Civil
   faq: Preguntes freqüents
-  docs: Documents
+  docs: Informes i treballs
   act: Actua
   survey: Enquesta sísmica
   links: Enllaços
@@ -52,10 +52,10 @@ filters:
 
 survey:
   fill: Emplenar enquesta
-  results: Resultats Enquesta
+  results: Resultats enquesta
 
 realtime:
-  title: En temps real
+  title: Activitat sísmica
   caption: Descobreix l'activitat sísmica en (quasi) temps real. Els sismogrames s'actualitzen cada {interval} minuts.
 
 seismology:
