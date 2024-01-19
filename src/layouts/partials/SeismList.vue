@@ -108,7 +108,6 @@ ul.seisms {
     &__marker {
       margin: 0 2rem 0 0.5rem;
       position: relative;
-      border-bottom: 1px solid green;
     }
 
     &__magnitude {
@@ -126,6 +125,7 @@ ul.seisms {
     .ripple {
       --size: calc(15px + 5px * var(--magnitude));
       --color: transparent;
+      --border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
     }
 
     &--active {
