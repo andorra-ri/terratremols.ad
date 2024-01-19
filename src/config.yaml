@@ -44,12 +44,28 @@ map:
   legend:
     layers:
       stations: true
+      border: true
       seisms:
         attributes:
           - circle-color
           - circle-radius
 
 layers:
+  BORDER:
+    id: border
+    layers:
+      - id: border
+        type: line
+        paint:
+          line-color: '#888'
+          line-dasharray: [4, 2]
+          line-opacity: 0.5
+          line-width: 1
+        metadata:
+          name: Zona d'estudi
+          labels:
+            '#888': De 40.5ºN -0.43ºW a 43.6ºN 3.58ºE
+
   STATIONS:
     id: stations
     images:

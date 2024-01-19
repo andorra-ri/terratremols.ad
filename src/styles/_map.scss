@@ -27,3 +27,12 @@
     border-color: #0002;
   }
 }
+
+.mapboxgl-ctrl-legend-pane--border .list li {
+  text-transform: unset;
+
+  &::before {
+    border: 1px dotted #888;
+    background: transparent;
+  }
+}

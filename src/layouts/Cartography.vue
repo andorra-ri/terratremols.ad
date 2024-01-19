@@ -31,14 +31,19 @@
 import { computed, onMounted } from 'vue';
 import store from '/@/store';
 import { Collapsible } from '/@/components';
-import { createMap, useI10n } from '/@/composables';
+import { createMap, useI10n, useMap } from '/@/composables';
 import { dayDifference } from '/@/utils';
 import { SeismList, SeismFilters, SeismPopup, SeismsDownload, StationPopup } from './partials';
 import { useSeisms, useStations } from './composables';
 import stations from '/@/assets/stations.yaml';
+import border from '/@/assets/border.json';
 import config from '/@/config.yaml';
 
 const { message } = useI10n();
+
+const { addLayer } = useMap();
+
+addLayer({ ...config.layers.BORDER, source: border });
 
 const station = useStations(stations.STATIONS);
 const { seisms, selected, filters, resetFilters, popup } = useSeisms();
