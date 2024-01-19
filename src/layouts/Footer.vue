@@ -19,6 +19,14 @@
       </div>
     </div>
 
+    <p class="policies">
+      <a href="https://ari.ad/politica-privadesa" target="blank">Política de Privadesa</a>
+      &middot;
+      <a href="https://ari.ad/politica-cookies" target="blank">Política de cookies</a>
+      &middot;
+      <a href="https://ari.ad/avis-legal" target="blank">Avís Legal</a>
+    </p>
+
     <p class="copyright">
       &copy;
       {{ new Date().getFullYear() }}
@@ -41,5 +49,11 @@ const { message } = useI10n();
   height: 2rem;
   margin-bottom: 1rem;
   display: block;
+}
+
+.policies {
+  margin: 1rem;
+
+  a { font-weight: normal; }
 }
 </style>
