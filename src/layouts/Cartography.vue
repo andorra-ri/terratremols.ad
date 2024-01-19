@@ -10,10 +10,10 @@
           :regions="regions"
           @reset="resetFilters" />
       </Collapsible>
+      <div class="period">{{ message('filters.last_days', { days: period }) }}</div>
       <SeismList
         v-model="selected"
         :seisms="seisms" />
-      <footer>{{ message('filters.last_days', { days: period }) }}</footer>
     </div>
     <div id="map" />
     <SeismPopup
@@ -72,11 +72,12 @@ onMounted(() => createMap('map', config.map));
     flex: 0 0 290px;
     box-sizing: border-box;
 
-    footer {
+    .period {
+      text-align: center;
       padding: 0.5rem 0.25rem;
       background: #8881;
       color: #888b;
-      border-top: 1px solid #8881;
+      border-bottom: 1px solid #8881;
     }
   }
 }
