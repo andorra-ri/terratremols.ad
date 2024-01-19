@@ -136,9 +136,6 @@ footer:
       target: blank
     - id: nav.faq
       url: '#faq'
-    - id: nav.tips
-      url: https://www.protecciocivil.ad/info-riscos/sismes
-      target: blank
 
   act:
     - id: nav.survey
@@ -146,8 +143,8 @@ footer:
       target: blank
     - id: nav.links
       url: '#links'
-    - id: nav.privacy_policy
-      url: https://ari.ad/politica-privadesa
+    - id: nav.tips
+      url: https://www.protecciocivil.ad/info-riscos/sismes
       target: blank
 
   info:
