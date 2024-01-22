@@ -35,7 +35,8 @@
       <a
         v-if="seism.report"
         :href="props.seism.report"
-        class="btn btn--flat block">
+        class="btn btn--flat block"
+        target="blank">
         {{ message('survey.results') }}
       </a>
       <a
