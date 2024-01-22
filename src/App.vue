@@ -2,6 +2,7 @@
   <NavBar />
   <main id="main">
     <Cartography />
+    <SurveyBanner />
     <NewsList />
     <Realtime />
     <Seismology />
@@ -15,6 +16,7 @@ import store from '/@/store';
 import {
   NavBar,
   Cartography,
+  SurveyBanner,
   NewsList,
   Realtime,
   Seismology,

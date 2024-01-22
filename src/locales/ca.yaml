@@ -51,6 +51,8 @@ filters:
   last_days: Terratrèmols dels últims {days} dies
 
 survey:
+  title: Enquesta sísmica
+  caption: Has notat un terratrèmol? Explica'ns com ho has viscut.
   fill: Emplenar enquesta
   results: Resultats enquesta
 
