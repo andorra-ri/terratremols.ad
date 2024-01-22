@@ -159,8 +159,6 @@ footer:
     - id: nav.survey
       url: *survey
       target: blank
-    - id: nav.links
-      url: '#links'
     - id: nav.tips
       url: https://www.protecciocivil.ad/info-riscos/sismes
       target: blank

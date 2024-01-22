@@ -66,3 +66,10 @@ export type LearnDocument = {
   url: string;
   order: number;
 };
+
+export type Link = {
+  name: string;
+  url: string;
+  sector: string;
+  target?: 'blank';
+};

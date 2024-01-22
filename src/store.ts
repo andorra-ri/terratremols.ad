@@ -2,7 +2,7 @@ import { reactive } from 'vue';
 import supabase, { type GetSeismsOptions } from '/@/services/supabase';
 import airtable from '/@/services/airtable';
 import { dateAdd, indexate } from '/@/utils';
-import type { Seism, SeismReport, NewsFeedStory, LearnDocument } from '/@/types';
+import type { Seism, SeismReport, NewsFeedStory, LearnDocument, Link } from '/@/types';
 import config from '/@/config.yaml';
 
 type State = {
@@ -11,6 +11,7 @@ type State = {
   reports: Record<string, SeismReport>,
   newsfeed: NewsFeedStory[];
   docs: LearnDocument[];
+  links: Link[];
 };
 
 const state = reactive<State>({
@@ -19,6 +20,7 @@ const state = reactive<State>({
   reports: {},
   newsfeed: [],
   docs: [],
+  links: [],
 });
 
 const loadSeisms = async (options?: GetSeismsOptions) => {
@@ -49,10 +51,15 @@ const loadLearnDocuments = async () => {
   state.docs.sort((a, b) => a.order - b.order);
 };
 
+const loadLinks = async () => {
+  state.links = await airtable.getLinks();
+};
+
 export default {
   state,
   loadSeisms,
   loadSeismReports,
   loadNewsFeed,
   loadLearnDocuments,
+  loadLinks,
 };

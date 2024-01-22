@@ -15,6 +15,14 @@ nav:
   privacy_policy: Política de privadesa
   info: Informa't
 
+  external:
+    _external: Enllaços
+    CAT: Catalunya
+    ESP: Espanya
+    FRA: França
+    EUR: Europa
+    WLD: Món
+
 contact:
   send_message: terratremols@ari.ad
 

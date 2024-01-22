@@ -33,3 +33,9 @@ export type LearnDocument = {
   file: Attachment[];
   order: number;
 };
+
+export type Link = {
+  name: string;
+  url: string;
+  sector: string;
+};

@@ -7,15 +7,27 @@
       </div>
       <div class="column">
         <h4>{{ message('nav.learn') }}</h4>
-        <LinkList :links="config.footer.learn" />
+        <LinkList :links="links.learn" />
       </div>
       <div class="column">
         <h4>{{ message('nav.act') }}</h4>
-        <LinkList :links="config.footer.act" />
+        <LinkList :links="links.act">
+          <template #external="{ items }">
+            <Popover width="20rem">
+              <template v-for="[group, externals] in items" :key="group">
+                <h4>{{ message(`nav.external.${group}`) }}</h4>
+                <LinkList :links="externals" />
+              </template>
+              <template #target>
+                <a href="#" @click.prevent>{{ message('nav.external._external') }}</a>
+              </template>
+            </Popover>
+          </template>
+        </LinkList>
       </div>
       <div class="column">
         <h4>{{ message('nav.info') }}</h4>
-        <LinkList :links="config.footer.info" />
+        <LinkList :links="links.info" />
       </div>
     </div>
 
@@ -37,11 +49,34 @@
 </template>
 
 <script setup lang="ts">
+import { computed, onMounted } from 'vue';
 import { useI10n } from '/@/composables';
-import { LinkList } from '/@/components';
+import { LinkList, Popover } from '/@/components';
+import { groupBy } from '/@/utils';
+import store from '/@/store';
 import config from '/@/config.yaml';
 
+type Link = {
+  id: string;
+  url: string;
+  target?: 'blank';
+};
+
 const { message } = useI10n();
+
+const links = computed(() => {
+  const { learn, act, info } = config.footer;
+  return {
+    learn: learn.map((link: Link) => ({ ...link, name: message(link.id) })),
+    act: [
+      ...act.map((link: Link) => ({ ...link, name: message(link.id) })),
+      groupBy(store.state.links, 'sector'),
+    ],
+    info: info.map((link: Link) => ({ ...link, name: message(link.id) })),
+  };
+});
+
+onMounted(store.loadLinks);
 </script>
 
 <style lang="scss" scoped>

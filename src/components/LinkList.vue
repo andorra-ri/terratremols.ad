@@ -1,23 +1,22 @@
 <template>
   <ul class="links">
-    <li v-for="link in props.links" :key="link.id">
-      <a :href="link.url" :target="link.target">
-        {{ message(link.id) }}
+    <li v-for="link, i in props.links" :key="'name' in link ? link.name : i">
+      <a v-if="'name' in link" :href="link.url" :target="link.target">
+        {{ link.name }}
       </a>
+      <slot v-else name="external" :items="link" />
     </li>
   </ul>
 </template>
 
 <script setup lang="ts">
-import { useI10n } from '/@/composables';
-
-const { message } = useI10n();
+type Link = {
+  name: string;
+  url: string;
+  target?: 'blank';
+};
 
 const props = defineProps<{
-  links: {
-    id: string;
-    url: string;
-    target?: 'blank';
-  }[];
+  links:(Link | Map<string, Link[]>)[];
 }>();
 </script>

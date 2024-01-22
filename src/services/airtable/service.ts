@@ -1,6 +1,6 @@
 import { useAirtable } from 'painless-airtable';
-import { adaptSeismReport, adaptNewsFeedStory, adaptLearnDocument } from './adapters';
-import type { SeismReport, NewsFeedStory, LearnDocument } from './types';
+import { adaptSeismReport, adaptNewsFeedStory, adaptLearnDocument, adaptLink } from './adapters';
+import type { SeismReport, NewsFeedStory, LearnDocument, Link } from './types';
 
 const airtable = useAirtable({
   base: import.meta.env.VITE_AIRTABLE_BASE,
@@ -44,4 +44,13 @@ export const getLearnDocuments = async () => {
     },
   });
   return docs.map(adaptLearnDocument);
+};
+
+export const getLinks = async () => {
+  const links = await airtable.select<Link>('links', {
+    fields: ['name', 'url', 'sector'],
+    where: { published: { checked: true } },
+    sort: { order: 'asc' },
+  });
+  return links.map(adaptLink);
 };
