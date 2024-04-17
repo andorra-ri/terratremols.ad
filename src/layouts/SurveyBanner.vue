@@ -49,4 +49,9 @@ header.column { flex: 1 0 fit-content; }
     box-shadow: inset 0 0 0 1.5px #fff;
   }
 }
+
+/* iPhone */
+@media screen and (max-width: 530px) {
+  .buttons { flex-wrap: wrap; }
+}
 </style>
