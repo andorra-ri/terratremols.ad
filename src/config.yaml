@@ -64,7 +64,7 @@ layers:
         metadata:
           name: Zona d'estudi
           labels:
-            '#888': De 40.5ºN -0.43ºW a 43.6ºN 3.58ºE
+            '#888': De 40.5ºN 0.33ºW a 43.33ºN 4ºE
 
   STATIONS:
     id: stations
