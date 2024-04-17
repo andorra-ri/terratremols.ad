@@ -32,6 +32,8 @@ newsfeed:
 station:
   name: Estació sísmica
 
+reveal_list: Veure llista
+
 seism:
   epicenter: Epicentre ({coordinates}) a {distance}km {direction} de {name}
   magnitude: Magnitud {magnitude}
