@@ -8,7 +8,7 @@
         </div>
         <div class="column buttons">
           <a :href="config.surveyURL" class="btn" target="blank">Emplenar enquesta</a>
-          <a :href="METHODOLOGY_PATH" class="btn ghost" target="blank">Metodologia</a>
+          <a :href="config.methodologyPDF" class="btn ghost" target="blank">Metodologia</a>
         </div>
       </div>
     </div>
@@ -18,8 +18,6 @@
 <script setup lang="ts">
 import { useI10n } from '/@/composables';
 import config from '/@/config.yaml';
-
-const METHODOLOGY_PATH = '/docs/enquesta_sismica_metodologia.pdf';
 
 const { message } = useI10n();
 </script>

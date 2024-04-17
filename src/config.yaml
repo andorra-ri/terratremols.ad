@@ -1,5 +1,7 @@
 locale: en
 
+methodologyPDF: https://www.ari.ad/images/pdf/ObservatoriRiscSismic/enquesta_sismica_metodologia.pdf
+
 seismogramsURL: https://svyhccttsxgjrefxiiro.supabase.co/storage/v1/object/public/seismograms/
 surveyURL: &survey https://enquesta.terratremols.ad/
 
