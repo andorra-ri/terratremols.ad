@@ -33,7 +33,7 @@ station:
   name: Estació sísmica
 
 seism:
-  epicenter: Epicentre a {distance}km {direction} de {name}
+  epicenter: Epicentre ({coordinates}) a {distance}km {direction} de {name}
   magnitude: Magnitud {magnitude}
   depth: '{depth}km de profunditat'
   time: '{time} hora local'

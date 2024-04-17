@@ -6,6 +6,7 @@
           <RemixIcon name="map-pin" />
           {{
             message('seism.epicenter', {
+              coordinates: props.seism.from.coordinates.join(', '),
               distance: round(props.seism.from.distance, 1),
               direction: message(`seism.direction.${props.seism.from.direction}`),
               name: props.seism.from.name,
