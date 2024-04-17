@@ -16,10 +16,13 @@ const props = defineProps<{
   seisms: Seism[];
 }>();
 
-const { download } = useCsv(toRef(props, 'seisms'), seism => {
-  const { datetime, magnitude, depth, region, coordinates: [lon, lat] } = seism;
-  const timestamp = datetime.toISOString();
-  return { timestamp, lon, lat, magnitude, depth, region };
+const { download } = useCsv(toRef(props, 'seisms'), {
+  filter: seism => seism.validated,
+  format: seism => {
+    const { datetime, magnitude, depth, region, coordinates: [lon, lat] } = seism;
+    const timestamp = datetime.toISOString();
+    return { timestamp, lon, lat, magnitude, depth, region };
+  },
 });
 
 const name = computed(() => {
