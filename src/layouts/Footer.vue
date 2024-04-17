@@ -31,20 +31,21 @@
       </div>
     </div>
 
-    <p class="policies">
-      <a href="https://ari.ad/politica-privadesa" target="blank">Política de Privadesa</a>
-      &middot;
-      <a href="https://ari.ad/politica-cookies" target="blank">Política de cookies</a>
-      &middot;
-      <a href="https://ari.ad/avis-legal" target="blank">Avís Legal</a>
-    </p>
-
-    <p class="copyright">
-      &copy;
-      {{ new Date().getFullYear() }}
-      &middot;
-      {{ message('copyright') }}
-    </p>
+    <aside class="legal">
+      <p class="policies">
+        <a href="https://ari.ad/politica-privadesa" target="blank">Política de Privadesa</a>
+        &middot;
+        <a href="https://ari.ad/politica-cookies" target="blank">Política de cookies</a>
+        &middot;
+        <a href="https://ari.ad/avis-legal" target="blank">Avís Legal</a>
+      </p>
+      <p class="copyright">
+        &copy;
+        {{ new Date().getFullYear() }}
+        &middot;
+        {{ message('copyright') }}
+      </p>
+    </aside>
   </footer>
 </template>
 
@@ -86,9 +87,34 @@ onMounted(store.loadLinks);
   display: block;
 }
 
-.policies {
-  margin: 1rem;
+.legal {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 1.5rem 1rem 0.5rem;
 
-  a { font-weight: normal; }
+  .copyright {
+    font-size: 0.85rem;
+    opacity: 0.5;
+    text-align: center;
+    margin: 1rem;
+  }
+
+  .policies {
+    margin: 1rem;
+    a { font-weight: normal; }
+  }
+}
+
+/* iPad and below */
+@media screen and (max-device-width : 1024px) {
+  .legal { flex-direction: column; }
+}
+
+/* iPhone and below */
+@media screen and (max-device-width : 480px) {
+  .columns {
+    flex-direction: column;
+  }
 }
 </style>

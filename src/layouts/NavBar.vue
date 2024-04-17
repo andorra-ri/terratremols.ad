@@ -10,7 +10,7 @@
       </ul>
       <a class="btn" :href="config.surveyURL" target="_blank">
         <RemixIcon name="survey" />
-        {{ message('nav.survey') }}
+        <span>{{ message('nav.survey') }}</span>
       </a>
     </nav>
   </header>
@@ -54,5 +54,18 @@ const sections = computed(() => [
       gap: 1rem;
     }
   }
+}
+
+/* iPad and below */
+@media screen and (max-width: 920px) {
+  .btn { padding: 0.75rem; }
+
+  .btn span,
+  .main-nav ul { display: none !important; }
+}
+
+/* iPhone */
+@media screen and (max-width: 530px) {
+  h1 { display: none; }
 }
 </style>

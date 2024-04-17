@@ -45,11 +45,13 @@ onUnmounted(() => clearTimeout(updater));
 
   .seismograms {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
     margin: 3rem 0;
 
     .seismogram {
+      flex: 1 0 15rem;
       text-align: center;
 
       img {

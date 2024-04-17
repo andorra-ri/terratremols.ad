@@ -2,10 +2,10 @@
   <div class="banner">
     <div class="content">
       <div class="columns">
-        <div class="column ">
+        <header class="column">
           <h2>{{ message('survey.title') }}</h2>
           <p>{{ message('survey.caption') }}</p>
-        </div>
+        </header>
         <div class="column buttons">
           <a :href="config.surveyURL" class="btn" target="blank">Emplenar enquesta</a>
           <a :href="config.methodologyPDF" class="btn ghost" target="blank">Metodologia</a>
@@ -26,10 +26,14 @@ const { message } = useI10n();
 .columns {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
+header.column { flex: 1 0 fit-content; }
+
 .buttons {
+  flex: 1 0 fit-content;
   display: flex;
   gap: 1rem;
 }
@@ -37,11 +41,17 @@ const { message } = useI10n();
 .btn {
   background: #fff;
   color: var(--color-primary);
+  white-space: nowrap;
 
   &.ghost {
     background: transparent;
     color: #fff;
     box-shadow: inset 0 0 0 1.5px #fff;
   }
+}
+
+/* iPhone */
+@media screen and (max-width: 530px) {
+  .buttons { flex-wrap: wrap; }
 }
 </style>
