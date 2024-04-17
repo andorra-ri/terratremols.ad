@@ -52,7 +52,7 @@ export const useI10n = () => {
   };
 
   const I10n: FunctionalComponent<I10nProps> = (props, ctx) => {
-    const entry = objectPath(state.messages, props.path) as string;
+    const entry = objectPath(state.messages, `${state.locale}.${props.path}`) as string;
     const content = entry.split(REPLACE_REGEX).map(part => ctx.slots[part]?.() || part);
     return h(props.tag || 'p', content);
   };

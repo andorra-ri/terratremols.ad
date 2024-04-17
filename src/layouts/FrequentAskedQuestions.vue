@@ -3,7 +3,11 @@
     <div class="columns">
       <div class="column">
         <h2>{{ message('faq.title') }}</h2>
-        <p>{{ message('faq.caption') }}</p>
+        <I10n tag="p" path="faq.caption">
+          <template #section>
+            <a href="#seismology">{{ message('faq.caption_section') }}</a>
+          </template>
+        </I10n>
       </div>
       <div class="column column--wide">
         <Collapsible
@@ -25,7 +29,7 @@ import { Collapsible } from '/@/components';
 import { useI10n } from '/@/composables';
 import faq from '/@/assets/faq.yaml';
 
-const { message, locale } = useI10n();
+const { message, locale, I10n } = useI10n();
 </script>
 
 <style lang="scss" scoped>

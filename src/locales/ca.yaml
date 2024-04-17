@@ -87,6 +87,7 @@ seismology:
 
 faq:
   title: Preguntes freqüents
-  caption: Respostes breus als principals dubtes sobre terratrèmols. Trobareu informació més detallada a l'apartat de Sismologia.
+  caption: Respostes breus als principals dubtes sobre terratrèmols. Trobareu informació més detallada a l'apartat de {section}.
+  caption_section: Sismologia
 
 copyright: Andorra Recerca + Innovació. Tots els drets reservats.
