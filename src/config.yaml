@@ -165,7 +165,7 @@ footer:
 
   info:
     - id: nav.news
-      url: '#news'
+      url: '#newsfeed'
     - id: contact.send_message
       url: 'mailto:terratremols@ari.ad'
     - id: +376 742 630
