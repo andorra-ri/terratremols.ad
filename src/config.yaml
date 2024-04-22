@@ -1,5 +1,7 @@
 locale: en
 
+methodologyPDF: https://www.ari.ad/images/pdf/ObservatoriRiscSismic/enquesta_sismica_metodologia.pdf
+
 seismogramsURL: https://svyhccttsxgjrefxiiro.supabase.co/storage/v1/object/public/seismograms/
 surveyURL: &survey https://enquesta.terratremols.ad/
 
@@ -64,7 +66,7 @@ layers:
         metadata:
           name: Zona d'estudi
           labels:
-            '#888': De 40.5ºN -0.43ºW a 43.6ºN 3.58ºE
+            '#888': De 40.5ºN 0.33ºW a 43.33ºN 4ºE
 
   STATIONS:
     id: stations
@@ -165,7 +167,7 @@ footer:
 
   info:
     - id: nav.news
-      url: '#news'
+      url: '#newsfeed'
     - id: contact.send_message
       url: 'mailto:terratremols@ari.ad'
     - id: +376 742 630

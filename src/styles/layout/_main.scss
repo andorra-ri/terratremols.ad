@@ -42,3 +42,5 @@ footer {
     color-mix(in srgb, var(--color-primary) 85%, #000)
   );
 }
+
+details summary::-webkit-details-marker { display: none; }

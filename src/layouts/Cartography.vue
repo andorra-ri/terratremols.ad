@@ -1,6 +1,7 @@
 <template>
   <section id="cartography">
     <div class="panel">
+      <div class="toggler">{{ message('reveal_list') }}</div>
       <Collapsible :title="message('filters.filters')">
         <template #aside>
           <SeismsDownload :seisms="seisms" />
@@ -57,6 +58,7 @@ onMounted(() => createMap('map', config.map));
 <style lang="scss" scoped>
 #cartography {
   display: flex;
+  position: relative;
   background: #0001;
   height: 80vh;
   margin: 0;
@@ -71,6 +73,22 @@ onMounted(() => createMap('map', config.map));
     border-right: 1px solid #0001;
     flex: 0 0 290px;
     box-sizing: border-box;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+
+    .toggler {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      background: var(--color-primary);
+      color: #fff;
+      padding: 1.5rem 1rem;
+      border-bottom-right-radius: 0.25rem;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      display: none;
+      text-transform: uppercase;
+    }
 
     .period {
       text-align: center;
@@ -84,5 +102,19 @@ onMounted(() => createMap('map', config.map));
 
 .collapsible {
   border-bottom: 1px solid #8882;
+}
+
+/* iPad and below */
+@media screen and (max-width: 920px) {
+  .panel {
+    position: absolute !important;
+    top: 0;
+    height: 100%;
+    transform: translateX(-100%);
+
+    .toggler { display: block !important; }
+
+    &:hover { transform: none; }
+  }
 }
 </style>

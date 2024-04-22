@@ -1,9 +1,15 @@
 import { ref, watch, type Ref } from 'vue';
 
+type CsvOptions<T, U> = {
+  format?: (item: T) => U,
+  filter?: (item: T) => boolean,
+};
+
 export const useCsv = <T extends object, U extends object>(
   data: Ref<T[]>,
-  formatter: (item: T) => U,
+  options: CsvOptions<T, U> = {},
 ) => {
+  const { format, filter } = options;
   const href = ref<string>();
 
   const download = (fileName: string) => {
@@ -18,8 +24,10 @@ export const useCsv = <T extends object, U extends object>(
 
   watch(data, _data => {
     if (!_data.length) return;
-    const keys = Object.keys(formatter(_data[0])).join(',');
-    const rows = _data.map(item => Object.values(formatter(item)).join(','));
+    const keys = Object.keys(format?.(_data[0]) ?? _data[0]).join(',');
+    const rows = _data
+      .filter(filter ?? Boolean)
+      .map(item => Object.values(format?.(item) ?? item).join(','));
     const csv = new Blob([[keys, ...rows].join('\r\n')], { type: 'text/csv;charset=utf-8;' });
     href.value = URL.createObjectURL(csv);
   });
