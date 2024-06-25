@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "terratremols.ad",
+  "Id": "b6917b5a-78ca-48f8-a66f-bc8cf515a757"
+}
