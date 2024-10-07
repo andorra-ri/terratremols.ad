@@ -33,9 +33,9 @@
 
     <aside class="legal">
       <p class="policies">
-        <a href="https://ari.ad/politica-privadesa" target="blank">Política de Privadesa</a>
+        <a href="https://www.ari.ad/images/pdf/ObservatoriRiscSismic/politica-de-privacitat.pdf" target="blank">Política de Privadesa</a>
         &middot;
-        <a href="https://ari.ad/politica-cookies" target="blank">Política de cookies</a>
+        <a href="https://www.ari.ad/images/pdf/ObservatoriRiscSismic/politica-de-cookies.pdf" target="blank">Política de cookies</a>
         &middot;
         <a href="https://ari.ad/avis-legal" target="blank">Avís Legal</a>
       </p>
