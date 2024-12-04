@@ -1,14 +1,5 @@
 <template>
   <div class="filters">
-    <div class="label block">
-      <em>{{ message('filters.region') }}</em>
-      <Selector
-        v-model="filters.region"
-        :options="props.regions"
-        :placeholder="message('filters.select_region')"
-        class="block"
-        clearable />
-    </div>
     <label class="label">
       <em>{{ message('filters.from') }}</em>
       <DatePicker
@@ -37,6 +28,15 @@
         v-bind="MAGNITUDE_RANGE_OPTIONS"
         class="range-slider" />
     </label>
+    <div class="label block">
+      <em>{{ message('filters.region') }}</em>
+      <Selector
+        v-model="filters.region"
+        :options="props.regions"
+        :placeholder="message('filters.select_region')"
+        class="block"
+        clearable />
+    </div>
     <button class="btn block" @click="reset">
       {{ message('filters.reset') }}
     </button>
