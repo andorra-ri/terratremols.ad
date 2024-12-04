@@ -1,6 +1,8 @@
 <template>
   <header id="topbar">
-    <img src="/@/assets/images/logo_ari.png" class="logo">
+    <a href="https://www.ari.ad" target="blank">
+      <img src="/@/assets/images/logo_ari.png" class="logo">
+    </a>
     <h1>Observatori del Risc Sísmic d'Andorra</h1>
     <nav class="main-nav">
       <ul>
