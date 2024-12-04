@@ -36,7 +36,7 @@ map:
     NavigationControl.ZoomOut: Disminueix zoom
     ScrollZoomBlocker.CmdMessage: Prem Ctrl + scroll per fer zoom
     TouchPanBlocker.Message: Utilitza dos dits per moure el mapa
-  customAttribution: Dades proporcionades per <a href="https://www.icgc.cat/ca/Ciutada/Explora-Catalunya/Terratremols" target="blank">Institut Cartogràfic i Geològic de Catalunya</a>
+  customAttribution: Dades proporcionades per <a href="https://www.icgc.cat/ca/Ambits-tematics/Riscos-i-emergencies/Terratremols" target="blank">Institut Cartogràfic i Geològic de Catalunya</a>
   controls:
     Navigation:
       position: top-right
