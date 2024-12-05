@@ -1,5 +1,5 @@
 <template>
-  <Dropdown class="selector" style="z-index: 1;">
+  <Dropdown class="selector">
     <template #toggle>
       <div class="selector__toggle">
         <slot name="toggle" :item="selected">

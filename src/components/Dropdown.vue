@@ -26,11 +26,11 @@ const onClose = () => { isOpen.value = false; };
 <style lang="scss" scoped>
 .dropdown {
   position: relative;
+  z-index: 1; 
 
   &__panel {
     position: absolute;
     top: 100%;
-    z-index: 1;
     display: none;
 
     :focus + &,
