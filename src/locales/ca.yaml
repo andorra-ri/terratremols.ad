@@ -59,6 +59,7 @@ filters:
   magnitude: Magnitud
   reset: Esborrar filtres
   last_days: Terratrèmols dels últims {days} dies
+  download_data: Descarrega dades
 
 survey:
   title: Enquesta sísmica
