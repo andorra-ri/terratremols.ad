@@ -8,9 +8,12 @@
       readonly>
     <div :class="['calendar', { disabled }]">
       <header>
-        <a href="#" class="prev" @click.prevent="prevMonth" />
+        <a href="#" class="prevYear" @click.prevent="prevYear" />
+        <a href="#" class="prevMonth" @click.prevent="prevMonth" />
         <label>{{ monthFormatter.format(cursor) }} {{ cursorYear }}</label>
-        <a href="#" class="next" @click.prevent="nextMonth" />
+        <a href="#" class="nextMonth" @click.prevent="nextMonth" />
+        <a href="#" class="nextYear" @click.prevent="nextYear" />
+        <!-- <a href="#" @click.prevent="nextMonth" /> -->
       </header>
       <ul class="days">
         <li v-for="day in weekdayLabels" :key="day" class="weekdays">{{ day }}</li>
@@ -94,7 +97,9 @@ const cursorYear = computed({
 });
 
 const prevMonth = () => { cursor.value = add(cursor.value, { months: -1 }); };
-const nextMonth = () => { cursor.value = add(cursor.value, { months: 1 }); };
+const prevYear = () => {cursor.value = add(cursor.value, { years: -1 })};
+const nextMonth = () => { cursor.value = add(cursor.value,  { months: 1 }); };
+const nextYear = () => { cursor.value = add(cursor.value, {years: 1})};
 
 const weekdayLabels = eachDayOfInterval({
   start: startOfWeek(cursor.value, { weekStartsOn: 1 }),
@@ -154,20 +159,32 @@ const select = (day: Day) => {
 
     a {
       color: inherit;
-      padding: 0.5rem 0.75rem;
+      padding: 0.2rem 0.2rem;
       animation: none;
 
-      &::before {
-        display: block;
+      &.prevYear, &.prevMonth, &.nextYear, &.nextMonth {
         content: '';
-        height: var(--datepicker-chevron-size, 5px);
-        width: var(--datepicker-chevron-size, 5px);
-        border: 1px solid currentcolor;
-        border-width: 2px 2px 0 0;
-        transform: rotate(45deg);
+        width: 3px;
+        height: 3px;
       }
 
-      &.prev::before { transform: rotate(-135deg); }
+      &.prevYear, &.nextYear {
+        border-top: 4px double black;
+        border-left: 4px double black;
+      }
+
+      &.prevMonth, &.nextMonth {
+        border-top: 2px solid black;
+        border-left: 2px solid black;
+      }
+
+      &.prevYear, &.prevMonth{
+        transform: rotate(-45deg);
+      }
+
+      &.nextYear, &.nextMonth{
+        transform: rotate(135deg);
+      }
     }
   }
 
