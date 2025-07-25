@@ -25,16 +25,18 @@ const state = reactive<State>({
 
 const loadSeisms = async (options?: GetSeismsOptions) => {
   if (!state.lastSeism) state.lastSeism = await supabase.getLastSeism();
+
+  state.seisms = await supabase.getSeisms(options)
   
-  const [seisms, reports] = await Promise.all([
-    supabase.getSeisms(options),
-    [{id: "", url: ""}]
-  ]);
-  const reportDict = indexate('id', reports);
-  state.seisms = seisms.map(seism => {
-    const report = reportDict[seism.id]?.url;
-    return { ...seism, report };
-  });
+  // const [seisms, reports] = await Promise.all([
+  //   supabase.getSeisms(options),
+  //   airtable.getSeismReports(),
+  // ]);
+  // const reportDict = indexate('id', reports);
+  // state.seisms = seisms.map(seism => {
+  //   const report = reportDict[seism.id]?.url;
+  //   return { ...seism, report };
+  // });
 };
 
 
